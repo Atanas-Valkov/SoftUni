@@ -6,7 +6,22 @@ namespace P02L11.RefactorVolumeOfPyramid
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            
+            
+            double length = double.Parse(Console.ReadLine());
+            double width = double.Parse(Console.ReadLine());
+            double height = double.Parse(Console.ReadLine());
+            
+            
+           double V = (length * width * height) / 3;
+            
+            
+            
+            Console.Write($"Length: ");
+            Console.Write($"Width: ");
+            Console.Write($"Height: ");
+            
+            Console.WriteLine($"Pyramid Volume: {V:f2}");
         }
     }
 }

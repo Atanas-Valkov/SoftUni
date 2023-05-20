@@ -6,7 +6,19 @@ namespace P02L10.LowerOrUpper
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            char n = char.Parse(Console.ReadLine());
+
+            if (char.IsLower(n))
+            {
+                Console.WriteLine(@"lower-case");
+            }
+            else 
+            { 
+            
+                Console.WriteLine(@"upper-case");
+
+            }
+
         }
     }
 }

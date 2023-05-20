@@ -6,7 +6,11 @@ namespace P02L07.ConcatNames
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            string name1 = Console.ReadLine();
+            string name2 = Console.ReadLine();
+            string simb = Console.ReadLine();
+
+            Console.WriteLine($"{name1}{simb}{name2}");
         }
     }
 }

@@ -6,7 +6,12 @@ namespace P02L08.TownInfo
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            string city = Console.ReadLine();
+            uint population = uint.Parse(Console.ReadLine());
+            uint area = uint.Parse(Console.ReadLine());
+
+
+            Console.WriteLine($"Town {city} has population of {population} and area {area} square km.");
         }
     }
 }

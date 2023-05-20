@@ -22,9 +22,9 @@ namespace P02L05.SpecialNumbers
                 
                 }
 
-                bool isSpevial = sum == 5 || sum == 7 || sum == 11;
+                bool isSpecial = sum == 5 || sum == 7 || sum == 11;
 
-                Console.WriteLine($"{i} -> {isSpevial}");
+                Console.WriteLine($"{i} -> {isSpecial}");
 
             }
         }

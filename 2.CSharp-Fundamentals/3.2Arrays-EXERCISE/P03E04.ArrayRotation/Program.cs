@@ -1,21 +1,19 @@
 ﻿
 
-string[] array = Console.ReadLine().Split();
+int[] input = Console.ReadLine()
+    .Split()
+    .Select(int.Parse)
+    .ToArray();
 
 int rotations = int.Parse(Console.ReadLine());
 
 for (int i = 0; i < rotations; i++)
 {
-    string firstIndex = array[0];
-
-    for (int j = 0; j < array.Length - 1; j++)
+    int firstIndex = input[0];
+    for (int j = 0; j < input.Length - 1; j++)
     {
-        array[j] = array[j + 1];
+        input[j] = input[j + 1];
     }
-
-    array[array.Length - 1] = firstIndex;
+    input[input.Length - 1] = firstIndex;
 }
-
-Console.WriteLine(string.Join(" ",array));
-
-
+Console.WriteLine(string.Join(" ",input));

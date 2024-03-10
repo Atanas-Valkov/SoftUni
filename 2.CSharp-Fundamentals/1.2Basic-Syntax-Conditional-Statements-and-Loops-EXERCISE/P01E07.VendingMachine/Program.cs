@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel.Design;
 using System.Runtime.CompilerServices;
+using System.Runtime.Serialization;
 
 namespace P01E07.VendingMachine
 {
@@ -8,87 +9,101 @@ namespace P01E07.VendingMachine
     {
         static void Main(string[] args)
         {
-            string coints = "";
-             decimal totallMoney = 0;
-            
-              while ((coints = Console.ReadLine())  != "Start")
-              {
-                decimal currentCoint = decimal.Parse(coints);
-                if (currentCoint == 0.1m)
+            string coins = "";
+            double totalMoney = 0;
+
+            while ((coins = Console.ReadLine()) != "Start")
+            {
+                double currentCoin = double.Parse(coins);
+                if (currentCoin == 0.1 || currentCoin == 0.2 || currentCoin == 0.5 || currentCoin == 1 || currentCoin == 2)
                 {
-                    totallMoney += currentCoint;
+                    totalMoney += currentCoin;
                 }
-                else if (currentCoint == 0.2m)
+                else
                 {
-                    totallMoney += currentCoint;
+                    Console.WriteLine($"Cannot accept {currentCoin}");
                 }
-                else if (currentCoint == 0.5m)
-                {
-                    totallMoney += currentCoint;
-                }
-                else if (currentCoint == 1m)
-                {
-                    totallMoney += currentCoint;
-                }
-                else if (currentCoint == 2m)
-                {
-                    totallMoney += currentCoint;
-                }
-                else 
-                {
-                    Console.WriteLine($"Cannot accept {currentCoint}");
-                    continue;
-                }
-                if (coints == "Start")
+                if (coins == "Start")
                 {
                     break;
-                }                
-              }
-            string products = "";
-            decimal totalProductsMoney = 0;
-                decimal productPrice = 0;
-            while ((products = Console.ReadLine()) != "End")
+                }
+            }
+
+            string product = "";
+            double productPrice = 0;
+            while ((product = Console.ReadLine()) != "End")
             {
-                if (products == "Nuts")
+                if (product == "Nuts")
                 {
-                    productPrice = 2.0m;
+                    productPrice = 2.0;
+                    if (totalMoney >= productPrice)
+                    {
+                        totalMoney -= productPrice;
+                        Console.WriteLine($"Purchased nuts");
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Sorry, not enough money");
+                    }
                 }
-                else if (products == "Water")
+                else if (product == "Water")
                 {
-                    productPrice = 0.7m;
+                    productPrice = 0.7;
+                    if (totalMoney >= productPrice)
+                    {
+                        totalMoney -= productPrice;
+                        Console.WriteLine($"Purchased water");
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Sorry, not enough money");
+                    }
                 }
-                else if (products == "Crisps")
+                else if (product == "Crisps")
                 {
-                    productPrice = 1.5m;
+                    productPrice = 1.5;
+                    if (totalMoney >= productPrice)
+                    {
+                        totalMoney -= productPrice;
+                        Console.WriteLine($"Purchased crisps");
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Sorry, not enough money");
+                    }
                 }
-                else if (products == "Soda")
+                else if (product == "Soda")
                 {
-                    productPrice = 0.8m;
+                    productPrice = 0.8;
+                    if (totalMoney >= productPrice)
+                    {
+                        totalMoney -= productPrice;
+                        Console.WriteLine($"Purchased soda");
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Sorry, not enough money");
+                    }
                 }
-                else if (products == "Coke")
+                else if (product == "Coke")
                 {
-                    productPrice = 1m;
+                    productPrice = 1.0;
+                    if (totalMoney >= productPrice)
+                    {
+                        totalMoney -= productPrice;
+                        Console.WriteLine($"Purchased coke");
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Sorry, not enough money");
+                    }
                 }
                 else
                 {
                     Console.WriteLine($"Invalid product");
-                    continue;
-                }
-                if (totallMoney>=productPrice)
-                {
-                    totallMoney -= productPrice;
-                    Console.WriteLine($"Purchased {products.ToLower()}");
-                }
-                else if (totallMoney < productPrice)
-                {
-                    Console.WriteLine($"Sorry, not enough money");                 
                 }
             }
-             if (products == "End")
-             {            
-                Console.WriteLine($"Change: {totallMoney:f2}");
-             }
-
+            Console.WriteLine($"Change: {totalMoney:F2}");
         }
     }
 }

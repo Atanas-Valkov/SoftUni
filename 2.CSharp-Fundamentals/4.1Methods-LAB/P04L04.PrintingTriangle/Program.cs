@@ -6,16 +6,16 @@ namespace P04L04.PrintingTriangle
     {
         static void Main(string[] args)
         {
-            int number = int.Parse(Console.ReadLine());
+            int input = int.Parse(Console.ReadLine());
 
-            PrintUpperTrianglePart(number);
+            UpperPartTriangle(input);
+            LowerPartTriangle(input);
 
-            PrintBottomTrianglePart(number - 1);
 
         }
-        static void PrintBottomTrianglePart(int number)
+        static void UpperPartTriangle(int input)
         {
-            for (int i = number; i >= 1; i--)
+            for (int i = 1; i <= input; i++)
             {
                 for (int j = 1; j <= i; j++)
                 {
@@ -24,14 +24,17 @@ namespace P04L04.PrintingTriangle
                 Console.WriteLine();
             }
         }
-        static void PrintUpperTrianglePart(int number)
+
+        static void LowerPartTriangle(int input)
         {
-            for (int i = 1; i <= number; i++)
+            for (int i = input - 1; i >= 1; i--)
             {
+
                 for (int j = 1; j <= i; j++)
                 {
                     Console.Write(j + " ");
                 }
+
                 Console.WriteLine();
             }
         }

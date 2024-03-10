@@ -7,15 +7,13 @@ namespace P02L04.CenturiesToMinutes
     {
         static void Main(string[] args)
         {
-           int centuries = int.Parse(Console.ReadLine());
+            ulong centuries = ulong.Parse(Console.ReadLine());
+            ulong years = centuries * 100;
+            ulong days = (ulong)(years * 365.2422m);
+            ulong hours = days * 24;
+            ulong minutes = hours * 60;
 
-            int years = centuries * 100;
-            int days = (int)(years * 365.2422);
-            int hours = days * 24;
-            int minutes = hours * 60;
             Console.WriteLine($"{centuries} centuries = {years} years = {days} days = {hours} hours = {minutes} minutes");
-
-
         }
     }
 }

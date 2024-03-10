@@ -7,24 +7,18 @@ namespace P02E06.TriplesOfLatinLetters
         static void Main(string[] args)
         {
             int n = int.Parse(Console.ReadLine());
+            int end = 97 + n;
 
-            for (int i = 97; i <97+n; i++)
+            for (int i = 97; i < end; i++)
             {
-                char first = (char)i;
-                for (int j = 97; j <97+n; j++)
+                for (int j = 97; j <end; j++)
                 {
-                    char second  = (char)j;
-                    for (int k = 97; k <97+n; k++)
+                    for (int k = 97; k < end; k++)
                     {
-                       char third = (char)k;
-                        
-                        Console.WriteLine($"{first}{second}{third}");
-     
-                        
+                        Console.WriteLine($"{(char)i}{(char)j}{(char)k}");
                     }
                 }
             }
-
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Xml;
 
 namespace P01E08.TriangleOfNumbers
 {
@@ -6,16 +7,15 @@ namespace P01E08.TriangleOfNumbers
     {
         static void Main(string[] args)
         {
-            int n = int.Parse(Console.ReadLine());
+            int number = int.Parse(Console.ReadLine());
 
-            for (int i = 1; i <= n; i++)
+            for (int i = 1; i <= number; i++)
             {
-                
-                for (int k = 1; k <=i; k++)
+                for (int j = 0; j < i; j++)
                 {
-                      Console.Write($"{i} ");
-                    
+                    Console.Write($"{i} ");
                 }
+
                 Console.WriteLine();
             }
         }

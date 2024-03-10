@@ -7,59 +7,59 @@ namespace P01L05.MonthPrinter
     {
         static void Main(string[] args)
         {
-            int num = int.Parse(Console.ReadLine());
-            if (num == 1)
-            {
-                Console.WriteLine("January");
-            }
-            else if (num == 2)
-            {
-                Console.WriteLine("February");
-            }
-            else if (num == 3)
-            {
-                Console.WriteLine("March");
-            }
-            else if (num == 4)
-            {
-                Console.WriteLine("April");
-            }
-            else if (num == 5)
-            {
-                Console.WriteLine("May");
-            }
-            else if (num == 6)
-            {
-                Console.WriteLine("June");
-            }
-            else if (num == 7)
-            {
-                Console.WriteLine("July");
-            }
-            else if (num == 8)
-            {
-                Console.WriteLine("August");
-            }
-            else if (num == 9)
-            {
-                Console.WriteLine("September");
-            }
-            else if (num == 10)
-            {
-                Console.WriteLine("October");
+            int month = int.Parse(Console.ReadLine());
 
-            }
-            else if (num == 11)
+            if (month>12 || month < 1)
             {
-                Console.WriteLine("November");
+                Console.WriteLine($"Error!");
             }
-            else if (num == 12)
+            else if (month == 1)
             {
-                Console.WriteLine("December");
+                Console.WriteLine($"January");
             }
-            else 
+            else if (month == 2)
             {
-                Console.WriteLine("Error!");
+                Console.WriteLine($"February");
+            }
+            else if (month == 3)
+            {
+                Console.WriteLine($"March");
+            }
+            else if (month == 4)
+            {
+                Console.WriteLine($"April");
+            }
+            else if (month == 5)
+            {
+                Console.WriteLine($"May");
+            }
+            else if (month == 6)
+            {
+                Console.WriteLine($"June");
+            }
+            else if (month == 7)
+            {
+                Console.WriteLine($"July");
+            }
+            else if (month == 8)
+            {
+                Console.WriteLine($"August");
+            }
+            else if (month == 9)
+            {
+                Console.WriteLine($"September");
+            }
+            else if (month == 10)
+            {
+                Console.WriteLine($"October");
+            }
+            else if (month == 11)
+            {
+                Console.WriteLine($"November");
+            }
+            else if (month == 12)
+            {
+                Console.WriteLine($"December");
             }
         }
     }

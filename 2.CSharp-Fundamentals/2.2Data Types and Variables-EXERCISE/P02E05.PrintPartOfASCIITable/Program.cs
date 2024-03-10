@@ -6,17 +6,14 @@ namespace P02E05.PrintPartOfASCIITable
     {
         static void Main(string[] args)
         {
-            int start = int.Parse(Console.ReadLine());
-            int end = int.Parse(Console.ReadLine());
+            int startIndex = int.Parse(Console.ReadLine());
+            int endIndex = int.Parse(Console.ReadLine());
 
-            for (int i = start; i <= end; i++)
+            for (int i = startIndex; i <= endIndex; i++)
             {
-                char a = (char)i;
-
-                Console.Write($"{a} ");
+                char currentChar = (char)i;
+                Console.Write($"{currentChar} ");
             }
-
-
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Runtime.ExceptionServices;
+﻿using System.ComponentModel.DataAnnotations;
+using System.Runtime.ExceptionServices;
 using System.Threading.Channels;
 
 namespace P04L03.Calculations
@@ -7,42 +8,51 @@ namespace P04L03.Calculations
     {
         static void Main(string[] args)
         {
-            string operations = Console.ReadLine();
-            int firstInt = int.Parse(Console.ReadLine());
-            int secondInt = int.Parse(Console.ReadLine());
+            string command = Console.ReadLine();
+            double firstNumber = double.Parse(Console.ReadLine());
+            double secondNumber = double.Parse(Console.ReadLine());
+            double result = 0;
 
-            if (operations == "add")
+            if (command == "add")
             {
-                add(firstInt, secondInt);
+                Add(firstNumber, secondNumber, result);
             }
-            else if(operations == "multiply")
+            else if (command == "multiply")
             {
-                multiply(firstInt, secondInt);
+                Multiply(firstNumber, secondNumber, result);
             }
-            else if (operations == "subtract")
+            else if (command == "subtract")
             {
-                subtract(firstInt, secondInt);
+                Subtract(firstNumber, secondNumber, result);
             }
-            else if (operations == "divide")
+            else if (command == "divide")
             {
-                divide(firstInt, secondInt);
+                Divide(firstNumber, secondNumber, result);
             }
         }
-        static void add(int firstInt, int secondInt)
+
+        static void Divide(double firstNumber, double secondNumber, double result)
         {
-            Console.WriteLine(firstInt + secondInt);
+           result = firstNumber / secondNumber;
+           Console.WriteLine(result);
         }
-        static void multiply(int firstInt, int secondInt)
+
+        static void Subtract(double firstNumber, double secondNumber, double result)
         {
-            Console.WriteLine(firstInt * secondInt);
+            result = firstNumber - secondNumber;
+            Console.WriteLine(result);
         }
-        static void subtract(int firstInt, int secondInt)
+
+        static void Multiply(double firstNumber, double secondNumber, double result)
         {
-            Console.WriteLine(firstInt - secondInt);
+            result = firstNumber * secondNumber;
+            Console.WriteLine(result);
         }
-        static void divide(int firstInt, int secondInt)
+
+        static void Add(double firstNumber, double secondNumber, double result)
         {
-            Console.WriteLine(firstInt / secondInt);
+            result = firstNumber + secondNumber;
+            Console.WriteLine(result);
         }
     }
 }

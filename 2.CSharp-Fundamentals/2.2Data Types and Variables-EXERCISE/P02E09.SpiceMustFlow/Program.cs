@@ -7,30 +7,29 @@ namespace P02E09.SpiceMustFlow
     {
         static void Main(string[] args)
         {
-            int startingYield = int.Parse(Console.ReadLine());
-            int yieldDrops = 0;
-            
-            int daysCounter = 0;
-            while (startingYield >= 100) 
-            { 
-                daysCounter++;
-                yieldDrops += startingYield;
+            int yield = int.Parse(Console.ReadLine());
+            int storage = 0;
+            int counterDays = 0;
 
-                startingYield -= 10;
-                yieldDrops -= 26;
-            }
-            if (startingYield < 100)
+            while (yield >= 100)
             {
-                yieldDrops -= 26;
-
+                counterDays++;
+                storage += yield - 26;
+                yield -= 10;
             }
-            if (yieldDrops < 0)
+
+            if (yield < 100 && counterDays == 0)
             {
-                yieldDrops = 0;
-            }
-            Console.WriteLine(daysCounter);
-            Console.WriteLine(yieldDrops);
+                Console.WriteLine($"{counterDays}");
+                Console.WriteLine($"{storage}");
 
+            }
+            else
+            {
+                storage -= 26;
+                Console.WriteLine($"{counterDays}");
+                Console.WriteLine($"{storage}");
+            }
         }
     }
 }

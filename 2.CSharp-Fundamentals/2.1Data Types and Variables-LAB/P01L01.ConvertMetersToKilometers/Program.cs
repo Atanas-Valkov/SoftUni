@@ -6,10 +6,10 @@ namespace P01L01.ConvertMetersToKilometers
     {
         static void Main(string[] args)
         {
-         int distanceM = int.Parse(Console.ReadLine());
+            double meters = double.Parse(Console.ReadLine());
 
-            float distanceKm = distanceM / 1000.0f;
-            Console.WriteLine($"{distanceKm:f2}");
+            double kilometers = meters / 1000;
+            Console.WriteLine($"{kilometers:F2}");
         }
     }
 }

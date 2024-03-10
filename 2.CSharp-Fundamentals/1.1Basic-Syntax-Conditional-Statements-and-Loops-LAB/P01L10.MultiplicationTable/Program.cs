@@ -7,12 +7,14 @@ namespace P01L10.MultiplicationTable
     {
         static void Main(string[] args)
         {
-           int num = int.Parse(Console.ReadLine());
+            int number = int.Parse(Console.ReadLine());
+            int sum = 0;
             for (int i = 1; i <= 10; i++)
             {
-                int sum = num * i;
-                Console.WriteLine($"{num} X {i} = {sum}");
+                sum = number * i;
+                Console.WriteLine($"{number} X {i} = {sum}");
             }
+
         }
     }
 }

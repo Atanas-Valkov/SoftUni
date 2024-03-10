@@ -1,21 +1,27 @@
-﻿namespace P04L07.RepeatString
+﻿using System.Net;
+using System.Runtime.InteropServices;
+
+namespace P04L07.RepeatString
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            string chars = Console.ReadLine();
-            int n = int.Parse(Console.ReadLine());
-
-            RepresentRepeats(chars , n);
+            string input = Console.ReadLine();
+            int repeated = int.Parse(Console.ReadLine());
+            
+            Print(input, repeated);
         }
 
-        static void RepresentRepeats(string chars, int n)
+        static string Print(string input, int repeated)
         {
-            for (int i = 1; i <= n; i++)
+            for (int i = 1; i <= repeated; i++)
             {
-                Console.Write(chars);
+                Console.Write(input);
+                
             }
+
+            return input;
         }
     }
 }

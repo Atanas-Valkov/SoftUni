@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Xml.Schema;
 
 namespace P02L06.ReversedChars
 {
@@ -6,12 +7,16 @@ namespace P02L06.ReversedChars
     {
         static void Main(string[] args)
         {
-            char firstChar = char.Parse(Console.ReadLine());
-            char secondChar = char.Parse(Console.ReadLine());
-            char thirdChar = char.Parse(Console.ReadLine());
-
-            Console.WriteLine($"{thirdChar} {secondChar} {firstChar}");
-
+            string input = string.Empty;
+            for (int i = 1; i <= 3; i++)
+            {
+                char chars = char.Parse(Console.ReadLine());
+                input += chars;
+            }
+            for (int i = input.Length - 1; i >= 0; i--)
+            {
+                Console.Write($"{input[i]} ");
+            }
         }
     }
 }

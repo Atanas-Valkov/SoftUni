@@ -1,4 +1,5 @@
-﻿using System.Text.RegularExpressions;
+﻿using System.Runtime.Serialization;
+using System.Text.RegularExpressions;
 
 namespace P04L08.MathPower
 {
@@ -6,19 +7,16 @@ namespace P04L08.MathPower
     {
         static void Main(string[] args)
         {
-            decimal baseNumber = decimal.Parse(Console.ReadLine());
-            decimal powerNumber = decimal.Parse(Console.ReadLine());
+           double baseNumber = double.Parse(Console.ReadLine());
+           double power = double.Parse(Console.ReadLine());
 
-            Console.WriteLine(RaiseToPower(baseNumber, powerNumber));
+           Result(baseNumber, power);
         }
-        static decimal RaiseToPower(decimal baseNumber, decimal powerNumber)
+
+        static void Result(double baseNumber, double power)
         {
-            decimal result = 1m;
-            for (int i = 1; i <= powerNumber; i++)
-            {
-                result *= baseNumber;
-            }
-            return result;
+           double result =  Math.Pow(baseNumber, power);
+           Console.WriteLine(result);
         }
     }
 }

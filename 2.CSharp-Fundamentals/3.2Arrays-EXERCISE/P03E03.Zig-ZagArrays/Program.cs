@@ -1,29 +1,30 @@
 ﻿
 
-int n = int.Parse(Console.ReadLine());
+int input = int.Parse(Console.ReadLine());
 
-string[] firstArray = new string[n];
-string[] secondArray = new string[n];
+int[] zigZag1 = new int[input];
+int[] zigZag2 = new int[input];
+
 bool isFirstSelected = true;
-for (int i = 0; i < n; i++)
+for (int i = 0; i < input; i++)
 {
-    string number = Console.ReadLine();
-
-    string[] numberAsArray = number.Split();
+    int[] arr = Console.ReadLine()
+        .Split()
+        .Select(int.Parse)
+        .ToArray();
 
     if (isFirstSelected)
     {
-        firstArray[i] = numberAsArray[0];
-        secondArray[i] = numberAsArray[1];
+        zigZag1[i] = arr[0];
+        zigZag2[i] = arr[1];
     }
     else
     {
-        firstArray[i] = numberAsArray[1];
-        secondArray[i] = numberAsArray[0];
+        zigZag1[i] = arr[1];
+        zigZag2[i] = arr[0];
     }
     isFirstSelected = !isFirstSelected;
 }
-Console.WriteLine(string.Join(" ", firstArray));
-Console.WriteLine(string.Join(" ", secondArray));
 
-
+Console.WriteLine(string.Join(" ", zigZag1));
+Console.WriteLine(string.Join(" ",zigZag2));

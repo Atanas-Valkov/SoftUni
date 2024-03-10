@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net;
 
 namespace P01E04.PrintAndSum
 {
@@ -6,16 +7,18 @@ namespace P01E04.PrintAndSum
     {
         static void Main(string[] args)
         {
-            int startNum = int.Parse(Console.ReadLine());   
-            int endNum = int.Parse(Console.ReadLine());
-            int sum = 0;
-            for (int i = startNum; i <= endNum; i++)
+            int startNumber = int.Parse(Console.ReadLine());
+            int endNumber = int.Parse(Console.ReadLine());
+            int totalSum = 0;
+
+            for (int i = startNumber; i <= endNumber; i++)
             {
-                sum += i;
+                totalSum += i;
                 Console.Write($"{i} ");
             }
-                Console.WriteLine();
-                Console.WriteLine($"Sum: {sum}");
+
+            Console.WriteLine();
+            Console.WriteLine($"Sum: {totalSum}");
         }
     }
 }

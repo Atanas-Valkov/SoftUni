@@ -6,20 +6,16 @@ namespace P02E02.SumDigits
     {
         static void Main(string[] args)
         {
-            int num = int.Parse(Console.ReadLine());
+            int input = int.Parse(Console.ReadLine());
             int sum = 0;
-
-            while (num > 0) 
-            { 
-              int lastDigit = num % 10;
-                num /= 10;
-
-              sum += lastDigit;
-            
-            
+            while (input > 0)
+            {
+                int currentNumber = input % 10;
+                input /= 10;
+                sum += currentNumber;
             }
 
-            Console.WriteLine(sum);
+            Console.WriteLine($"{sum}");
         }
     }
 }

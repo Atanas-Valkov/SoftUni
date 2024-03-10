@@ -1,69 +1,43 @@
 ﻿using System.Diagnostics;
+using System.Net;
 using System.Net.Http.Headers;
 
 namespace P04L05.Orders
 {
     internal class Program
     {
-
         static void Main(string[] args)
         {
             string product = Console.ReadLine();
-            int qty = int.Parse(Console.ReadLine());
-            double totalPrice = 0;
-            double productPrice = 0;
+            double quantity = double.Parse(Console.ReadLine());
+            double totalSum = 0;
+            double price = 0;
 
-       //   if (product == "coffee")
-       //   {
-       //       productPrice = 1.5;
-       //   }
-       //   else if (product == "water")
-       //   {
-       //       productPrice = 1.0;
-       //   }
-       //   else if (product == "coke")
-       //   {
-       //       productPrice = 1.40;
-       //   }
-       //   else if (product == "snacks")
-       //   {
-       //       productPrice = 2.00;
-       //   }
-            CalculatesTheTotalPriceOfOrder(product, qty, productPrice);
-
-            PrintTotalPrice(productPrice, qty, totalPrice);
+            TotalPrice(product, quantity, totalSum, price);
         }
-  static void CalculatesTheTotalPriceOfOrder(string product, int qty,double productPrice)
-  {
-      if (product == "coffee")
-      {
-          productPrice = 1.5;
-      }
-      else if (product == "water")
-      {
-          productPrice = 1.0;
-      }
-      else if (product == "coke")
-      {
-          productPrice = 1.40;
-      }
-      else if (product == "snacks")
-      {
-          productPrice = 2.00;
-      }
 
-
-  }
-
-        static double PrintTotalPrice(double productPrice, int qty,double totalPrice)
+        static void TotalPrice(string product, double quantity, double totalSum, double price)
         {
-            totalPrice= qty * productPrice;
-            Console.WriteLine($"{totalPrice:F2}");
+            if (product == "coffee")
+            {
+                price = 1.5;
 
+            }
+            else if (product == "water")
+            {
+                price = 1.00;
+
+            }
+            else if (product == "coke")
+            {
+                price = 1.40;
+            }
+            else if (product == "snacks")
+            {
+                price = 2.00;
+            }
+            totalSum = quantity * price;
+            Console.WriteLine($"{totalSum:F2}");
         }
-
-
-
-        
     }
 }

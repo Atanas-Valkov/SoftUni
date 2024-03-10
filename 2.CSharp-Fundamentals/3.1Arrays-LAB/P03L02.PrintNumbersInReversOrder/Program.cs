@@ -1,19 +1,18 @@
-﻿ int n = int.Parse(Console.ReadLine());
+﻿ 
+using System.Net;
 
- int[] arr = new int[n];
+int input = int.Parse(Console.ReadLine());
 
+int[] numbers = new int[input];
 
- for (int i = 0; i < n; i++)
- {
+for (int i = 0 ; i < numbers.Length; i++)
+{
+    numbers[i] = int.Parse(Console.ReadLine());
+}
 
-    int number = int.Parse(Console.ReadLine());
-    arr[i] = number;
- }
-
- for(int i = 0 ; i < arr.Length; i++)
- {
-     Console.Write(arr[arr.Length - 1 - i] + " ");
- }
-
+for (int i = numbers.Length - 1; i >= 0; i--)
+{
+    Console.Write($"{numbers[i]} ");
+}
 
  

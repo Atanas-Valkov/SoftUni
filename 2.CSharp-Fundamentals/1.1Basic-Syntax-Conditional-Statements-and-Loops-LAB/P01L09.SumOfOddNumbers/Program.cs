@@ -8,24 +8,16 @@ namespace P01L09.SumOfOddNumbers
     {
         static void Main(string[] args)
         {
-            int num = int.Parse(Console.ReadLine());    
-                
-             int counter = 0;
-            int sum = 0;
-            for (int i = 1; i <= 100; i++)
+            int number = int.Parse(Console.ReadLine());
+            int sum = 0;  
+            
+            for (int i = 1; i <= number; i++)
             {
-                if (i % 2 != 0 )
-                {
-                    counter++;
-                    sum += i;
-                    Console.WriteLine($"{i}");
-                }
-                if (counter == num)
-                {
-                    break;
-                }
+                Console.WriteLine(2*i-1);
+                sum += 2 * i - 1;
             }
-                    Console.WriteLine($"Sum: {sum}");
+
+            Console.WriteLine($"Sum: {sum}");
         }
     }
 }

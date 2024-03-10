@@ -6,16 +6,15 @@ namespace P01L03.PassedOrFailed
     {
         static void Main(string[] args)
         {
-           double grade = double.Parse(Console.ReadLine());
+            double grade = double.Parse(Console.ReadLine());
 
-            if (grade>=3)
+            if (grade >= 3)
             {
-                Console.WriteLine("Passed!");
+                Console.WriteLine($"Passed!");
             }
             else
             {
-                Console.WriteLine("Failed!");
-
+                Console.WriteLine($"Failed!");
             }
         }
     }

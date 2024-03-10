@@ -4,16 +4,16 @@
     {
         static void Main(string[] args)
         {
-            double height = double.Parse(Console.ReadLine());
-            double width= double.Parse(Console.ReadLine());
-            double area = rectangleArea(height, width);
-
+            double width = double.Parse(Console.ReadLine());
+            double altitude = double.Parse(Console.ReadLine());
+            double area = width * altitude;
+            GetRectangleArea(width , altitude);
             Console.WriteLine(area);
         }
 
-        static double rectangleArea(double height, double width)
+        static double GetRectangleArea(double width, double altitude)
         {
-            return height * width;
+            return width * altitude;
         }
     }
 }

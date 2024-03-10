@@ -9,19 +9,20 @@ namespace P01L04.BackIn30Minutes
             int hours = int.Parse(Console.ReadLine());
             int minutes = int.Parse(Console.ReadLine());
 
-            minutes += 30;
-
-            if (minutes>59)
+            if (minutes<=29)
             {
+                minutes += 30;
+            }
+            else
+            {
+                minutes = (minutes + 30) - 60;
                 hours++;
-                minutes = minutes - 60;
             }
             if (hours>23)
             {
-                hours = 0; 
+                hours = 0;
             }
-            Console.WriteLine($"{hours}:{minutes:d2}");
-            
+            Console.WriteLine($"{hours}:{minutes:D2}");
         }
     }
 }

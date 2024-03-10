@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Xml.Linq;
 
 namespace P01L06.ForeignLanguages
 {
@@ -6,15 +7,15 @@ namespace P01L06.ForeignLanguages
     {
         static void Main(string[] args)
         {
-            string country = Console.ReadLine();
-            string language = string.Empty ;
+            string countryName = Console.ReadLine(); 
+            string language = String.Empty;
 
-            if (country == "England" || country == "USA")
+            if (countryName == "England" || countryName == "USA")
             {
                 language = "English";
                 Console.WriteLine($"{language}");
             }
-            else if (country == "Spain" || country == "Argentina" || country == "Mexico")
+            else if (countryName == "Spain" || countryName == "Argentina" || countryName == "Mexico")
             {
                 language = "Spanish";
                 Console.WriteLine($"{language}");
@@ -23,10 +24,6 @@ namespace P01L06.ForeignLanguages
             {
                 Console.WriteLine($"unknown");
             }
-            
-
-
-
         }
     }
 }

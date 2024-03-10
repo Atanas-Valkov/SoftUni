@@ -7,18 +7,17 @@ namespace P02E04.SumOfChars
     {
         static void Main(string[] args)
         {
-             int sum = 0;
-             int numberOfLines = int.Parse(Console.ReadLine());
-            
-             for (int i = 0; i < numberOfLines; i++)
-             {
-                 char ascii = char.Parse(Console.ReadLine());
-                   
-                 int charr = (int)ascii;
-                 sum += charr;
-             }
-             Console.WriteLine($"The sum equals: {sum}");
- 
+            int lines = int.Parse(Console.ReadLine());
+            int sum = 0;
+
+            for (int i = 1; i <= lines; i++)
+            {
+                char chars = char.Parse(Console.ReadLine());
+                int currentChar = (int)chars;
+                sum += currentChar;
+            }
+
+            Console.WriteLine($"The sum equals: {sum}");
         }
     }
 }

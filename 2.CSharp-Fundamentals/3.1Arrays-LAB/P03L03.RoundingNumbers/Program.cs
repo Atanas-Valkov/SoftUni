@@ -1,18 +1,14 @@
 ﻿
-
-
-double[] num = Console.ReadLine()
-    .Split(" ")
+double[] numbers = Console.ReadLine()
+    .Split()
     .Select(double.Parse)
     .ToArray();
-int[] roundedNums = new int[num.Length];
+ int[] roundedNumbers = new int[numbers.Length];
 
-for (int i = 0; i < num.Length; i++)
+for (int i = 0; i < numbers.Length; i++)
 {
-    roundedNums[i] = (int)Math.Round(num[i], MidpointRounding.AwayFromZero);
-    Console.WriteLine($"{num[i]} => {(int)Math.Round(num[i], MidpointRounding.AwayFromZero)}");
+    roundedNumbers[i] = (int)Math.Round(numbers[i], MidpointRounding.AwayFromZero);
+    Console.WriteLine($"{numbers[i]} => {(int)Math.Round(numbers[i], MidpointRounding.AwayFromZero)}");
 }
-
-
 
 

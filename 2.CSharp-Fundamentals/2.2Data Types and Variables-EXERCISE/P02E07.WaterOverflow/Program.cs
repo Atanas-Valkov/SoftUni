@@ -6,24 +6,20 @@ namespace P02E07.WaterOverflow
     {
         static void Main(string[] args)
         {
-            ushort n = ushort.Parse(Console.ReadLine());
-            ushort litersCounter = 0;
-            for (int i = 1; i <=n ; i++)
+            int numbersFollow = int.Parse(Console.ReadLine());
+            int tankCapacity = 255;
+
+            for (int i = 1; i <= numbersFollow; i++)
             {
-                ushort liters = ushort.Parse(Console.ReadLine()) ;
-                ushort currentLiters = liters;
-                if (litersCounter + currentLiters > 255)
+                int liters = int.Parse(Console.ReadLine());
+                if (tankCapacity < liters)
                 {
                     Console.WriteLine($"Insufficient capacity!");
+                    continue;
                 }
-                else
-                {
-                        
-                    litersCounter += liters;
-                }
+                tankCapacity -= liters;
             }
-
-            Console.WriteLine(litersCounter);
+            Console.WriteLine($"{255 - tankCapacity}");
         }
     }
 }

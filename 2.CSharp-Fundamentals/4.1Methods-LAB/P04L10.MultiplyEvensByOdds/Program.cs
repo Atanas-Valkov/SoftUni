@@ -4,57 +4,53 @@ using System.Linq;
 
 namespace P04L10.MultiplyEvensByOdds
 {
-
-
-
     internal class Program
     {
         static void Main(string[] args)
         {
-            int input = int.Parse(Console.ReadLine());
+            int number = Math.Abs(int.Parse(Console.ReadLine()));
 
-            input = Math.Abs(input);
+            int result = GetMultipleOfEvenAndOdds(GetSumOfEvenDigits(number), GetSumOfOddDigits(number));
 
-            int evenSum = 0;
-            int oddSum = 0;
-            int totalSum = 0;
+            Console.WriteLine(result);
+
+        }
+        static int GetSumOfOddDigits(int number)
+        {
+            int sumOfOddGigits = 0;
+            while (number > 0)
+            {
+                int currentDigit = number % 10;
+                number /= 10;
+                if (currentDigit % 2 != 0)
+                {
+                    sumOfOddGigits += currentDigit; 
+                }
+            }
+            return sumOfOddGigits;
+        }
+
+        static int GetSumOfEvenDigits(int number)
+        {
+            int sumOfEvenDigits = 0;
+            while (number > 0)
+            {
+                int currentDigit = number % 10;
+                number /= 10;
+                if (currentDigit % 2 == 0)
+                {
+                    sumOfEvenDigits += currentDigit;
+                }
+            }
+            return sumOfEvenDigits;
             
-           Console.WriteLine(GetMultipleOfEvenAndOdds(input, oddSum, evenSum));
         }
-        static int GetMultipleOfEvenAndOdds(int input, int oddSum, int evenSum)
-        {
-            int totalSum = GetSumOfEvenDigits(input, evenSum) * GetSumOfOddDigits(input, oddSum);
 
-            return totalSum;
-
-        }
-        static int GetSumOfEvenDigits(int input, int evenSum)
+        static int GetMultipleOfEvenAndOdds(int sumOfEvenDigits, int sumOfOddGigits)
         {
 
-            while (input > 0)
-            {
-                int lastNumber = input % 10;
-                if (lastNumber % 2 == 0)
-                {
-                    evenSum += lastNumber;
-                }
-                input = input / 10;
-            }
-            return evenSum;
-        }
-        static int GetSumOfOddDigits(int input, int oddSum)
-        {
-            while (input > 0)
-            {
-                int lastNumber = input % 10;
-                if (lastNumber % 2 != 0)
-                {
-                    oddSum += lastNumber;
-                }
-                input = input / 10;
-            }
-            return oddSum;
-        }
 
+            return sumOfEvenDigits * sumOfOddGigits;
+        }
     }
 }

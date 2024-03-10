@@ -1,21 +1,16 @@
-﻿using System;
-using System.Globalization;
-using System.Runtime.ExceptionServices;
-
-namespace P04L09.GreaterOfTwoValues
+﻿namespace P04L09.GreaterOfTwoValues
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-
             string type = Console.ReadLine();
 
             if (type == "int")
             {
-                int firsInt = int.Parse(Console.ReadLine());
+                int firstInt = int.Parse(Console.ReadLine());
                 int secondInt = int.Parse(Console.ReadLine());
-                Console.WriteLine(GetMax(firsInt, secondInt));
+                Console.WriteLine(GetMax(firstInt, secondInt));
             }
             else if (type == "char")
             {
@@ -25,36 +20,38 @@ namespace P04L09.GreaterOfTwoValues
             }
             else if (type == "string")
             {
-                string firstString = Console.ReadLine();
-                string secondString = Console.ReadLine();
-                Console.WriteLine(GetMax(firstString, secondString));
+                string firstValue = Console.ReadLine();
+                string secondValue = Console.ReadLine();
+                Console.WriteLine(GetMax(firstValue, secondValue));
             }
         }
-        static int GetMax(int firstInt, int secontInt)
+
+        static int GetMax(int firstInt, int secondInt)
         {
-            return Math.Max(firstInt, secontInt);
+            int maxValue = Math.Max(firstInt, secondInt);
+            return maxValue;
         }
-        static char GetMax(char firstChar, char secontChar)
+
+        static char GetMax(char firstChar, char secondChar)
         {
-            if (firstChar > secontChar)
+            if (firstChar > secondChar)
             {
                 return firstChar;
             }
-            else
-            {
-                return secontChar;
-            }
+
+            return secondChar;
         }
 
         static string GetMax(string firstString, string secondString)
         {
-            int biggest = firstString.CompareTo(secondString);
+             int larger = firstString.CompareTo(secondString);
 
-            if (biggest > 0)
-                return firstString;
-            else
-                return secondString;
-            
+             if (larger>0)
+             {
+                 return firstString;
+             }
+
+             return secondString;
         }
     }
 }

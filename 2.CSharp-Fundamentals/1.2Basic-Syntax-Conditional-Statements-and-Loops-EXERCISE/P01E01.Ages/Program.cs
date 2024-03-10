@@ -9,30 +9,32 @@ namespace P01E01.Ages
         static void Main(string[] args)
         {
             int age = int.Parse(Console.ReadLine());
-            string person = "";
+            string person = string.Empty;
 
-
-            if (age<=2)
+            if (age <= 2)
             {
-                person = "baby"; 
+                person = "baby";
             }
-            else if (age<=13)
+            else if (age>= 3 && age <=13)
             {
                 person = "child";
             }
-            else if (age <= 19)
+            else if (age >= 14 && age <= 19)
             {
                 person = "teenager";
             }
-            else if (age <= 65)
+            else if (age >= 20 && age <= 65)
             {
                 person = "adult";
             }
-            else if (age>= 66)
+            else if (age >= 66)
             {
                 person = "elder";
             }
+
             Console.WriteLine(person);
+
+
         }
     }
 }

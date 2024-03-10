@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Drawing;
 using System.Runtime.Intrinsics.X86;
+using System.Threading.Channels;
 using System.Xml.Schema;
 
 namespace P01E03.Vacation
@@ -9,75 +11,112 @@ namespace P01E03.Vacation
     {
         static void Main(string[] args)
         {
-            int countOfPeople = int .Parse(Console.ReadLine()); 
-            string typeOfGroup = Console.ReadLine();   
-            string day = Console.ReadLine();
+            int countOfPeople = int.Parse(Console.ReadLine());
+            string typeOfGroup = Console.ReadLine();
+            string dayOfTheWeek = Console.ReadLine();
 
-            double ticketPrice = 0;
             double totalPrice = 0;
-            
-            if (typeOfGroup == "Students")
+            double pricePerPerson = 0;
+
+            if (dayOfTheWeek == "Friday")
             {
-                if (day == "Friday")
+                if (typeOfGroup == "Students")
                 {
-                    ticketPrice = 8.45;
+                    pricePerPerson = 8.45;
+                    totalPrice = countOfPeople * pricePerPerson;
+                    if (countOfPeople >= 30)
+                    {
+                        totalPrice *= 0.85;
+                    }
                 }
-                else if (day == "Saturday")
+                else if (typeOfGroup == "Business")
                 {
-                    ticketPrice = 9.80;
+                    pricePerPerson = 10.90;
+                    totalPrice = countOfPeople * pricePerPerson;
+
+                    if (countOfPeople >= 100)
+                    {
+                        countOfPeople -= 10;
+                        totalPrice = countOfPeople * pricePerPerson;
+                    }
                 }
-                else if (day == "Sunday")
+                else if (typeOfGroup == "Regular")
                 {
-                    ticketPrice = 10.46;
+                    pricePerPerson = 15;
+                    totalPrice = countOfPeople * pricePerPerson;
+                    if (countOfPeople >= 10 && countOfPeople <= 20)
+                    {
+                        totalPrice *= 0.95;
+                    }
                 }
             }
-            else if (typeOfGroup == "Business")
+            else if (dayOfTheWeek == "Saturday")
             {
-                if (day == "Friday")
+                if (typeOfGroup == "Students")
                 {
-                    ticketPrice = 10.90;
+                    pricePerPerson = 9.80;
+                    totalPrice = countOfPeople * pricePerPerson;
+                    if (countOfPeople >= 30)
+                    {
+                        totalPrice *= 0.85;
+                    }
                 }
-                else if (day == "Saturday")
+                else if (typeOfGroup == "Business")
                 {
-                    ticketPrice = 15.60;
+                    pricePerPerson = 15.60;
+                    totalPrice = countOfPeople * pricePerPerson;
+
+                    if (countOfPeople >= 100)
+                    {
+                        countOfPeople -= 10;
+                        totalPrice = countOfPeople * pricePerPerson;
+                    }
                 }
-                else if (day == "Sunday")
+                else if (typeOfGroup == "Regular")
                 {
-                    ticketPrice = 16;
+                    pricePerPerson = 20;
+                    totalPrice = countOfPeople * pricePerPerson;
+                    if (countOfPeople >= 10 && countOfPeople <= 20)
+                    {
+                        totalPrice *= 0.95;
+                    }
                 }
             }
-            else if (typeOfGroup == "Regular")
+            else if (dayOfTheWeek == "Sunday")
             {
-                if (day == "Friday")
+                if (typeOfGroup == "Students")
                 {
-                    ticketPrice = 15;
+                    pricePerPerson = 10.46;
+                    totalPrice = countOfPeople * pricePerPerson;
+                    if (countOfPeople >= 30)
+                    {
+                        totalPrice *= 0.85;
+                    }
                 }
-                else if (day == "Saturday")
+                else if (typeOfGroup == "Business")
                 {
-                    ticketPrice = 20;
+                    pricePerPerson = 16;
+                    totalPrice = countOfPeople * pricePerPerson;
+
+                    if (countOfPeople >= 100)
+                    {
+                        countOfPeople -= 10;
+                        totalPrice = countOfPeople * pricePerPerson;
+                    }
                 }
-                else if (day == "Sunday")
+                else if (typeOfGroup == "Regular")
                 {
-                    ticketPrice = 22.5;
+                    pricePerPerson = 22.50;
+                    totalPrice = countOfPeople * pricePerPerson;
+                    totalPrice = countOfPeople * pricePerPerson;
+                    if (countOfPeople >= 10 && countOfPeople <= 20)
+                    {
+                        totalPrice *= 0.95;
+                    }
                 }
             }
-            if (countOfPeople >= 30 && typeOfGroup == "Students")
-            {
-                ticketPrice *= 0.85;
-            }
-            else if (countOfPeople > 100 && typeOfGroup == "Business")
-            {
-                countOfPeople -= 10;
-            }
-            else if (countOfPeople>= 10 && countOfPeople<20 && typeOfGroup == "Regular")
-            {
-                ticketPrice *= 0.95;
-            }
-                
-            totalPrice = countOfPeople * ticketPrice;
-               
-     
-            Console.WriteLine($"Total price: {totalPrice:f2}");
+
+            Console.WriteLine($"Total price: {totalPrice:F2}");
         }
     }
 }

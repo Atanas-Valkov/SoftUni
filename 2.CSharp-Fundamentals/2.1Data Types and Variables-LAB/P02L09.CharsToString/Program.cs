@@ -6,12 +6,11 @@ namespace P02L09.CharsToString
     {
         static void Main(string[] args)
         {
-            char firstChar = char.Parse(Console.ReadLine());
-            char secondChar = char.Parse(Console.ReadLine());
-            char thidChar = char.Parse(Console.ReadLine());
+            char char1 = char.Parse(Console.ReadLine());
+            char char2 = char.Parse(Console.ReadLine());
+            char char3 = char.Parse(Console.ReadLine());
 
-            Console.WriteLine($"{firstChar}{secondChar}{thidChar}");
-
+            Console.WriteLine($"{char1}{char2}{char3}");
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Channels;
 
 namespace P02L08.TownInfo
 {
@@ -6,12 +7,11 @@ namespace P02L08.TownInfo
     {
         static void Main(string[] args)
         {
-            string city = Console.ReadLine();
-            uint population = uint.Parse(Console.ReadLine());
-            uint area = uint.Parse(Console.ReadLine());
+            string townName = Console.ReadLine();
+            int population = int.Parse(Console.ReadLine());
+            double area = int.Parse(Console.ReadLine());
 
-
-            Console.WriteLine($"Town {city} has population of {population} and area {area} square km.");
+            Console.WriteLine($"Town {townName} has population of {population} and area {area} square km.");
         }
     }
 }

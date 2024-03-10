@@ -1,26 +1,24 @@
 ﻿
+using System.Runtime.ExceptionServices;
 
-int[] numbers = Console
-    .ReadLine()
+int[] input = Console.ReadLine()
     .Split()
     .Select(int.Parse)
     .ToArray();
-int oddSum = 0;
-int evenSum = 0;
-
-for (int i = 0; i < numbers.Length; i++)
+int sumEven = 0;
+int sumodd = 0;
+for (int i = 0; i < input.Length; i++)
 {
-     int currentNumber = numbers[i];
 
-     if (currentNumber % 2 == 0 )
-     {
-         evenSum += numbers[i];
-     }
-     else
-     {
-         oddSum += numbers[i];
+    if (input[i] % 2 == 0)
+    {
+        sumEven += input[i];
+    }
+    else
+    {
+        sumodd += input[i];
+    }
+}
+int difference =  sumEven - sumodd;
 
-     }
- }
-int difference = evenSum - oddSum;
 Console.WriteLine(difference);

@@ -1,18 +1,14 @@
-﻿  
-  
-  
-  int wagons = int.Parse(Console.ReadLine());
-  
-  int[] numberOfPeople = new int[wagons] ;
-  int sum = 0;
-  for (int i = 0; i < numberOfPeople.Length  ; i++)
-  { 
-      int passengers = int.Parse(Console.ReadLine());
+﻿
+int wagonsCount = int.Parse(Console.ReadLine());
 
-    numberOfPeople[i] = passengers ;
+int[] wagons = new int[wagonsCount] ;
 
-     
-  }
-  Console.WriteLine(string.Join(" ", numberOfPeople));
-  Console.WriteLine(numberOfPeople.Sum());
- 
+int sum = 0;
+for (int i = 0; i < wagons.Length; i++)
+{
+    int passengers = int.Parse(Console.ReadLine());
+    wagons[i] = passengers;
+}
+
+Console.WriteLine(string.Join(" ",wagons));
+Console.WriteLine(wagons.Sum());

@@ -6,39 +6,32 @@ namespace P01E09.PadawanEquipment
     {
         static void Main(string[] args)
         {
-            double amountOfMoney = double.Parse(Console.ReadLine());    
+            double amountOfMoney = double.Parse(Console.ReadLine());
             double countOfStudents = double.Parse(Console.ReadLine());
-            double priceLightsabers = double.Parse(Console.ReadLine());
-            double priceRobes = double.Parse(Console.ReadLine());
-            double priceBelts = double.Parse(Console.ReadLine());
+            double priceOfLightsabers = double.Parse(Console.ReadLine());
+            double priceOfRobes = double.Parse(Console.ReadLine());
+            double priceOfBelts = double.Parse(Console.ReadLine());
+            double equipmentCost = 0;
+            double freeBelts = 0;
 
-            double numLightsabers = Math.Ceiling(countOfStudents * 1.1);
-            double numRobes = countOfStudents;
-            double numBelts = 0; 
-            
-            for (int i = 1; i <= countOfStudents; i++) 
+            for (int i = 1; i <= countOfStudents; i++)
             {
-                if (i % 6 != 0 )
+                if (i % 6 == 0)
                 {
-                    numBelts++;
+                    freeBelts++;
                 }
-            
             }
+            equipmentCost = priceOfLightsabers * Math.Ceiling(countOfStudents * 1.1) + priceOfRobes * countOfStudents + priceOfBelts * (countOfStudents - freeBelts);
+            double needed = equipmentCost - amountOfMoney;
 
-            double totalSpendMoney = (priceLightsabers * numLightsabers) + (priceRobes * numRobes) + (priceBelts * numBelts);
-
-            if (amountOfMoney >= totalSpendMoney)
+            if (equipmentCost <= amountOfMoney)
             {
-                Console.WriteLine($"The money is enough - it would cost {totalSpendMoney:f2}lv.");
+                Console.WriteLine($"The money is enough - it would cost {equipmentCost:F2}lv.");
             }
             else
             {
-                Console.WriteLine($"John will need {(totalSpendMoney - amountOfMoney):f2}lv more.");
+                Console.WriteLine($"John will need {needed:F2}lv more.");
             }
-
-
-
-
         }
     }
 }

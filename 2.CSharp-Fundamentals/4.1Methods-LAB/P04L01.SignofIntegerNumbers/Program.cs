@@ -36,7 +36,7 @@ namespace P04L01.SignofIntegerNumbers
                 Console.WriteLine($"The number {number} is positive.");
 
 
-                //do something  //do something  //do something  //do something  //do something 
+                c 
                
 
 

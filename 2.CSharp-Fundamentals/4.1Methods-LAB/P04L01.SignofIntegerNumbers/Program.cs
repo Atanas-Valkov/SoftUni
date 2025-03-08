@@ -5,21 +5,19 @@ namespace P04L01.SignofIntegerNumbers
 {
     internal class Program
     {
-
         static void Main()
         {
             int number = int.Parse(Console.ReadLine());
             IsPositive(number);
             IsNegative(number);
             IsZero(number);
-
         }
 
         private static void IsZero(int number)
         {
             if (number == 0)
             {
-                Console.WriteLine($"The number {number} is positive.");
+                Console.WriteLine($"The number {number} is zero.");
             }
         }
 

@@ -12,7 +12,6 @@ internal class Program
         for (int i = 0; i < numberOfStrings; i++)
         {
             names[i] = Console.ReadLine();
-
             sum = 0;
             foreach (var c in names[i])
             {

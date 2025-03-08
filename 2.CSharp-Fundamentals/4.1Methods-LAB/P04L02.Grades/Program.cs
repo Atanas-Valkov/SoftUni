@@ -34,7 +34,6 @@ namespace P04L02.Grades
             {
                 Console.WriteLine("Excellent");
             }
-            //do something  //do something  //do something  //do something  //do something
         }
     }
 

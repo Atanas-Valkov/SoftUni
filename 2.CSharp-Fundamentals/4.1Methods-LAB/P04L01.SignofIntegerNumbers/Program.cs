@@ -34,6 +34,8 @@ namespace P04L01.SignofIntegerNumbers
             if (number > 0)
             {
                 Console.WriteLine($"The number {number} is positive.");
+
+                //testing Fetch !!! 
             }
         }
     }

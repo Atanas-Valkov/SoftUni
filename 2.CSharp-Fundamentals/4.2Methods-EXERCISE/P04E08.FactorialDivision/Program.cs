@@ -1,46 +1,37 @@
 ﻿using System;
-using System.Diagnostics.CodeAnalysis;
-using System.Net;
-using System.Runtime.ExceptionServices;
-using System.Runtime.InteropServices;
 
-namespace P04E08.FactorialDivision
+namespace P04E08.FacturialFirst 
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            double firstNumber = double.Parse(Console.ReadLine());
-            double secondNumber = double.Parse(Console.ReadLine());
+            double factorial = double.Parse(Console.ReadLine());
+            double divider = double.Parse(Console.ReadLine());
 
-            FactorialFirstNumber(firstNumber);
-            FactorialSecondNumber(secondNumber);
-            Printing(FactorialFirstNumber(firstNumber), FactorialSecondNumber(secondNumber));
+            FacturialFirst (factorial);
+            FacturialSecond(divider);
+            Console.WriteLine($"{FacturialFirst(factorial) / FacturialSecond(divider):f2}");
         }
-        static double FactorialFirstNumber(double firstNumber)
+
+        private static double FacturialSecond(double divider)
         {
-            double sumFirstFactorial = 1;
-            for (int i = 1; i <= firstNumber; i++)
+            double sum = 1;
+            for (double i = divider; i >= 1; i--)
             {
-                double currentIndex = i;
-                sumFirstFactorial *= currentIndex;
+                sum *= i;
             }
-            return sumFirstFactorial;
+            return sum;
         }
-        static double FactorialSecondNumber(double secondNumber)
+
+        private static double FacturialFirst (double factorial)
         {
-            double sumSecondFactorial = 1;
-            for (int i = 1; i <= secondNumber; i++)
+            double sum = 1;
+            for (double i = factorial ; i >= 1; i--)
             {
-                double currentIndex = i;
-                sumSecondFactorial *= currentIndex;
+                sum *= i;
             }
-            return sumSecondFactorial;
-        }
-        static void Printing(double factorialFirstNumber, double factorialSecondNumber)
-        {
-            double result = factorialFirstNumber / factorialSecondNumber;
-            Console.WriteLine($"{result:F2}");
+            return sum;
         }
     }
 }

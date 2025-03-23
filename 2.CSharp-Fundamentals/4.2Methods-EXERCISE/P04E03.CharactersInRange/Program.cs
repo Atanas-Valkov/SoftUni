@@ -13,23 +13,20 @@ namespace P04E03.CharactersInRange
 
         }
 
-        static void CharactersBetweenThemAccordingToASCII(char firstChar, char secondChar)
+        private static void CharactersBetweenThemAccordingToASCII(char firstChar, char secondChar)
         {
             if (firstChar < secondChar)
             {
                 for (int i = firstChar + 1; i < secondChar; i++)
                 {
-                    int currentChar = i;
-
-                    Console.Write((char)currentChar + " ");
-                }
+                    Console.Write((char)i + " ");
+                }   
             }
             else
             {
-                for (int i = secondChar + 1 ; i < firstChar; i++)
+                for (int i = secondChar + 1; i < firstChar; i++)
                 {
-                    int currentChar = i;
-                    Console.Write((char)currentChar + " ");
+                    Console.Write((char)i + " ");
                 }
             }
         }

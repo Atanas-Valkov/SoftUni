@@ -1,25 +1,33 @@
-﻿namespace P04E09.PalindromeIntegers
+﻿
+namespace P04E09.PalindromeIntegers
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            string number = "";
-            PalindromeOrNot(number);
+            PalindromeIntegers();
         }
-        static void PalindromeOrNot(string number)
+
+        private static void PalindromeIntegers()
         {
-            while ((number = Console.ReadLine()) != "END")
+            string input = " ";
+            while ((input = Console.ReadLine()) != "END")
             {
-                string firstHalf = number.Substring(0, number.Length / 2);
-                char[] arr = number.ToCharArray();
-                Array.Reverse(arr);
+                bool isPalindrome = true;
+                for (int i = 0; i < input.Length / 2; i++)
+                {
+                    if (input[i] != input[input.Length - 1 - i])
+                    {
+                        isPalindrome = false;
+                        Console.WriteLine($"false");
+                        break;
+                    }
+                }
 
-                string temp = new string(arr);
-                string secondHalf = temp.Substring(0, temp.Length / 2);
-
-                bool result = firstHalf.Equals(secondHalf);
-                Console.WriteLine(result.ToString().ToLower());
+                if (isPalindrome)
+                {
+                    Console.WriteLine($"true");
+                }
             }
         }
     }

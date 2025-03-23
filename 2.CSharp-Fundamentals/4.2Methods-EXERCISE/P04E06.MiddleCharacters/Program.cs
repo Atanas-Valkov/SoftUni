@@ -9,41 +9,20 @@ namespace P04E06.MiddleCharacters
         {
             string input = Console.ReadLine();
 
-            PrintTheMiddleCharacter(input);
-
+            MiddleCharacters(input);
         }
 
-        static void PrintTheMiddleCharacter(string input)
+        private static void MiddleCharacters(string input)
         {
-            if (input.Length>2)
+            int length = input.Length;
+            if (length % 2 == 0)
             {
-                if (input.Length % 2 == 0)
-                {
-                    for (int i = (input.Length - 1) / 2; i >= 0; i--)
-                    {
-                        Console.Write(input[i]);
-                        break;
-                    }
-                    for (int i = input.Length / 2; i >= 0; i--)
-                    {
-                        Console.Write(input[i]);
-                        break;
-                    }
-                }
-                else
-                {
-                    for (int i = input.Length / 2 ; i >= 0; i--)
-                    {
-                        Console.WriteLine(input[i]);
-                        break;
-                    }
-                }
+                Console.WriteLine($"{input[length / 2 - 1]}{input[length / 2]}");
             }
             else
             {
-                Console.WriteLine(input);
-            }
-
+                Console.WriteLine(input[length / 2]);
+            }   
         }
     }
 }

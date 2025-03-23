@@ -12,14 +12,16 @@ namespace P04E01.SmallestOfThreeNumbers
             int secondNumber = int.Parse(Console.ReadLine());
             int thirdNumber = int.Parse(Console.ReadLine());
 
-            Console.WriteLine(SmallestOfThreeInteger(firstNumber, secondNumber, thirdNumber));
+            SmallestOfThreeNumbers(firstNumber, secondNumber, thirdNumber);
+            Console.WriteLine(SmallestOfThreeNumbers(firstNumber, secondNumber, thirdNumber));
         }
 
-        static int SmallestOfThreeInteger(int firstNumber, int secondNumber, int thirdNumber)
+        private static int SmallestOfThreeNumbers(int firstNumber, int secondNumber, int thirdNumber)
         {
-            int firstCommpear = Math.Min(firstNumber, secondNumber);
-            int lastCommpear = Math.Min(firstCommpear, thirdNumber);
-            return lastCommpear;
+            int firstCompare = Math.Min(firstNumber, secondNumber);
+            int secondCompare = Math.Min(firstCompare, thirdNumber);
+
+            return secondCompare;
         }
     }
 }

@@ -1,48 +1,53 @@
-﻿namespace P04E10.TopNumber
+﻿
+using System.Collections.Generic;
+using System.Security.Cryptography;
+
+namespace P04E10.TopNumber
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            int endValue = int.Parse(Console.ReadLine());
-            for (int i = 2; i <= endValue; i++)
+            int endNumber = int.Parse(Console.ReadLine());
+            for (int i = 2; i <= endNumber; i++)
             {
-                int currentDigit = i;
-                DigitsIsDivisibleBy8(endValue, currentDigit);
-                HoldOneOddDigit(endValue,currentDigit );
-                if (DigitsIsDivisibleBy8(endValue, currentDigit) && HoldOneOddDigit(endValue, currentDigit))
+                int currentNumber = i;
+                IsDivisibleByEight(endNumber, currentNumber);
+                HoldsAtLeastOneOddDigit(endNumber, currentNumber);
+                if (IsDivisibleByEight(endNumber, currentNumber) && HoldsAtLeastOneOddDigit(endNumber, currentNumber))
                 {
-                    Console.WriteLine(currentDigit);
+                    Console.WriteLine(currentNumber);
                 }
             }
         }
 
-        static bool DigitsIsDivisibleBy8(int endValue, int currentDigit)
+        private static bool HoldsAtLeastOneOddDigit(int endNumber, int currentNumber)
         {
-            int sum = 0;
-            while (currentDigit > 0)
+            while (currentNumber > 0)
             {
-                int lastDigit = currentDigit % 10;
-                currentDigit /= 10;
-                sum += lastDigit;
-            }
-            if (sum % 8 == 0)
-            {
-                return true;
-            }
-
-            return false;
-        }
-        static bool HoldOneOddDigit(int endValue, int currentDigit)
-        {
-            while (currentDigit > 0)
-            {
-                int lastDigit = currentDigit % 10;
-                currentDigit /= 10;
+                int lastDigit = currentNumber % 10;
+                currentNumber /= 10;
                 if (lastDigit % 2 != 0)
                 {
                     return true;
                 }
+            }
+
+            return false;
+        }
+
+        private static bool IsDivisibleByEight(int endNumber,int currentNumber )
+        {
+            int sum = 0;
+            while (currentNumber > 0)
+            {
+                int lastDigit = currentNumber % 10;
+                sum += lastDigit;
+                currentNumber /= 10;
+            }
+            if (sum % 8 == 0)
+            {
+                return true;
             }
             return false;
         }

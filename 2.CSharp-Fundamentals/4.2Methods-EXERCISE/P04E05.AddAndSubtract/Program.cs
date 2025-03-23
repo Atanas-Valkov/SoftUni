@@ -11,19 +11,20 @@ namespace P04E05.AddAndSubtract
             int firstNumber = int.Parse(Console.ReadLine());
             int secondNumber = int.Parse(Console.ReadLine());
             int thirdNumber = int.Parse(Console.ReadLine());
-            int result = 0;
-            int sum = SumOfFirstTwoIntegers(firstNumber, secondNumber);
-            ThirdNumberSubtractSum(thirdNumber, sum);
+
+            Sum(firstNumber, secondNumber);
+            Subtract(thirdNumber, Sum(firstNumber, secondNumber));
+            Console.WriteLine(Subtract(thirdNumber, Sum(firstNumber, secondNumber)));
         }
-        static int SumOfFirstTwoIntegers(int firstNumber, int secondNumber )
+
+        private static int Subtract(int thirdNumber, int sum)
         {
-           int sum = firstNumber + secondNumber;
-           return sum; 
+            return sum - thirdNumber;
         }
-        static void ThirdNumberSubtractSum(int thirdNumber, int sum)
+
+        private static int Sum(int firstNumber, int secondNumber)
         {
-            int result = sum - thirdNumber;
-            Console.WriteLine(result);
+            return firstNumber + secondNumber;
         }
     }
 }

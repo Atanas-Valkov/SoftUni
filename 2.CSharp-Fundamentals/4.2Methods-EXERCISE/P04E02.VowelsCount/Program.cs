@@ -1,26 +1,29 @@
-﻿namespace P04E02.VowelsCount
+﻿
+using System.Runtime.ExceptionServices;
+
+namespace P04E02.VowelsCount
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine(PrintsOutTheNumberOfVowels());
-            
+           string input = Console.ReadLine().ToLower();
+
+           VowelsCount(input);
+           Console.WriteLine(VowelsCount(input));
         }
-        static int PrintsOutTheNumberOfVowels()
+
+        private static int VowelsCount(string input)
         {
-            string input = Console.ReadLine().ToLower();
-            int sum = 0;
+            int count = 0;
             for (int i = 0; i < input.Length; i++)
             {
-                char currentChar = input[i];
-                if (currentChar == 'a' || currentChar == 'e' || currentChar == 'i' || currentChar == 'o' || currentChar == 'u')
+                if (input[i] == 'a' || input[i] == 'e' || input[i] == 'i' || input[i] == 'o' || input[i] == 'u')
                 {
-                    sum++;
-                }
+                    count++;
+                } 
             }
-
-            return sum;
+            return count;
         }
     }
 }

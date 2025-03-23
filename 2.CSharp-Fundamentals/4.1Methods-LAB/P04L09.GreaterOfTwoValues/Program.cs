@@ -8,9 +8,10 @@
 
             if (type == "int")
             {
-                int firstInt = int.Parse(Console.ReadLine());
-                int secondInt = int.Parse(Console.ReadLine());
-                Console.WriteLine(GetMax(firstInt, secondInt));
+                int firstNumber = int.Parse(Console.ReadLine());
+                int secondNumber = int.Parse(Console.ReadLine());
+
+                Console.WriteLine(GetMax(firstNumber, secondNumber));
             }
             else if (type == "char")
             {
@@ -20,38 +21,38 @@
             }
             else if (type == "string")
             {
-                string firstValue = Console.ReadLine();
-                string secondValue = Console.ReadLine();
-                Console.WriteLine(GetMax(firstValue, secondValue));
+                string firstString = Console.ReadLine();
+                string secondString = Console.ReadLine();
+
+                Console.WriteLine(GetMax(firstString, secondString));
             }
         }
 
-        static int GetMax(int firstInt, int secondInt)
+
+        private static int GetMax(int firstNumber, int secondNumber)
         {
-            int maxValue = Math.Max(firstInt, secondInt);
-            return maxValue;
+            return Math.Max(firstNumber, secondNumber);
         }
-
-        static char GetMax(char firstChar, char secondChar)
+        private static char GetMax(char firstChar, char secondChar)
         {
-            if (firstChar > secondChar)
-            {
-                return firstChar;
-            }
-
-            return secondChar;
+            
+            return (char)Math.Max(firstChar, secondChar);
         }
-
-        static string GetMax(string firstString, string secondString)
+        private static string GetMax(string firstString, string secondString)
         {
-             int larger = firstString.CompareTo(secondString);
+            int sumFirstString = 0;
+            int sumSecondString = 0;
 
-             if (larger>0)
-             {
-                 return firstString;
-             }
+          foreach (var c in firstString)
+          {
+              sumFirstString += c;
+          }
 
-             return secondString;
+          foreach (var c in secondString)
+          {
+              sumSecondString += c;
+          }
+            return sumFirstString > sumSecondString ? firstString : secondString;
         }
     }
 }

@@ -8,51 +8,44 @@ namespace P04L03.Calculations
     {
         static void Main(string[] args)
         {
+
             string command = Console.ReadLine();
-            double firstNumber = double.Parse(Console.ReadLine());
-            double secondNumber = double.Parse(Console.ReadLine());
-            double result = 0;
+            int firstNumber = int.Parse(Console.ReadLine());
+            int secondNumber = int.Parse(Console.ReadLine());
 
             if (command == "add")
             {
-                Add(firstNumber, secondNumber, result);
+                Add(firstNumber, secondNumber);
             }
             else if (command == "multiply")
             {
-                Multiply(firstNumber, secondNumber, result);
+                Multiply(firstNumber, secondNumber);
             }
             else if (command == "subtract")
             {
-                Subtract(firstNumber, secondNumber, result);
+                Subtract(firstNumber, secondNumber);
             }
             else if (command == "divide")
             {
-                Divide(firstNumber, secondNumber, result);
+                Divide(firstNumber, secondNumber);
             }
         }
 
-        static void Divide(double firstNumber, double secondNumber, double result)
+        private static void Add(int firstNumber, int secondNumber)
         {
-           result = firstNumber / secondNumber;
-           Console.WriteLine(result);
+            Console.WriteLine($"{firstNumber + secondNumber}");
         }
-
-        static void Subtract(double firstNumber, double secondNumber, double result)
+        private static void Multiply(int  firstNumber, int secondNumber)
         {
-            result = firstNumber - secondNumber;
-            Console.WriteLine(result);
+            Console.WriteLine($"{firstNumber * secondNumber}");
         }
-
-        static void Multiply(double firstNumber, double secondNumber, double result)
+        private static void Subtract(int firstNumber, int secondNumber)
         {
-            result = firstNumber * secondNumber;
-            Console.WriteLine(result);
+            Console.WriteLine($"{firstNumber - secondNumber}");
         }
-
-        static void Add(double firstNumber, double secondNumber, double result)
+        private static void Divide(int firstNumber, int secondNumber)
         {
-            result = firstNumber + secondNumber;
-            Console.WriteLine(result);
+            Console.WriteLine($"{firstNumber / secondNumber}");
         }
     }
 }

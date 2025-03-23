@@ -10,34 +10,34 @@ namespace P04L05.Orders
         {
             string product = Console.ReadLine();
             double quantity = double.Parse(Console.ReadLine());
-            double totalSum = 0;
-            double price = 0;
 
-            TotalPrice(product, quantity, totalSum, price);
+            OrdersCalculation(product, quantity);
         }
 
-        static void TotalPrice(string product, double quantity, double totalSum, double price)
+        private static void OrdersCalculation(string product, double quantity)
         {
+            double price = 0;
             if (product == "coffee")
             {
-                price = 1.5;
-
+                price = quantity * 1.5;
             }
             else if (product == "water")
             {
-                price = 1.00;
-
+                price = quantity * 1;
             }
             else if (product == "coke")
             {
-                price = 1.40;
+                price = quantity * 1.4;
             }
             else if (product == "snacks")
             {
-                price = 2.00;
+                price = quantity * 2;
             }
-            totalSum = quantity * price;
-            Console.WriteLine($"{totalSum:F2}");
+            Print(price);
+        }
+        private static void Print(double quantity)
+        {
+            Console.WriteLine($"{quantity:F2}");
         }
     }
 }

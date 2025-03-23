@@ -7,21 +7,22 @@ namespace P04L07.RepeatString
     {
         static void Main(string[] args)
         {
-            string input = Console.ReadLine();
-            int repeated = int.Parse(Console.ReadLine());
-            
-            Print(input, repeated);
+            string parameterString = Console.ReadLine();
+            int n = int.Parse(Console.ReadLine());
+
+            RepeatString(parameterString, n);
+            Console.WriteLine(RepeatString(parameterString,n));
         }
 
-        static string Print(string input, int repeated)
+        private static string RepeatString(string parameterString, int n)
         {
-            for (int i = 1; i <= repeated; i++)
+            string output = "";
+            for (int i = 0; i < n; i++)
             {
-                Console.Write(input);
-                
+                output += parameterString;
             }
 
-            return input;
+            return output;
         }
     }
 }

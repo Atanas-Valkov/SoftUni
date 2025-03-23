@@ -7,50 +7,54 @@ namespace P04L10.MultiplyEvensByOdds
     internal class Program
     {
         static void Main(string[] args)
+        
         {
-            int number = Math.Abs(int.Parse(Console.ReadLine()));
+            int input = int.Parse(Console.ReadLine());
+            input = Math.Abs(input);
+            int evenSum = 0;
+            int oddSum = 0;
+            int multipleOfEvenAndOdd = 0;
 
-            int result = GetMultipleOfEvenAndOdds(GetSumOfEvenDigits(number), GetSumOfOddDigits(number));
-
-            Console.WriteLine(result);
-
+            Console.WriteLine(GetMultipleOfEvenAndOdds(evenSum, oddSum, input));
         }
-        static int GetSumOfOddDigits(int number)
+        private static int GetSumOfEvenDigits(int input, int evenSum)
         {
-            int sumOfOddGigits = 0;
-            while (number > 0)
+            while (input > 0)
             {
-                int currentDigit = number % 10;
-                number /= 10;
-                if (currentDigit % 2 != 0)
-                {
-                    sumOfOddGigits += currentDigit; 
-                }
-            }
-            return sumOfOddGigits;
-        }
+                int lastIndex = input % 10;
 
-        static int GetSumOfEvenDigits(int number)
+                if (lastIndex % 2 == 0)
+                {
+                    evenSum += lastIndex;
+                }
+
+                input = input / 10;
+            }
+
+            return evenSum;
+        }
+        private static int GetSumOfOddDigits(int input, int oddSum)
         {
-            int sumOfEvenDigits = 0;
-            while (number > 0)
+            while (input > 0)
             {
-                int currentDigit = number % 10;
-                number /= 10;
-                if (currentDigit % 2 == 0)
+                int lastIndex = input % 10;
+
+                if (lastIndex % 2 != 0)
                 {
-                    sumOfEvenDigits += currentDigit;
+                    oddSum += lastIndex;
                 }
+
+                input = input / 10;
             }
-            return sumOfEvenDigits;
-            
+
+            return oddSum;
         }
 
-        static int GetMultipleOfEvenAndOdds(int sumOfEvenDigits, int sumOfOddGigits)
+        private static int GetMultipleOfEvenAndOdds(int evenSum, int oddSum, int input)
         {
+          int  multipleOfEvenAndOdd = GetSumOfEvenDigits(input, evenSum) * GetSumOfOddDigits(input, oddSum);
 
-
-            return sumOfEvenDigits * sumOfOddGigits;
+          return multipleOfEvenAndOdd;
         }
     }
 }

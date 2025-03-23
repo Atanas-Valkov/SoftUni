@@ -1,19 +1,21 @@
-﻿namespace P04L06.CalculateRectangleArea
+﻿
+namespace P04L06.CalculateRectangleArea
 {
     internal class Program
     {
         static void Main(string[] args)
         {
             double width = double.Parse(Console.ReadLine());
-            double altitude = double.Parse(Console.ReadLine());
-            double area = width * altitude;
-            GetRectangleArea(width , altitude);
+            double height = double.Parse(Console.ReadLine());
+
+            CalculateRectangleArea(width, height);
+            double area = CalculateRectangleArea(width, height);
             Console.WriteLine(area);
         }
 
-        static double GetRectangleArea(double width, double altitude)
+        private static double CalculateRectangleArea(double width, double height)
         {
-            return width * altitude;
+            return width * height;
         }
     }
 }

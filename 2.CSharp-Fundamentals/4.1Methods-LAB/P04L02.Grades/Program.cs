@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System.ComponentModel.Design;
+using System.Diagnostics;
 using System.Runtime.Serialization;
 using Double = System.Double;
 
@@ -6,35 +7,36 @@ namespace P04L02.Grades
 {
     internal class Program
     {
-        static void Main()
+        static void Main(string[] args)
         {
-            double gradr = double.Parse(Console.ReadLine());
+            double inputGrade = double.Parse(Console.ReadLine());
+            string correspondingGrade = "";
 
-            GradeDefinition(gradr);
+            PrintGrade(correspondingGrade, inputGrade);
         }
-        static void GradeDefinition(double grade)
+
+        private static void PrintGrade(string correspondingGrade, double inputGrade)
         {
-            if (grade >= 2 && grade <= 2.99)
+            if (inputGrade >= 2 && inputGrade < 3)
             {
-                Console.WriteLine("Fail");
+                Console.WriteLine($"Fail");
             }
-            else if (grade > 2.99 && grade <= 3.49)
+            else if(inputGrade >= 3 && inputGrade < 3.5)
             {
-                Console.WriteLine("Poor");
+                Console.WriteLine($"Poor");
             }
-            else if (grade > 3.49 && grade <= 4.49)
+            else if (inputGrade >= 3.5 && inputGrade < 4.5)
             {
-                Console.WriteLine("Good");
+                Console.WriteLine($"Good");
             }
-            else if (grade > 4.49 && grade <= 5.49)
+            else if (inputGrade >= 4.5 && inputGrade < 5.5)
             {
-                Console.WriteLine("Very good");
+                Console.WriteLine($"Very good");
             }
-            else if (grade > 5.49 && grade <= 6.00)
+            else if (inputGrade >= 5.5 && inputGrade < 6)
             {
-                Console.WriteLine("Excellent");
+                Console.WriteLine($"Excellent");
             }
         }
     }
-
 }

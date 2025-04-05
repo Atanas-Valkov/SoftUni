@@ -1,26 +1,31 @@
-﻿namespace P05L04.ListOfProducts
+﻿/*
+5
+Carrots
+Artichokes
+Beans
+Eggplants
+Peppers
+ */
+
+namespace P05L04.ListOfProducts
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            int n = int.Parse(Console.ReadLine());
+            int numberOfProducts = int.Parse(Console.ReadLine());
 
             List<string> products = new List<string>();
-
-            for (int i = 0; i < n; i++)
+            for (int i = 0; i < numberOfProducts; i++)
             {
-                
-                products.Add(Console.ReadLine());
+                string product = Console.ReadLine();
+                products.Add(product);
             }
-
             products.Sort();
-
             for (int i = 0; i < products.Count; i++)
             {
                 Console.WriteLine($"{i + 1}.{products[i]}");
             }
-
         }
     }
 }

@@ -4,23 +4,23 @@
     {
         static void Main(string[] args)
         {
-            List<double> numbers = Console.ReadLine()
-                .Split()
+            List<double> input = Console.ReadLine()
+                .Split(" ", StringSplitOptions.RemoveEmptyEntries)
                 .Select(double.Parse)
                 .ToList();
 
-            for (int i = 0; i < numbers.Count - 1; i++)
+            for (int i = 0; i < input.Count - 1; i++)
             {
-                if (numbers[i] == numbers[i + 1])
+                if (input[i] == input[i + 1])
                 {
-                    numbers[i] += numbers[i + 1];
-                    numbers.RemoveAt(i + 1);
+                    double sum = input[i] + input[i + 1];
+                    input.RemoveAt(i);
+                    input.RemoveAt(i);
+                    input.Insert(i, sum);
                     i = -1;
                 }
             }
-
-            Console.WriteLine(string.Join(" ", numbers));
-
+            Console.WriteLine(string.Join(" ", input));
         }
     }
 }

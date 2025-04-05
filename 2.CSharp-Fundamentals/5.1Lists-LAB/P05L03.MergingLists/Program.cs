@@ -4,35 +4,51 @@
     {
         static void Main(string[] args)
         {
-            List<int> firstList = Console.ReadLine()
-                .Split(" ")
-                .Select(int.Parse)
+            List<double> firstList = Console.ReadLine()
+                 .Split(" ", StringSplitOptions.RemoveEmptyEntries)
+                 .Select(double.Parse)
+                 .ToList();
+
+            List<double> secondList = Console.ReadLine()
+                .Split(" ", StringSplitOptions.RemoveEmptyEntries)
+                .Select(double.Parse)
                 .ToList();
 
-            List<int> secondList = Console.ReadLine()
-                .Split()
-                .Select(int.Parse)
-                .ToList();
+            List<double> mergedList = new List<double>();
 
-            List<int> lastList = new List<int>();
-
-            int biggerList = Math.Max(firstList.Count, secondList.Count);
-
-            for (int i = 0; i < biggerList; i++)
+            if (firstList.Count > secondList.Count)
             {
-
-                if (i < firstList.Count)
+                for (int i = 0; i < firstList.Count; i++)
                 {
-                    lastList.Add(firstList[i]);;
+                    if (i < secondList.Count)
+                    {
+                        mergedList.Add(firstList[i]);
+                        mergedList.Add(secondList[i]);
+                    }
+                    else
+                    {
+                        mergedList.Add(firstList[i]);
+                    }
                 }
-
-                if (i < secondList.Count)
+            }
+            else
+            {
+                for (int i = 0; i < secondList.Count; i++)
                 {
-                    lastList.Add(secondList[i]);
+                    if (i < firstList.Count)
+                    {
+                        mergedList.Add(firstList[i]);
+                        mergedList.Add(secondList[i]);
+                    }
+                    else
+                    {
+                        mergedList.Add(secondList[i]);
+                    }
                 }
             }
 
-            Console.WriteLine(string.Join(" ", lastList));
+            Console.WriteLine(string.Join(" ", mergedList));
+
         }
     }
 }

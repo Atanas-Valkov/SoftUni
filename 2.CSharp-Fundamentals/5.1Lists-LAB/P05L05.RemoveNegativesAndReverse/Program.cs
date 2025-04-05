@@ -4,26 +4,29 @@
     {
         static void Main(string[] args)
         {
-            List<int> numbers = Console.ReadLine()
-                .Split()
-                .Select(int.Parse)
+            List<double> numbers = Console.ReadLine()
+                .Split(' ', StringSplitOptions.RemoveEmptyEntries)
+                .Select(double.Parse)
                 .ToList();
-            List<int> newList = new List<int>();
+            int originalLength = numbers.Count;
             for (int i = 0; i < numbers.Count; i++)
             {
-                int currentNumber = numbers[i];
-                if (currentNumber > 0)
+                if (numbers[i] < 0)
                 {
-                    newList.Add(currentNumber);
+                    numbers.Remove(numbers[i]);
+                    i--;
                 }
             }
 
-            if (newList.Count == 0) {
-                    Console.WriteLine($"empty");
+            numbers.Reverse();
+            if (numbers.Count == 0 )
+            {
+                Console.WriteLine("empty");
             }
-            newList.Reverse();
-
-            Console.WriteLine(string.Join(" ", newList));
+            else
+            {
+                Console.WriteLine(string.Join(" ", numbers));
+            }
         }
     }
 }

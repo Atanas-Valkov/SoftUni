@@ -6,45 +6,37 @@ namespace P05L06.ListManipulationBasics
     {
         static void Main(string[] args)
         {
-            List<int> numbers = Console.ReadLine()
-                .Split()
+            List<int> input = Console.ReadLine()
+                .Split(' ', StringSplitOptions.RemoveEmptyEntries)
                 .Select(int.Parse)
                 .ToList();
-            
-            string input = "";
-            
-            while ((input = Console.ReadLine()) != "end")
-            {
-                string[] arguments = input.Split(" ");
-                
-                if (arguments[0] == "Add")
-                {
-                    int numberToAdd = int.Parse(arguments[1]) ;
-                    numbers.Add(numberToAdd);
-                }
-                else if(arguments[0] == "Remove")
-                {
-                    int numberToRemove = int.Parse(arguments[1]) ;
-                    numbers.Remove(numberToRemove);
-                }
-                else if (arguments[0] == "RemoveAt")
-                {
-                    int numberToRemoveIndex = int.Parse(arguments[1]) ;
-                    numbers.RemoveAt(numberToRemoveIndex) ;
-                }
-                else if (arguments[0] == "Insert")
-                {
-                    int numberToInsert = int.Parse(arguments[1]) ;
-                    int index = int.Parse(arguments[2]) ;
 
-                    numbers.Insert(index, numberToInsert);
-                }
-                else
+            string command = " ";
+            while ((command = Console.ReadLine()) != "end")
+            {
+                string[] commandSplit = command.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+                string action = commandSplit[0];
+                int number = int.Parse(commandSplit[1]);
+
+                if (action == "Add")
                 {
-                    break;
+                    input.Add(number);
+                }
+                else if (action == "Remove")
+                {
+                    input.Remove(number);
+                }
+                else if (action == "RemoveAt")
+                {
+                    input.RemoveAt(number);
+                }
+                else if (action == "Insert")
+                {
+                    int index = int.Parse(commandSplit[2]);
+                    input.Insert(index,number);
                 }
             }
-            Console.WriteLine(string.Join(" ", numbers));
+            Console.WriteLine(string.Join(" ",input));
         }
     }
 }

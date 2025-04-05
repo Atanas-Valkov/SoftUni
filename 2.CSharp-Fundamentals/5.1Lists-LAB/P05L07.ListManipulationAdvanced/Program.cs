@@ -2,125 +2,160 @@
 using System.ComponentModel.Design;
 using System.Reflection;
 
+
+/*
+5 34 678 67 5 563 98
+Contains 23
+PrintOdd
+GetSum
+Filter >= 21
+end
+
+2 13 43 876 342 23 543
+Contains 100
+Contains 543
+PrintEven
+PrintOdd
+GetSum
+Filter >= 43
+Filter < 100
+end
+
+ */
 namespace P05L07.ListManipulationAdvanced
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            List<int> list = Console.ReadLine()
-                .Split()
+            List<int> input = Console.ReadLine()
+                .Split(' ', StringSplitOptions.RemoveEmptyEntries)
                 .Select(int.Parse)
                 .ToList();
-
-            string line = " ";
-            while ((line = Console.ReadLine()) != "end")
+            bool ifMadeChanges = false;
+            string command = " ";
+            while ((command = Console.ReadLine()) != "end")
             {
-                if (line == "end")
+                string[] commandSplit = command.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+                string action = commandSplit[0];
+
+                if (action == "Contains")
                 {
-                    break;
-                }
-
-                string[] commands = line.Split();
-
-                if (commands[0] == "Contains")
-                {
-                    int containsTheNumber = int.Parse(commands[1]);
-
-                    if (list.Contains(containsTheNumber) == true)
+                    int number = int.Parse(commandSplit[1]);
+                    if (input.Contains(number))
                     {
                         Console.WriteLine("Yes");
                     }
                     else
                     {
-                        Console.WriteLine("No such number");
+                        Console.WriteLine($"No such number");
                     }
                 }
-                else if (commands[0] == "PrintEven")
+                else if (action == "PrintEven")
                 {
-                    for (int i = 0; i < list.Count; i++)
+                    for (int i = 0; i < input.Count; i++)
                     {
-                        if (list[i] % 2 == 0)
+                        if (input[i] % 2 == 0)
                         {
-                            Console.Write(list[i] + " ");
+                            Console.Write(input[i] + " ");
+                        }
+                    }
+                }
+                else if (action == "PrintOdd")
+                {
+                    for (int i = 0; i < input.Count; i++)
+                    {
+                        if (input[i] % 2 != 0)
+                        {
+                            Console.Write(input[i] + " ");
                         }
                     }
                     Console.WriteLine();
                 }
-                else if (commands[0] == "PrintOdd")
+                else if (action == "GetSum")
                 {
-                    for (int i = 0; i < list.Count; i++)
+                    Console.WriteLine(input.Sum());
+                }
+                else if (action == "Filter")
+                {
+                    string sign = commandSplit[1];
+                    int number = int.Parse(commandSplit[2]);
+
+                    if (sign == "<")
                     {
-                        if (list[i] % 2 == 1)
+                        for (int i = 0; i < input.Count; i++)
                         {
-                            Console.Write(list[i] + " ");
+                            if (input[i] < number)
+                            {
+                                Console.Write(input[i] + " ");
+                            }
                         }
+                        Console.WriteLine();
+                    }
+                    else if (sign == ">")
+                    {
+                        for (int i = 0; i < input.Count; i++)
+                        {
+                            if (input[i] > number)
+                            {
+                                Console.Write(input[i] + " ");
+                            }
+                        }
+                        Console.WriteLine();
+                    }
+                    else if (sign == ">=")
+                    {
+                        for (int i = 0; i < input.Count; i++)
+                        {
+                            if (input[i] >= number)
+                            {
+                                Console.Write(input[i] + " ");
+                            }
+                        }
+                        Console.WriteLine();
+                    }
+                    else if (sign == "<=")
+                    {
+                        for (int i = 0; i < input.Count; i++)
+                        {
+                            if (input[i] <= number)
+                            {
+                                Console.Write(input[i] + " ");
+                            }
+                        }
+                        Console.WriteLine();
                     }
 
-                    Console.WriteLine();
                 }
-                else if (commands[0] == "GetSum")
+                else if (action == "Add")
                 {
-                    int sum = 0;
-                    for (int i = 0; i < list.Count; i++)
-                    {
-                        sum += list[i];
-                    }
-
-                    Console.WriteLine(sum);
-
+                    int number = int.Parse(commandSplit[1]);
+                    input.Add(number);
+                    ifMadeChanges = true;
                 }
-                else if (commands[0] == "Filter")
+                else if (action == "Remove")
                 {
-                    string symbol = commands[1];
-                    int filter = int.Parse(commands[2]);
-                    if (symbol == ">")
-                    {
-                        Console.WriteLine(string.Join(" ", list.FindAll(x => x > filter)));
-                    }
-                    else if (symbol == ">=")
-                    {
-                        Console.WriteLine(string.Join(" ", list.FindAll(x => x >= filter)));
-                    }
-                    else if (symbol == "<")
-                    {
-                        Console.WriteLine(string.Join(" ", list.FindAll(x => x < filter)));
-                    }
-                    else if (symbol == "<=")
-                    {
-                        Console.WriteLine(string.Join(" ", list.FindAll(x => x <= filter)));
-                    }
+                    int number = int.Parse(commandSplit[1]);
+                    input.Remove(number);
+                    ifMadeChanges = true;
                 }
-                else if (commands[0] == "Add")
+                else if (action == "RemoveAt")
                 {
-                    int numberToAdd = int.Parse(commands[1]);
-                    list.Add(numberToAdd);
-                    
-                    Console.WriteLine(string.Join(" ", list));
+                    int number = int.Parse(commandSplit[1]);
+                    input.RemoveAt(number);
+                    ifMadeChanges = true;
                 }
-                else if (commands[0] == "Remove")
+                else if (action == "Insert")
                 {
-                    int numberToRemove = int.Parse(commands[1]);
-                    list.Remove(numberToRemove);
-                    
-                   Console.WriteLine(string.Join(" ", list));
+                    int number = int.Parse(commandSplit[1]);
+                    int index = int.Parse(commandSplit[2]);
+                    input.Insert(index, number);
+                    ifMadeChanges = true;
                 }
-                else if (commands[0] == "RemoveAt")
-                {
-                    int numberToRemoveIndex = int.Parse(commands[1]);
-                    list.RemoveAt(numberToRemoveIndex);
-                    
-                    Console.WriteLine(string.Join(" ", list));
-                }
-                else if (commands[0] == "Insert")
-                {
-                    int numberToInsert = int.Parse(commands[1]);
-                    int index = int.Parse(commands[2]);
-
-                    list.Insert(index, numberToInsert);
-                    
-                   Console.WriteLine(string.Join(" ", list));
-                }
+            }
+            if (ifMadeChanges)
+            {
+                Console.WriteLine(string.Join(" ", input));
             }
         }
     }

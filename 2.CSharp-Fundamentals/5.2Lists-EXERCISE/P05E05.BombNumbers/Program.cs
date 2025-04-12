@@ -1,54 +1,46 @@
-﻿namespace P05E05.BombNumbers
+﻿/*
+1 2 2 4 2 2 2 9
+4 2
+
+1 4 4 2 8 9 1
+9 3
+
+1 7 7 1 2 3
+7 1
+
+1 1 2 1 1 1 2 1 1 1
+2 1
+ */
+
+namespace P05E05.BombNumbers
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            List<int> listNumbers = Console.ReadLine()
-                .Split()
+            List<int> numbers = Console.ReadLine()
+                .Split(" ", StringSplitOptions.RemoveEmptyEntries)
                 .Select(int.Parse)
                 .ToList();
 
-            List<int> bombAndPower = Console.ReadLine()
-                .Split()
+            int[] bombDetails = Console.ReadLine()
+                .Split(" ", StringSplitOptions.RemoveEmptyEntries)
                 .Select(int.Parse)
-                .ToList();
+                .ToArray();
 
-            int bombNumber = bombAndPower[0];
-            int power = bombAndPower[1];
-
-            BombDetonate(listNumbers, bombNumber, power);
-
-            PrintOutput(listNumbers);
+            int bomb = bombDetails[0];
+            int power = bombDetails[1];
+            Detonate(numbers, bomb, power);
+            Console.WriteLine(numbers.Sum());
         }
-
-        private static void PrintOutput(List<int> listNumbers)
+        private static void Detonate(List<int> numbers, int bomb, int power)
         {
-            int sum = 0;
-            foreach (int num in listNumbers)
+            while (numbers.Contains(bomb))
             {
-                sum += num;
-            }
-
-            Console.WriteLine(sum);
-        }
-
-        private static void BombDetonate(List<int> listNumbers, int bombNumber, int power)
-        {
-            for (int i = 0; i < listNumbers.Count; i++)
-            {
-                if (listNumbers[i] == bombNumber)
-                {
-                    int bomobPosition = listNumbers[i];
-
-                    int from = Math.Max(0, i - power);
-                    int to = Math.Min(listNumbers.Count - 1, i + power);
-
-                    for (int j = from; j <= to; j++)
-                    {
-                        listNumbers[j] = 0;
-                    }
-                }
+                int bombIndex = numbers.IndexOf(bomb);
+                int start = Math.Max(0, bombIndex - power);
+                int count = Math.Min(numbers.Count - start, power * 2 + 1);
+                numbers.RemoveRange(start, count);
             }
         }
     }

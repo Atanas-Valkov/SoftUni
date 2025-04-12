@@ -1,48 +1,52 @@
-﻿namespace P05E01.Train
+﻿using System.Linq.Expressions;
+
+namespace P05E01.Train
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            List<int> listWagons = Console.ReadLine()
-                .Split()
+            List<int> train = Console.ReadLine()
+                .Split(' ', StringSplitOptions.RemoveEmptyEntries)
                 .Select(int.Parse)
                 .ToList();
 
-            int maxCapacity = int.Parse(Console.ReadLine());
-            string passengers;
-
-            while ((passengers = Console.ReadLine()) != "end")
+            int maxCapacityofEachWAgon = int.Parse(Console.ReadLine());
+            string command = " ";
+            while ((command = Console.ReadLine()) != "end")
             {
-                string[] operation = passengers.Split();
-                if (operation[0] == "end")
+                string[] commandArgs = command
+                    .Split(' ', StringSplitOptions.RemoveEmptyEntries)
+                    .ToArray();
+                string addWagon = commandArgs[0];
+                if (addWagon == "Add")
                 {
-                    break;
-                }
-
-                if (operation[0] == "Add")
-                {
-                    int index = int.Parse(operation[1]);
-                    listWagons.Add(index);
+                    Add(commandArgs, train);
                 }
                 else
                 {
-                    int incomingPassengers = int.Parse(operation[0]);
-
-                    for (int i = 0; i < listWagons.Count; i++)
-                    {
-                        if (listWagons[i] + incomingPassengers <= maxCapacity || listWagons[i] <= 0)
-                        {
-                            listWagons[i] += incomingPassengers;
-                            break;
-                        }
-                    }
-
+                    FitAllTheIncomingPassengers(addWagon, train, maxCapacityofEachWAgon);
                 }
-
             }
+            Console.WriteLine(string.Join(" ", train));
+        }
 
-            Console.WriteLine(string.Join(" ", listWagons));
+        private static void Add(string[] commandArgs, List<int> train)
+        {
+            int number = int.Parse(commandArgs[1]);
+            train.Add(number);
+        }
+        private static void FitAllTheIncomingPassengers(string addWagon, List<int> train, int maxCapacityofEachWAgon)
+        {
+            int passengers = int.Parse(addWagon);
+            for (int i = 0; i < train.Count; i++)
+            {
+                if (train[i] + passengers <= maxCapacityofEachWAgon)
+                {
+                    train[i] += passengers;
+                    return;
+                }
+            }
         }
     }
 }

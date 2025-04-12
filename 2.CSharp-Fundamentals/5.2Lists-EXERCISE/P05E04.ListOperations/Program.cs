@@ -8,74 +8,89 @@ namespace P05E04.ListOperations
     {
         static void Main(string[] args)
         {
-            List<int> listOfIntegers = Console.ReadLine()
-                .Split()
-                .Select(int.Parse)
-                .ToList();
+            List<int> input = Console.ReadLine()
+                 .Split(" ", StringSplitOptions.RemoveEmptyEntries)
+                 .Select(int.Parse)
+                 .ToList();
 
-            string commands;
-
-            while ((commands = Console.ReadLine()) != "End")
+            string command = " ";
+            while ((command = Console.ReadLine()) != "End")
             {
-                string[] operations = commands.Split();
-                if (operations[0] == "End")
+                string[] arguments = command.Split(" ", StringSplitOptions.RemoveEmptyEntries);
+                string operation = arguments[0];
+                if (operation == "Add")
                 {
-                    break;
+                    Add(arguments, input);
                 }
-                if (operations[0] == "Add")
+                else if (operation == "Insert")
                 {
-                    int numberToAdd = int.Parse(operations[1]);
-                    listOfIntegers.Add(numberToAdd);
+                    Insert(arguments, input);
                 }
-                else if (operations[0] == "Insert")
+                else if (operation == "Remove")
                 {
-                    int index = int.Parse(operations[2]);
-                    int item = int.Parse(operations[1]);
-                    if (index >= listOfIntegers.Count  || index <0)
-                    {
-                        Console.WriteLine($"Invalid index");
-                    }
-                    else
-                    {
-                        listOfIntegers.Insert(index, item);
-                    }
+                    Remove(arguments, input);
                 }
-                else if (operations[0] == "Remove")
+                else if (operation == "Shift")
                 {
-                    int indexToRemove = int.Parse(operations[1]);
-
-                    if (indexToRemove >= listOfIntegers.Count || indexToRemove < 0)
-                    {
-                        Console.WriteLine($"Invalid index");
-                    }
-                    else
-                    {
-                        listOfIntegers.RemoveAt(indexToRemove);
-                    }
+                    Shift(arguments, input);
                 }
-                else if (operations[0] == "Shift" && operations[1] == "left")
-                {
-                    int counterShiftLeft = int.Parse(operations[2]);
-                    for (int i = 0; i < counterShiftLeft; i++)
-                    {
-                        int numberMoveToLeft = listOfIntegers[0];
-                        listOfIntegers.RemoveAt(0);
-                        listOfIntegers.Add(numberMoveToLeft);
-                    }
-                }
-                else if (operations[0] == "Shift" && operations[1] == "right")
-                {
-                    int counterShiftRight = int.Parse(operations[2]);
-                    for (int i = 0; i < counterShiftRight; i++)
-                    {
-                        int numberMoverToRight = listOfIntegers[listOfIntegers.Count - 1];
-                        listOfIntegers.RemoveAt(listOfIntegers.Count - 1);
-                        listOfIntegers.Insert(0,numberMoverToRight);
-                    }
-                }
-
             }
-            Console.WriteLine(string.Join(" ", listOfIntegers));
+
+            Console.WriteLine(string.Join(" ",input));
+        }
+
+        private static void Add(string[] arguments, List<int> input)
+        {
+            int number = int.Parse(arguments[1]);
+            input.Add(number);
+        }
+        private static void Insert(string[] arguments, List<int> input)
+        {
+            int number = int.Parse(arguments[1]);
+            int index = int.Parse(arguments[2]);
+            if (index >= 0 && index <= input.Count - 1)
+            {
+                input.Insert(index, number);
+            }
+            else
+            {
+                Console.WriteLine("Invalid index");
+            }
+        }
+        private static void Remove(string[] arguments, List<int> input)
+        {
+            int index = int.Parse(arguments[1]);
+            if (index >= 0 && index <= input.Count - 1)
+            {
+                input.RemoveAt(index);
+            }
+            else
+            {
+                Console.WriteLine("Invalid index");
+            }
+        }
+        private static void Shift(string[] arguments, List<int> input)
+        {
+            string direction = arguments[1];
+            int count = int.Parse(arguments[2]);
+            if (direction == "left")
+            {
+                for (int i = 0; i < count; i++)
+                {
+                    int first = input[0];
+                    input.RemoveAt(0);
+                    input.Add(first);
+                }
+            }
+            else if (direction == "right")
+            {
+                for (int i = 0; i < count; i++)
+                {
+                    int last = input[input.Count - 1];
+                    input.RemoveAt(input.Count - 1);
+                    input.Insert(0, last);
+                }
+            }
         }
     }
 }

@@ -125,7 +125,6 @@ namespace P05L07.ListManipulationAdvanced
                         }
                         Console.WriteLine();
                     }
-
                 }
                 else if (action == "Add")
                 {

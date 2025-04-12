@@ -1,63 +1,79 @@
-﻿namespace P05E08.AnonymousThreat
+﻿using System.Collections.Concurrent;
+using System.IO;
+using System.IO.Compression;
+using System.Xml.Linq;
+
+namespace P05E08.AnonymousThreat
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            List<string> inputList = Console
-                .ReadLine()
-                .Split()
+            List<string> input = Console.ReadLine()
+                .Split(" ", StringSplitOptions.RemoveEmptyEntries)
                 .ToList();
 
-
-
-            string commands = " ";
-            while ((commands = Console.ReadLine()) != "3:1")
+            List<string> result = new List<string>();
+            string command = " ";
+            while ((command = Console.ReadLine()) != "3:1")
             {
-                string[] elements = commands.Split();
-
-                if (elements[0] == "merge")
+                string[] arguments = command.Split(" ", StringSplitOptions.RemoveEmptyEntries);
+                string operation = arguments[0];
+                if (operation == "merge")
                 {
-                    int startIndex = int.Parse(elements[1]);
-                    int endIndex = int.Parse(elements[2]);
-
-
-                    //         List<string> margeList = new List<string>();
-                    //         margeList = inputList;
-
-
-
-
-
-
-
-
-
+                    Merge(arguments, input);
                 }
-                else if (commands == "divide")
+                else if (operation == "divide")
                 {
-                    
+                    Divide(arguments, input);
                 }
-
-
-
-
-
-
-
-
-
-
-
-
             }
+            Console.WriteLine(string.Join(" ", input));
+        }
+
+        private static void Divide(string[] arguments, List<string> input)
+        {
+            int index = int.Parse(arguments[1]);
+            int partitions = int.Parse(arguments[2]);
+
+            if (index >= 0 && index < input.Count && partitions > 0)
+            {
+                string currentWord = input[index];
+                input.RemoveAt(index);
 
 
+                int partitionSize = currentWord.Length / partitions;
+                int remainder = currentWord.Length % partitions;
 
 
+                List<string> temp = new List<string>();
+                int currentIndex = 0;
 
+                for (int i = 0; i < partitions; i++)
+                {
+                    int currentPartSize = partitionSize + (i < remainder ? 1 : 0);
+                    string part = currentWord.Substring(currentIndex, currentPartSize);
+                    temp.Add(part);
+                    currentIndex += currentPartSize;
+                }
+                input.InsertRange(index, temp);
+            }
+        }
 
-            Console.WriteLine(string.Join(" ",inputList ));
+        private static void Merge(string[] arguments, List<string> input)
+        {
+            int startIndex = int.Parse(arguments[1]);
+            int endIndex = int.Parse(arguments[2]);
+
+            startIndex = Math.Max(0, startIndex);
+            endIndex = Math.Min(input.Count - 1, endIndex);
+
+            if (startIndex <= endIndex && startIndex < input.Count)
+            {
+                string merged = string.Join("", input.Skip(startIndex).Take(endIndex - startIndex + 1));
+                input.RemoveRange(startIndex, endIndex - startIndex + 1);
+                input.Insert(startIndex, merged);
+            }
         }
     }
 }

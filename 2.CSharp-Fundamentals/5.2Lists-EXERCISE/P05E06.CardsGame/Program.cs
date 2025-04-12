@@ -4,51 +4,40 @@
     {
         static void Main(string[] args)
         {
-            List<int> firstHand = Console.ReadLine()
-                .Split()
-                .Select(int.Parse)
-                .ToList();
+            List<int> firstPlayer = Console.ReadLine()
+                 .Split(" ", StringSplitOptions.RemoveEmptyEntries)
+                 .Select(int.Parse)
+                 .ToList();
+            List<int> secondPlayer = Console.ReadLine()
+                 .Split(" ", StringSplitOptions.RemoveEmptyEntries)
+                 .Select(int.Parse)
+                 .ToList();
 
-            List<int> secondHand = Console.ReadLine()
-                .Split()
-                .Select(int.Parse)
-                .ToList();
-
-            while (firstHand.Count > 0 && secondHand.Count > 0)
+            while (firstPlayer.Count> 0 && secondPlayer.Count > 0)
             {
-                if (firstHand[0] > secondHand[0])
+                int firstCard = firstPlayer[0];
+                int secondCard = secondPlayer[0];
+                firstPlayer.RemoveAt(0);
+                secondPlayer.RemoveAt(0);
+                if (firstCard > secondCard)
                 {
-                    firstHand.Add(firstHand[0]);
-                    firstHand.Add(secondHand[0]);
+                    firstPlayer.Add(secondCard);
+                    firstPlayer.Add(firstCard);
                 }
-                else if (firstHand[0] < secondHand[0])
+                else if(firstCard < secondCard)
                 {
-                    secondHand.Add(secondHand[0]);
-                    secondHand.Add(firstHand[0]);
+                    secondPlayer.Add(firstCard);
+                    secondPlayer.Add(secondCard);
                 }
-                firstHand.Remove(firstHand[0]);
-                secondHand.Remove(secondHand[0]);
 
-                if (firstHand.Count == 0)
+                if (firstPlayer.Count == 0)
                 {
-                    int sum = 0;
-
-                    foreach (var n in secondHand)
-                    {
-                        sum += n;
-                    }
-                    Console.WriteLine($"Second player wins! Sum: {sum}");
+                    Console.WriteLine($"Second player wins! Sum: {secondPlayer.Sum()}");
                     break;
                 }
-                if (secondHand.Count == 0)
+                if (secondPlayer.Count == 0)
                 {
-                    int sum = 0;
-
-                    foreach (var n in firstHand)
-                    {
-                        sum += n;
-                    }
-                    Console.WriteLine($"First player wins! Sum: {sum}");
+                    Console.WriteLine($"First player wins! Sum: {firstPlayer.Sum()}");
                     break;
                 }
             }

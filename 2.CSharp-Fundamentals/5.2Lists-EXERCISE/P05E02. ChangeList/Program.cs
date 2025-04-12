@@ -1,41 +1,58 @@
-﻿namespace P05E02._ChangeList
+﻿/*
+1 2 3 4 5 5 5 6
+Delete 5
+Insert 10 1
+Delete 5
+end
+
+ */
+
+namespace P05E02._ChangeList
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-
-            List<int> listOfIntegers = Console.ReadLine()
-                .Split()
+            List<int> numbers = Console.ReadLine()
+                .Split(" ",StringSplitOptions.RemoveEmptyEntries)
                 .Select(int.Parse)
                 .ToList();
-            
-            string commands;
-            while ((commands = Console.ReadLine()) != "end")
-            {
-                string[] operation = commands.Split();
-                if (operation[0] == "Delete")
-                {
-                    for (int i = 0; i < listOfIntegers.Count; i++)
-                    {
-                        int numberToDelete = int.Parse(operation[1]);
-                        if (listOfIntegers[i] == numberToDelete)
-                        {
-                            listOfIntegers.Remove(numberToDelete); 
-                            i-=1;
-                        }
-                    }
-                }
-                else if(operation[0] == "Insert")
-                {
-                    int elementToInsert = int.Parse(operation[1]);
-                    int position = int.Parse(operation[2]);
 
-                    listOfIntegers.Insert(position, elementToInsert);
+            string command = " ";
+            while ((command = Console.ReadLine()) != "end")
+            {
+                string[] arguments = command.Split(" ", StringSplitOptions.RemoveEmptyEntries)
+                    .ToArray();
+
+                string operation = arguments[0];
+                if (operation == "Delete")
+                {
+                    Delete(arguments, numbers);
+                }
+                else if(operation == "Insert")
+                {
+                    Insert(arguments, numbers);
                 }
             }
+            Print(numbers);
+        }
 
-            Console.WriteLine(string.Join(" ",listOfIntegers));
+        private static void Insert(string[] arguments, List<int> numbers)
+        {
+            int element = int.Parse(arguments[1]);
+            int index = int.Parse(arguments[2]);
+            numbers.Insert(index, element);
+        }
+
+        private static void Delete(string[] arguments, List<int> numbers)
+        {
+            int element = int.Parse(arguments[1]);
+            numbers.RemoveAll(x => x == element);
+        }
+
+        private static void Print(List<int> numbers)
+        {
+            Console.WriteLine(string.Join(" ", numbers));
         }
     }
 }

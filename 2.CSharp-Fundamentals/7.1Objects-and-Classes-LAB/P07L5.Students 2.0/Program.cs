@@ -4,38 +4,38 @@
     {
         static void Main(string[] args)
         {
-            List<Student> list = new List<Student>();
-            string command = " ";
+            List<Student> students = new List<Student>();
 
-            while ((command = Console.ReadLine()) != "end")
+            string input = " ";
+            while ((input = Console.ReadLine()) != "end")
             {
-                string[] infoForStudent = command.Split();
+                string[] studentInfo = input.Split();
+                string firstName = studentInfo[0];
+                string lastName = studentInfo[1];
+                int age = int.Parse(studentInfo[2]);
+                string homeTown = studentInfo[3];
 
-                string firstName = infoForStudent[0];
-                string lastName = infoForStudent[1];
-                int age = int.Parse(infoForStudent[2]);
-                string homeTown = infoForStudent[3];
-
-
-                Student student = list.FirstOrDefault(x => x.FirstName == firstName && x.LastName == lastName);
-
-
+                Student student  = students.FirstOrDefault(x => x.firstName == firstName && x.lastName == lastName);
+                
                 if (student == null)
                 {
-                    list.Add(new Student(firstName, lastName, age, homeTown));
+                    student = new Student(age, firstName, homeTown, lastName);
+                    students.Add(student);
                 }
                 else
                 {
-                    student.HomeTown = homeTown;
-                    student.Age = age;
-                }
+                    student.age = age;
+                    student.homeTown = homeTown;
+                }   
             }
-            string town = Console.ReadLine();
-            foreach (Student student in list)
+
+            string givenTown = Console.ReadLine();
+
+            foreach (Student student in students)
             {
-                if (student.HomeTown == town)
+                if (student.homeTown == givenTown)
                 {
-                    Console.WriteLine($"{student.FirstName} {student.LastName} is {student.Age} years old.");
+                    Console.WriteLine($"{student.firstName} {student.lastName} is {student.age} years old.");
                 }
             }
         }
@@ -43,21 +43,16 @@
 
     public class Student
     {
-        public Student(string firstName, string lastName, int age, string homeTown)
+        public Student(int age, string firstName, string homeTown, string lastName)
         {
-            FirstName = firstName;
-            LastName = lastName;
-            Age = age;
-            HomeTown = homeTown;
+            this.age = age;
+            this.firstName = firstName;
+            this.homeTown = homeTown;
+            this.lastName = lastName;
         }
-
-        public string FirstName { get; set; }
-
-        public string LastName { get; set; }
-
-        public int Age { get; set; }
-
-        public string HomeTown { get; set; }
+        public string firstName { get; set; }
+        public string lastName { get; set; }
+        public int age { get; set; }
+        public string homeTown { get; set; }
     }
-    
 }

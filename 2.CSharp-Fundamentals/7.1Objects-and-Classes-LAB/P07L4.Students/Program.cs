@@ -1,33 +1,31 @@
 ﻿namespace P07L4.Students
 {
-
     internal class Program
     {
         static void Main(string[] args)
         {
-            List<Student> list = new List<Student>();
-            string command = " ";
-            
-            while ((command = Console.ReadLine()) != "end")
+            List<Student> students = new List<Student>();
+            string input = " ";
+
+            while ((input = Console.ReadLine()) != "end")
             {
-                string[] infoForStudent = command.Split();
+                string[] studentInfo = input.Split();
+                string firstName = studentInfo[0];
+                string lastName = studentInfo[1];
+                int age = int.Parse(studentInfo[2]);
+                string homeTown = studentInfo[3];
 
-                string firstName = infoForStudent[0];
-                string lastName = infoForStudent[1];
-                int age = int.Parse(infoForStudent[2]);
-                string homeTown = infoForStudent[3];
-
-                list.Add(new Student(infoForStudent[0], infoForStudent[1], int.Parse(infoForStudent[2]), infoForStudent[3]));
-
-
-
+                Student student = new Student(age, firstName, homeTown, lastName);
+                students.Add(student);
             }
-            string town = Console.ReadLine();
-            foreach (Student student in list)
+
+            string givenTown = Console.ReadLine();
+
+            foreach (Student student in students)
             {
-                if (student.HomeTown == town)
+                if (student.homeTown == givenTown)
                 {
-                    Console.WriteLine($"{student.FirstName} {student.LastName} is {student.Age} years old.");
+                    Console.WriteLine($"{student.firstName} {student.lastName} is {student.age} years old.");
                 }
             }
         }
@@ -35,23 +33,16 @@
 
     public class Student
     {
-        public Student(string firstName, string lastName, int age, string homeTown)
+        public Student(int age, string firstName, string homeTown, string lastName)
         {
-            FirstName = firstName;
-            LastName = lastName;
-            Age = age;
-            HomeTown = homeTown;
+            this.age = age;
+            this.firstName = firstName;
+            this.homeTown = homeTown;
+            this.lastName = lastName;
         }
-
-
-        public string FirstName { get; set; }
-
-        public string LastName { get; set; }
-
-        public int Age { get; set; }
-
-        public string HomeTown { get; set; }
+        public string firstName { get; set; }
+        public string lastName { get; set; }
+        public int age { get; set; }
+        public string homeTown { get; set; }
     }
-
-
 }

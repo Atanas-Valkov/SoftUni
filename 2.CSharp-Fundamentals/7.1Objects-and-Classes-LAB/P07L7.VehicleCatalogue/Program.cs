@@ -1,103 +1,95 @@
-﻿namespace P07L7.VehicleCatalogue
+﻿using P07L7.VehicleCatalogue;
+
+namespace P07L7.VehicleCatalogue
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            List<Catalog> catalogs = new List<Catalog>();
-            List<Car> cars = new List<Car>();
-            List<Truck> trucks = new List<Truck>();
+            Catalog  catalogs = new Catalog();
 
-            string vehicle;
-            while ((vehicle = Console.ReadLine()) != "end")
+            string input = "";
+            while ((input = Console.ReadLine()) != "end")
             {
-                string[] token = vehicle.Split("/");
+                string[] vehicleInfo = input.Split("/");
+                string typeVehicle = vehicleInfo[0];
+                string brand = vehicleInfo[1];
+                string model = vehicleInfo[2];
 
-                string type = token[0];
-                string brand = token[1];
-                string model = token[2];
-                string hP = token[3];
-
-                Truck truck = new Truck(brand,model, hP);
-                Car car = new Car(brand, hP, model);
-                Catalog catalog = new Catalog(cars,trucks);
-
-                if (type == "Truck")
+                if (typeVehicle == "Car")
                 {
-                    trucks.Add(truck);
+                    string horsePower = vehicleInfo[3];
+                    catalogs.Cars.Add(new Car(brand, horsePower, model, typeVehicle));
                 }
-                else
+                else if (typeVehicle == "Truck")
                 {
-                    cars.Add(car);
+                    string weight = vehicleInfo[3];
+                    catalogs.Trucks.Add(new Truck(brand, weight, model, typeVehicle));
                 }
             }
 
-            List<Car> sortedCars = cars.OrderBy(x=>x.CarBrand).ToList();
+            Pint(catalogs);
+        }
 
-
-            Console.WriteLine($"Cars:");
-
-            foreach (Car car in sortedCars)
+        private static void Pint(Catalog catalogs)
+        {
+            if (catalogs.Cars.Count != 0)
             {
-                Console.WriteLine($"{car.CarBrand}: {car.CarModel} - {car.CarHp}hp");
+                Console.WriteLine($"Cars:");
+                foreach (Car car in catalogs.Cars.OrderBy(x => x.brand))
+                {
+                    Console.WriteLine($"{car.brand}: {car.model} - {car.horsePower}hp");
+                }
             }
 
-
-            List<Truck> sortedTruck =trucks.OrderBy(x => x.TruckBrand).ToList();
-
-            foreach (Truck truck in sortedTruck)
+            if (catalogs.Trucks.Count != 0)
             {
                 Console.WriteLine($"Trucks:");
-                Console.WriteLine($"{truck.TruckBrand}: {truck.TruckModel} - {truck.TruckWeight}kg");
+                foreach (Truck truck in catalogs.Trucks.OrderBy(x => x.brand))
+                {
+                    Console.WriteLine($"{truck.brand}: {truck.model} - {truck.weight}kg");
+                }
             }
-
         }
     }
+
     public class Truck
     {
-        public Truck(string truckBrand, string truckModel, string truckWeight)
+        public Truck(string brand, string weight, string model, string typeVehicle)
         {
-            TruckBrand = truckBrand;
-            TruckModel = truckModel;
-            TruckWeight = truckWeight;
+            this.brand = brand;
+            this.weight = weight;
+            this.model = model;
+            this.typeVehicle = typeVehicle;
         }
-
-        public string TruckBrand { get; set; }
-
-        public string TruckModel { get; set; }
-
-        public string TruckWeight { get; set; }
+        public string typeVehicle { get; set; }
+        public string brand { get; set; }
+        public string model { get; set; }
+        public string weight { get; set; }
     }
 
     public class Car
     {
-        public Car(string carBrand, string carHp, string carModel)
+        public Car(string brand, string horsePower, string model, string typeVehicle)
         {
-            CarBrand = carBrand;
-            CarHp = carHp;
-            CarModel = carModel;
+            this.typeVehicle = typeVehicle;
+            this.brand = brand;
+            this.horsePower = horsePower;
+            this.model = model;
         }
-
-        public string CarBrand { get; set; }
-
-        public string CarModel { get; set; }
-
-        public string CarHp { get; set; }
-
-
+        public string typeVehicle { get; set; }
+        public string brand { get; set; }
+        public string model { get; set; }
+        public string horsePower { get; set; }
     }
-
-    public class Catalog
+}
+public class Catalog
+{
+    public Catalog()
     {
-        public Catalog(List<Car> cars, List<Truck> trucks)
-        {
-            this.cars = cars;
-            this.trucks = trucks;
-        }
-
-        public List<Car> cars { get; set; }
-
-        public List<Truck> trucks { get; set; }
+        Cars = new List<Car>();
+        Trucks = new List<Truck>();
     }
-
+    public List<Car> Cars { get; set; }
+    public List<Truck> Trucks { get; set; }
 }

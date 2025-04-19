@@ -4,33 +4,52 @@ internal class Program
 {
     static void Main(string[] args)
     {
-        int numberOfStrings = int.Parse(Console.ReadLine());
-        string[] names = new string[numberOfStrings];
-        int[] ascendingOrder = new int[numberOfStrings];
-        int sum = 0;
+        List<int> numbers = Console.ReadLine()
+            .Split(' ')
+            .Select(int.Parse)
+            .ToList();
 
-        for (int i = 0; i < numberOfStrings; i++)
+        string message = Console.ReadLine();
+        for (int i = 0; i < numbers.Count; i++)
         {
-            names[i] = Console.ReadLine();
-            sum = 0;
-            foreach (var c in names[i])
+            int sum = GetDigitSum(numbers, i, out var currentNumber);
+
+            if (sum < message.Length)
             {
-                if (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u' || c == 'A' || c == 'E' || c == 'I' || c == 'O' || c == 'U')
+                for (int j = 0; j < message.Length; j++)
                 {
-                    sum += (int)c * names[i].Length;
-                    ascendingOrder[i] = sum;
-                }
-                else
-                {
-                    sum += (int)c / names[i].Length;
-                    ascendingOrder[i] = sum;
+                    if (j == sum)
+                    {
+                        Console.Write(message[j ]);
+                      string newMessage =  message.Remove(j, 1);
+                        message = newMessage;
+                        break;
+                    }
                 }
             }
+            else if (sum >= message.Length)
+            {
+                int validIndex = sum % message.Length;
+                Console.Write(message[validIndex]);
+               string newMessage = message.Remove(validIndex, 1);
+               message = newMessage;
+            }
         }
-        Array.Sort(ascendingOrder);
-        foreach (var num  in ascendingOrder)
+        Console.WriteLine();
+    }
+
+    private static int GetDigitSum(List<int> numbers, int i, out int currentNumber)
+    {
+        int sum = 0;
+        currentNumber = numbers[i];
+
+        while (currentNumber > 0)
         {
-            Console.WriteLine(num);
+            int lastDigit = currentNumber % 10;
+            currentNumber /= 10;
+            sum += lastDigit;
         }
+
+        return sum;
     }
 }

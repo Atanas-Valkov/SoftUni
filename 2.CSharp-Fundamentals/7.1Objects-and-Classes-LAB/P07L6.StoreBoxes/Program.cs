@@ -6,67 +6,51 @@ namespace P07L6.StoreBoxes
     {
         static void Main(string[] args)
         {
-            List<Box> boxes = new List<Box>();
-            string productsData;
-            while ((productsData = Console.ReadLine()) != "end")
+           List<Box> boxes = new List<Box>();
+            string input = " ";
+            while ((input = Console.ReadLine()) != "end")
             {
-                string[] tokens = productsData.Split();
+                string[] productInfo = input.Split();
+                string serialNumber = productInfo[0];
+                string itemName = productInfo[1];
+                double itemQuantity = double.Parse(productInfo[2]);
+                double price = double.Parse(productInfo[3]);
 
-                string serialNumber = tokens[0];
-                string itemName = tokens[1];
-                int itemQuantity = int.Parse(tokens[2]);
-                decimal itemPrice = decimal.Parse(tokens[3]);
-
-
-                Item item = new Item(itemName, itemPrice);
-                Box box = new Box(serialNumber, item, itemQuantity);
+                Item item = new Item(itemName, price);
+                Box box = new Box(item,itemQuantity, serialNumber);
                 boxes.Add(box);
-
             }
 
-            foreach (Box box in boxes.OrderByDescending(x => x.BoxPrice))
+            foreach (Box box in boxes.OrderByDescending(x=>x.priceForBox))
             {
-                Console.WriteLine($"{box.SerialNumber}");
-                Console.WriteLine($"-- {box.Item.Name} - ${box.Item.Price:f2}: {box.ItemQuantity}");
-                Console.WriteLine($"-- ${box.BoxPrice:f2}");
+                Console.WriteLine(box.serialNumber);
+                Console.WriteLine($"-- {box.item.name} - ${box.item.price:F2}: {box.itemQuantity}");
+                Console.WriteLine($"-- ${box.priceForBox:F2}");
             }
-
         }
     }
-
     public class Item
     {
-        public Item(string name, decimal price)
+        public Item(string name, double price)
         {
-            Name = name;
-            Price = price;
+            this.name = name;
+            this.price = price;
         }
-
-        public string Name { get; set; }
-
-        public decimal Price { get; set; }
+        public string name { get; set; }
+        public double price { get; set; }
     }
 
     public class Box
     {
-        public Box(string serialNumber, Item item, int itemQuantity)
+        public Box(Item item, double itemQuantity, string serialNumber)
         {
-            SerialNumber = serialNumber;
-            Item = item;
-            ItemQuantity = itemQuantity;
+            this.item = item;
+            this.itemQuantity = itemQuantity;
+            this.serialNumber = serialNumber;
         }
-
-        public string SerialNumber { get; set; }
-
-        public Item Item { get; set; }
-
-        public int ItemQuantity { get; set; }
-
-        public decimal BoxPrice => Item.Price * ItemQuantity;
-
+        public string serialNumber { get; set; }
+        public Item item { get; set; }
+        public double itemQuantity { get; set; }
+        public double priceForBox => item.price * itemQuantity;
     }
-
-
-
-
 }

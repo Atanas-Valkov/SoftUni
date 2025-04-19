@@ -1,36 +1,27 @@
 ﻿namespace P07L01.RandomizeWords
 {
-
     internal class Program
     {
         static void Main(string[] args)
         {
-           
-            List<string> words= Console.ReadLine()
-                .Split(" ")
-                .ToList();
+           List<string> input = Console.ReadLine()
+               .Split(' ')
+               .ToList();
 
-            Random random = new Random();
+            Random rdm = new Random();
 
-            for (int i = 0; i < words.Count; i++)
+            for (int i = 0; i < input.Count; i++)
             {
-                string valueAtIndex= words[i];
-                int randomIndex = random.Next(0, words.Count);
-                string randomValueIndex = words[randomIndex];
-
-                words[i] = randomValueIndex;
-                words[randomIndex] = valueAtIndex;
-
+                int j = rdm.Next(0, input.Count);
+                string temp = input[i];
+                input[i] = input[j];
+                input[j] = temp;
             }
 
-            foreach (string value in words)
+            foreach (var word in input)
             {
-                Console.WriteLine(value);
-                
+                Console.WriteLine(word);
             }
-
-
-
         }
     }
 }

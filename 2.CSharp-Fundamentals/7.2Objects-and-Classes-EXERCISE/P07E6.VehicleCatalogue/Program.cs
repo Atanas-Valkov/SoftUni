@@ -1,74 +1,62 @@
-﻿namespace P07E6.VehicleCatalogue
+﻿using System.Collections.Generic;
+
+namespace P07E6.VehicleCatalogue
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            List<Vehicles>vehicles = new List<Vehicles>();
-
-            
-            string info;
-            while((info= Console.ReadLine()) != "end")
+            List<Vehicle> vehicles = new List<Vehicle>();
+            string command;
+            while ((command = Console.ReadLine()) != "End")
             {
-            
-                 if (info == "End")
-                 {
-                    break;
-                 } 
-                 string[] vehiclesInfo = info.Split(" ").ToArray();
-            
-                 string type= vehiclesInfo[0];
-                 string model = vehiclesInfo[1];
-                 string color = vehiclesInfo[2];
-                 double hp = double.Parse(vehiclesInfo[3]);
-            
-                Vehicles vehicle1 = new Vehicles(type,model,color,hp);
-            
-                vehicles.Add(vehicle1);
-            
+                string[] input = command.Split(" ", StringSplitOptions.RemoveEmptyEntries);
+                string type = input[0];
+                string model = input[1];
+                string color = input[2];
+                int horsepower = int.Parse(input[3]);
+
+                type = char.ToUpper(type[0]) + type.Substring(1).ToLower();
+                Vehicle vehicle = new Vehicle(type, model, color, horsepower);
+                vehicles.Add(vehicle);
             }
 
-            List<string> someVihicle = new List<string>();
-            string secondPart; 
-            while ((secondPart = Console.ReadLine()) != "Close the Catalogue")
+            while ((command = Console.ReadLine()) != "Close the Catalogue")
             {
-                if (secondPart == "Close the Catalogue")
+                Vehicle vehicle = vehicles.Find(x => x.Model == command);
+                if (vehicle != null)
                 {
-                    break;
+                    Console.WriteLine($"Type: {vehicle.Type}");
+                    Console.WriteLine($"Model: {vehicle.Model}");
+                    Console.WriteLine($"Color: {vehicle.Color}");
+                    Console.WriteLine($"Horsepower: {vehicle.Horsepower}");
                 }
-              
-
-                someVihicle.Add(secondPart);
             }
+            var cars = vehicles.Where(x => x.Type.ToLower() == "car").ToList();
+            var trucks = vehicles.Where(x => x.Type.ToLower() == "truck").ToList();
+            double avrCarHp = cars.Any()? cars.Average(x => x.Horsepower): 0.00;
+            double avrTruckHp = trucks.Any() ? trucks.Average(x => x.Horsepower) : 0.00;
 
-
-
-
-
-
+            Print(avrCarHp, avrTruckHp);
+        }
+        private static void Print(double avrCarHp, double avrTruckHp)
+        {
+            Console.WriteLine($"Cars have average horsepower of: {avrCarHp:F2}.");
+            Console.WriteLine($"Trucks have average horsepower of: {avrTruckHp:F2}.");
         }
     }
-
-    public class Vehicles
+    public class Vehicle
     {
-        public Vehicles(string type, string model, string color, double hp)
+        public Vehicle(string type, string model, string color, int horsepower)
         {
             Type = type;
             Model = model;
             Color = color;
-            Hp = hp;
+            Horsepower = horsepower;
         }
-
         public string Type { get; set; }
-
         public string Model { get; set; }
-
-        public string  Color { get; set; }
-
-        public double Hp { get; set; }
-
-
-
+        public string Color { get; set; }
+        public int Horsepower { get; set; }
     }
-
 }

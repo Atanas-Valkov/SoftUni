@@ -1,76 +1,65 @@
-﻿using System;
-using System.Collections.Generic;
+﻿/*
+George 524244 20
+Peter 78911 15
+Stephen 524244 10
+End
 
+Lewis 123456 20
+James 78911 15
+Robert 523444 11
+Jennifer 345244 13
+Mary 52424678 22
+Patricia 567343 54
+End
+ */
+using System;
+using System.Collections.Generic;
 namespace P07E01.AdvertisementMessage
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-
-
-            string[] tokens = Console.ReadLine().Split(", ");
-            Article article = new Article(
-                tokens[0], tokens[1], tokens[2]);
-
-            int commands = int.Parse(Console.ReadLine());
-            for (int i = 0; i < commands; i++)
+            List<Person> persons = new List<Person>();
+            string command;
+            while ((command = Console.ReadLine()) != "End")
             {
-              
+                string[] input = command.Split(" ", StringSplitOptions.RemoveEmptyEntries);
+                string name = input[0];
+                string id = input[1];
+                int age = int.Parse(input[2]);
 
-                  string[] command = Console.ReadLine().Split(": ");
-                 switch (command[0])
-                 {
-                     case "Edit":
-                         article.Edit(command[1]);
-                         break;
-                     case "ChangeAuthor":
-                         article.ChangeAuthor(command[1]);
-                         break;
-                     case "Rename":
-                         article.Rename(command[1]);
-                         break;
-                 }
+                Person person = new Person(age, id, name);
+                Person findID = persons.Find(x => x.ID == id);
+                if (findID == null)
+                {
+                    persons.Add(person);
+                }
+                else
+                {
+                    findID.Name = name;
+                    findID.Age = age;
+                }
             }
 
-            article.ToString(article.Title, article.Content, article.Author);
-        }
-
-        class Article
-        {
-            public Article(string title, string content, string author)
+            foreach (Person person in persons.OrderBy(x=>x.Age))
             {
-                this.Title = title;
-                this.Content = content;
-                this.Author = author;
-            }
-
-            public string Title { get; set; }
-
-            public string Content { get; set; }
-
-            public string Author { get; set; }
-
-            public void Edit(string content)
-            {
-                Content = content;
-            }
-
-            public void ChangeAuthor(string author)
-            {
-                Author = author;
-            }
-
-            public void Rename(string name)
-            {
-                Title = name;
-            }
-
-            public void ToString(string title, string content, string author)
-            {
-                Console.WriteLine($"{title} - {content}: {author}");
+                Console.WriteLine($"{person.Name} with ID: {person.ID} is {person.Age} years old.");
             }
         }
     }
 
+    public class Person
+    {
+        public Person(int age, string id, string name)
+        {
+            Age = age;
+            ID = id;
+            Name = name;
+        }
+
+        public string Name { get; set; }
+        public string ID { get; set; }
+        public int Age { get; set; }
+    }
 }

@@ -1,58 +1,47 @@
 ﻿using System;
 using System.Linq;
+using System.Net;
 using System.Reflection.Metadata;
-
+using System.Reflection.Metadata.Ecma335;
 namespace P07E2.Articles;
-
 internal class Program
 {
     static void Main(string[] args)
     {
-
-        List<string> strings = Console.ReadLine()
-            .Split(", ")
-            .ToList();
-
-        Article article = new Article(strings[0], strings[1], strings[2]);
-
+        List<string> articles = Console.ReadLine().Split(", ").ToList();
         int number = int.Parse(Console.ReadLine());
+        Article article = new Article(articles[2], articles[1], articles[0]);
 
         for (int i = 0; i < number; i++)
         {
-            string[] commands = Console.ReadLine().Split(": ", StringSplitOptions.RemoveEmptyEntries);
+            string[] input = Console.ReadLine().Split(": ");
+            string command = input[0];
+            string change = input[1];
 
-
-            string firstIndex = commands[0];
-            string secondIndex = commands[1];
-
-            if (firstIndex == "Edit")
+            if (command == "Edit")
             {
-                article.Edit(secondIndex);
+                article.Edit(change);
             }
-            else if (firstIndex == "ChangeAuthor")
+            else if(command == "ChangeAuthor")
             {
-                article.ChangeAuthor(secondIndex);
+                article.ChangeAuthor(change);
             }
-            else if (firstIndex == "Rename")
+            else if (command == "Rename")
             {
-
-                article.Rename(secondIndex);
+                article.Rename(change);
             }
         }
-
-        article.ToString(article.Title, article.Content, article.Author);
+        Console.WriteLine(article.ToString());
     }
-
 
     public class Article
     {
-        public Article(string title, string content, string author)
+        public Article(string author, string content, string title)
         {
             Title = title;
             Content = content;
             Author = author;
         }
-
 
         public string Title { get; set; }
         public string Content { get; set; }
@@ -62,7 +51,6 @@ internal class Program
         {
             Content = content;
         }
-
         public void ChangeAuthor(string author)
         {
             Author = author;
@@ -71,11 +59,9 @@ internal class Program
         {
             Title = title;
         }
-
-        public void ToString(string title, string content, string author)
+        public override string ToString()
         {
-            Console.WriteLine($"{title} - {content}: {author}");
-
+            return $"{Title} - {Content}: {Author}";
         }
     }
 }

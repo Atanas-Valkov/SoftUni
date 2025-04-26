@@ -1,4 +1,13 @@
-﻿
+﻿/*
+5
+Steve 10
+Christopher 15
+John 35
+Annie 4
+John 35
+Maria 34
+ */
+
 namespace P07ME1.CompanyRoster
 {
     internal class Program
@@ -17,7 +26,6 @@ namespace P07ME1.CompanyRoster
 
                 Employee employee = new Employee(department, name, salary);
                 employees.Add(employee);
-
             }
 
             var departmentWithHighestAvgSalary = employees

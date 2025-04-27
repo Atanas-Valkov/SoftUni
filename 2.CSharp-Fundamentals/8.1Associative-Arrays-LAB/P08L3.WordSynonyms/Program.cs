@@ -6,29 +6,25 @@ namespace P08L3.WordSynonyms
     {
         static void Main(string[] args)
         {
+            Dictionary<string, List<string>> wordSynonyms = new Dictionary<string, List<string>>();
+            int n = int.Parse(Console.ReadLine());
 
-            int countOfTheWords = int.Parse(Console.ReadLine());
-            
-             var words = new Dictionary <string, List<string>>();
-            
-             for (int i = 0; i < countOfTheWords; i++)
-             {
-                 string key = Console.ReadLine();
-                 string value = Console.ReadLine();
-            
-                 if (!words.ContainsKey(key))
-                 {
-                    words.Add(key, new List<string>());
-                 }
-               
-                 words[key].Add(value);
+            for (int i = 0; i < n; i++)
+            {
+                string word = Console.ReadLine();
+                string synonym = Console.ReadLine();
 
-             }
-             foreach (var asd in words)
-             {
-                 Console.Write($"{asd.Key} - ");
-                 Console.WriteLine(string.Join(", ",asd.Value));
-             }
+                if (!wordSynonyms.ContainsKey(word))
+                {
+                    wordSynonyms.Add(word, new List<string>());
+                }
+                wordSynonyms[word].Add(synonym);
+            }
+
+            foreach (var item in wordSynonyms)
+            {
+                Console.WriteLine($"{item.Key} - {string.Join(", ", item.Value)}");
+            }
         }
     }
 }

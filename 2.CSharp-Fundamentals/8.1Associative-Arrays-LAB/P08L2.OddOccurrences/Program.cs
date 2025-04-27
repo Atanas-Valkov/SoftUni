@@ -4,41 +4,24 @@
     {
         static void Main(string[] args)
         {
-            string[] input = Console.ReadLine().Split().ToArray();
+           
+            string[] input = Console.ReadLine().ToLower().Split(' ');
 
-            Dictionary<string, int> kvp = new Dictionary<string, int>();
+            Dictionary<string,int> oddOccurrences = new Dictionary<string, int>();
 
-
-            foreach (string s in input)
+            for (int i = 0; i < input.Length; i++)
             {
-                string sToLower = s.ToLower();
-
-                if (!kvp.ContainsKey(sToLower))
+                if (!oddOccurrences.ContainsKey(input[i]))
                 {
-                    kvp[sToLower] = 1;
-
+                    oddOccurrences.Add(input[i], 0);
                 }
-                else
-                {
-                    kvp[sToLower]++;
-                }
-
+                oddOccurrences[input[i]]++;
             }
 
-            foreach (var asd in kvp)
-            {
-                
-                if (asd.Value % 2 == 0)
-                {
-                    continue;
-                }
-                else
-                {
-                    Console.Write(asd.Key + " ");
-                }
-
-                
-            }  
+            oddOccurrences
+                .Where(x => x.Value % 2 != 0)
+                .ToList()
+                .ForEach(x => Console.Write($"{x.Key} "));
         }
     }
 }

@@ -4,21 +4,15 @@
     {
         static void Main(string[] args)
         {
-            string stringToRemove = Console.ReadLine();
-            string mainString = Console.ReadLine();
-            int asd = mainString.IndexOf(stringToRemove);
-            while (asd != -1)
+            string wordToRemove = Console.ReadLine();
+            string text = Console.ReadLine();
+            string result = string.Empty;
+            while (text.Contains(wordToRemove))
             {
-                mainString = mainString.Remove(asd, stringToRemove.Length);
-                asd = mainString.IndexOf(stringToRemove);
-
+                 text = text.Replace(wordToRemove, string.Empty);
             }
 
-            Console.WriteLine(mainString);
-
-
-
-
+            Console.WriteLine(text);
         }
     }
 }

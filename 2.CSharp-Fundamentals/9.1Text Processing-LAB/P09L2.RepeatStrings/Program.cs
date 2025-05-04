@@ -6,24 +6,18 @@ namespace P09L2.RepeatStrings
     {
         static void Main(string[] args)
         {
-            string[] input = Console.ReadLine()
-                .Split(" ");
+            string[] input = Console.ReadLine ().Split(' ', StringSplitOptions.RemoveEmptyEntries);
+            StringBuilder result = new StringBuilder();
 
-            string result =  "";
-            foreach (var word in input)
+            foreach (var words in input)
             {
-                for (int i = 0; i < word.Length; i++)
+                for (int i = 0; i < words.Length; i++)
                 {
-
-                    result += word;
+                    result.Append(words);
                 }
-                
             }
 
             Console.WriteLine(result);
-
-
-
         }
     }
 }

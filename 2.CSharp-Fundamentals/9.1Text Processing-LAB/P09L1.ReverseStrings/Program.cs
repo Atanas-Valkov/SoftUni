@@ -4,17 +4,13 @@
     {
         static void Main(string[] args)
         {
-            string input = "";
-            while ((input = Console.ReadLine()) != "end")
+            string commandLine = string.Empty;
+            while ((commandLine = Console.ReadLine()) != "end")
             {
-                string reversed = "";
-              for (int i = input.Length - 1; i >= 0; i--)
-              {
-                  reversed += input[i];
-              }
-              Console.WriteLine($"{input} = {reversed}");
+                string reversed = new string(commandLine.Where(x => x != ' ').Reverse().ToArray());
+                
+                Console.WriteLine($"{commandLine} = {reversed}");
             }
-
         }
     }
 }

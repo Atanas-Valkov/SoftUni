@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using System.Threading.Channels;
 
 namespace P09E4.CaesarCipher
 {
@@ -7,14 +8,14 @@ namespace P09E4.CaesarCipher
         static void Main(string[] args)
         {
             string input = Console.ReadLine();
+            StringBuilder sb = new StringBuilder();
 
-             StringBuilder sb = new StringBuilder();    
             for (int i = 0; i < input.Length; i++)
             {
-                char originalChar = input[i];
-                sb.Append((char)(originalChar+3));
+                sb.Append((char)(input[i] + 3));
             }
-            Console.WriteLine(sb);
+
+            Console.WriteLine(sb.ToString());
         }
     }
 }

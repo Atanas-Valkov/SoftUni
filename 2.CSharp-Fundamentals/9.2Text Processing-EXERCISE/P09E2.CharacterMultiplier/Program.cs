@@ -1,4 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
+using System.Net.WebSockets;
+using System.Threading.Channels;
 
 namespace P09E2.CharacterMultiplier
 {
@@ -7,37 +9,35 @@ namespace P09E2.CharacterMultiplier
         static void Main(string[] args)
         {
             string[] input = Console.ReadLine().Split();
-
-
-
-            Console.WriteLine(sum(input[0], input[1]));
+            string first = input[0];
+            string second = input[1];
+            double sum = 0;
+            CharacterMultiplier(first, second);
         }
 
-        private static decimal sum(string first, string second)
+        public static void CharacterMultiplier(string first, string second)
         {
-            int sum = 0;
-            int length = Math.Max(first.Length, second.Length);
+            double result = 0;
+            var biggerLength = Math.Max(first.Length, second.Length);
+            var smallerLength = Math.Min(first.Length, second.Length );
 
-            for (int i = 0; i < length; i++)
+            for (int i = 0; i < biggerLength; i++)
             {
-                if (i < first.Length && i < second.Length)
+                if (i < smallerLength)
                 {
-                    sum += first[i] * second[i];
+                   result += first[i] * second[i];
                 }
-                else if (i < first.Length)
+                else if (first.Length > second.Length)
                 {
-                    sum += first[i];
+                    result += first[i];
                 }
-                else if (i < second.Length)
+                else if (first.Length < second.Length)
                 {
-                    sum += second[i];
+                    result += second[i];
                 }
-
             }
 
-            return sum;
+            Console.WriteLine(result);
         }
-
-
     }
 }

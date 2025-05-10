@@ -4,15 +4,15 @@
     {
         static void Main(string[] args)
         {
-            string[] input = Console.ReadLine().Split("\\");
+            string[] input = Console.ReadLine().Split(new char[]{'\\','.'});
 
-            string[] lastFileName = input[input.Length - 1].Split(".");
-
-            string fileName = lastFileName[0];
-            string extension = lastFileName[1];
-
+            string fileName = input[input.Length - 2];
+            string fileExtension = input[input.Length - 1];
             Console.WriteLine($"File name: {fileName}");
-            Console.WriteLine($"File extension: {extension}");
+            Console.WriteLine($"File extension: {fileExtension}");
         }
+
+        
+      
     }
 }

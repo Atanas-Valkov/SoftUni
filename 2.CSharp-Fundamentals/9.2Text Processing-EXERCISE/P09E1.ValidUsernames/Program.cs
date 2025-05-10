@@ -1,25 +1,21 @@
-﻿namespace P09E1.ValidUsernames
+﻿using System.Security.Cryptography.X509Certificates;
+
+namespace P09E1.ValidUsernames
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            string input = Console.ReadLine();
-
-            string[] words = input.Split(", ");
-
-            foreach (var word in words)
+            string[] input = Console.ReadLine().Split(", ", StringSplitOptions.RemoveEmptyEntries);
+            
+            foreach (var str in input)
             {
-                if (word.Length<3 || word.Length>16)
+                if (str.Length>=3 && str.Length<=16)
                 {
-                    continue;
-                }
-
-                bool wordToPrint = word.All(x => char.IsLetterOrDigit(x) || x == '-' || x == '_');
-
-                if (wordToPrint)
-                {
-                    Console.WriteLine(word);
+                    if (str.All(x => char.IsLetterOrDigit(x) || x == '-' || x == '_'))
+                    {
+                        Console.WriteLine(str);    
+                    }
                 }
             }
         }

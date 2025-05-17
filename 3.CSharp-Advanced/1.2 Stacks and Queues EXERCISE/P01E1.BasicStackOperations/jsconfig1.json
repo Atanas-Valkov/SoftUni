@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "P01E1.BasicStackOperations": {
+      "commandName": "Project",
+      "console": "externalConsole"
+    }
+  }
+}

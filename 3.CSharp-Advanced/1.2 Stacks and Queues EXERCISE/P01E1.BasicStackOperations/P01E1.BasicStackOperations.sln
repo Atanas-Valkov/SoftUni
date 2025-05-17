@@ -1,9 +1,12 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.13.35913.81 d17.13
+VisualStudioVersion = 17.13.35913.81
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P01E01.BasicStackOperations", "P01E01.BasicStackOperations.csproj", "{55392CCE-9472-4EBA-AF5F-9EE30FF36DC5}"
+	ProjectSection(ProjectDependencies) = postProject
+		{DCB9F444-51D3-47AF-9818-38B1528EA36B} = {DCB9F444-51D3-47AF-9818-38B1528EA36B}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "00.Demo", "..\00.Demo\00.Demo.csproj", "{405D5CD7-BD33-4BD9-BF6B-C72DDF8A4A87}"
 EndProject

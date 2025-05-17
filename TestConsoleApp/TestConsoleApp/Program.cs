@@ -1,10 +1,10 @@
-﻿namespace P01E12.CupsandBottles_STAR_
+﻿namespace TestConsoleApp
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
+            Console.WriteLine("do koga !?!?");
         }
     }
 }

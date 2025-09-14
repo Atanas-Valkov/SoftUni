@@ -4,15 +4,12 @@
     {
         static void Main(string[] args)
         {
-            Queue<int> numbers = new Queue<int>();
-            List<int> input = Console.ReadLine()
-                .Split(" ", StringSplitOptions.RemoveEmptyEntries)
+            Queue<int> numbers = new Queue<int>(Console.ReadLine()
+                .Split()
                 .Select(int.Parse)
-                .Where(x => x % 2 == 0)
-                .ToList();
+                .Where(n => n % 2 == 0));
 
-            input.ForEach(x => numbers.Enqueue(x));
-            Console.WriteLine(string.Join(", ", numbers));
+            Console.Write(string.Join(", ", numbers));
         }
     }
 }

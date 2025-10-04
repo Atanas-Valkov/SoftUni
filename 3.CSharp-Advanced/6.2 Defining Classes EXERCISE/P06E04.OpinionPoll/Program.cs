@@ -1,0 +1,10 @@
+﻿namespace P06E04.OpinionPoll
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Hello, World!");
+        }
+    }
+}

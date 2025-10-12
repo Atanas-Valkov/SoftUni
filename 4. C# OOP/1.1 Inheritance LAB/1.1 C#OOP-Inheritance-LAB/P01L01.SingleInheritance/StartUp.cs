@@ -2,9 +2,11 @@
 {
     public class StartUp
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
-            
+           Cat cat = new Cat("Pesho");
+           cat.Age = 10;
+           Console.WriteLine(cat.Name);
         }
     }
 }

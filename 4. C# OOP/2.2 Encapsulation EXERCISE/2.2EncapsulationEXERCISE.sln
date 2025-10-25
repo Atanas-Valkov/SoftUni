@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "00.Demo", "00.Demo\00.Demo.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P02E03.ShoppingSpree", "P02E03.ShoppingSpree\P02E03.ShoppingSpree.csproj", "{B9DDE553-8F15-4A00-B899-AF9E1FC079DB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P02E04.PizzaCalories", "P02E04.PizzaCalories\P02E04.PizzaCalories.csproj", "{F8173E08-B406-4C9C-802E-99FD179329FA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{B9DDE553-8F15-4A00-B899-AF9E1FC079DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B9DDE553-8F15-4A00-B899-AF9E1FC079DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B9DDE553-8F15-4A00-B899-AF9E1FC079DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F8173E08-B406-4C9C-802E-99FD179329FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8173E08-B406-4C9C-802E-99FD179329FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8173E08-B406-4C9C-802E-99FD179329FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8173E08-B406-4C9C-802E-99FD179329FA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

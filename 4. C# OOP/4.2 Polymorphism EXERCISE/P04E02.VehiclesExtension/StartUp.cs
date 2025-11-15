@@ -7,7 +7,6 @@ namespace P04E02.VehiclesExtension
     {
         static void Main(string[] args)
         {
-            // Car
             string[] carInfo = Console.ReadLine()
                 .Split(" ", StringSplitOptions.RemoveEmptyEntries);
             IVehicles car = new Car(
@@ -15,7 +14,6 @@ namespace P04E02.VehiclesExtension
                 double.Parse(carInfo[2]),
                 double.Parse(carInfo[3]));
 
-            // Truck
             string[] truckInfo = Console.ReadLine()
                 .Split(" ", StringSplitOptions.RemoveEmptyEntries);
             IVehicles truck = new Truck(

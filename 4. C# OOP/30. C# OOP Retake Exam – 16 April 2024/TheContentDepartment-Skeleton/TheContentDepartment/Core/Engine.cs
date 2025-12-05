@@ -3,8 +3,8 @@ using TheContentDepartment.IO.Contracts;
 using TheContentDepartment.IO;
 
 namespace TheContentDepartment.Core
-{
-    public class Engine : IEngine
+{                                                        // 135/150 ?!?!
+    public class Engine : IEngine            
     {
         private IReader reader;
         private IWriter writer;

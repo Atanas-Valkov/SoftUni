@@ -1,0 +1,34 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using HighwayToPeak.Models.Contracts;
+using HighwayToPeak.Repositories.Contracts;
+
+namespace HighwayToPeak.Repositories
+{
+    public class PeakRepository : IRepository<IPeak>
+    {
+        private List<IPeak> all;
+        public PeakRepository()
+        {
+            this.all = new List<IPeak>();
+
+        }
+
+        public IReadOnlyCollection<IPeak> All
+        {
+            get => this.all.AsReadOnly();
+        }
+        public void Add(IPeak model)
+        {
+           this.all.Add(model);
+        }
+
+        public IPeak Get(string name)
+        {
+            return this.all.FirstOrDefault(p => p.Name == name);
+        }
+    }
+}

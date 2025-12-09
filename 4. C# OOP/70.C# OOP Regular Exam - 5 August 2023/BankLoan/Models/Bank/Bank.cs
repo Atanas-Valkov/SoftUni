@@ -11,7 +11,7 @@ namespace BankLoan.Models.Bank;
 public abstract class Bank : IBank
 {
     private string name;
-    private string capacity;
+    private int capacity;
 
     private readonly List<ILoan> loans;
     private readonly List<IClient> clients;
@@ -42,8 +42,8 @@ public abstract class Bank : IBank
 
     public int Capacity
     {
-        get => this.Capacity;
-        private set => this.Capacity = value;
+        get => this.capacity;
+        private set => this.capacity = value;
     }
     public IReadOnlyCollection<ILoan> Loans => loans.AsReadOnly();
     public IReadOnlyCollection<IClient> Clients => clients.AsReadOnly();

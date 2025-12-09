@@ -16,17 +16,28 @@ namespace BankLoan.Core
         {
             this.reader = new Reader();
             this.writer = new Writer();
-            //this.controller = new Controller();
+            this.controller = new Controller();
         }
         public void Run()
         {
             while (true)
             {
-                string[] input = reader.ReadLine().Split();
-                if (input[0] == "End")
+                string line = reader.ReadLine();
+
+                // Ако входът е свършил (ReadLine() връща null) – спираме цикъла
+                if (line == null)
                 {
-                    Environment.Exit(0);
+                    break;   // или return;
                 }
+
+                // Ако командата е End – приключваме програмата
+                if (line == "End")
+                {
+                    Environment.Exit(0);   // или break;
+                }
+
+                string[] input = line.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
                 try
                 {
                     string result = string.Empty;
@@ -71,6 +82,7 @@ namespace BankLoan.Core
                     {
                         result = controller.Statistics();
                     }
+
                     writer.WriteLine(result);
                 }
                 catch (Exception ex)
@@ -79,5 +91,6 @@ namespace BankLoan.Core
                 }
             }
         }
+
     }
 }

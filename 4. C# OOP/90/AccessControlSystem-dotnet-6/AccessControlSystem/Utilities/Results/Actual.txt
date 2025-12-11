@@ -1,0 +1,59 @@
+Alice is successfully added to the application.
+HRDepartment is not available.
+ITDepartment is successfully created.
+HRDepartment is successfully created.
+FinanceDepartment is successfully created.
+ITDepartment is already created.
+MarketingDepartment is not a valid department type.
+Alice is already added to the application.
+Bob is successfully added to the application.
+Pilot is not a valid employee type.
+Alice is already added to the application.
+Security ID 123 is already taken.
+David is successfully added to the application.
+Emma is successfully added to the application.
+Frank is successfully added to the application.
+Grace is successfully added to the application.
+Henry is successfully added to the application.
+Irene is successfully added to the application.
+Zoe is not added to the application.
+MarketingDepartment is not a valid department type.
+ITSpecialist cannot be added to FinanceDepartment.
+ITSpecialist cannot be added to HRDepartment.
+GeneralEmployee cannot be added to ITDepartment.
+GeneralEmployee is successfully assigned to HRDepartment.
+ITSpecialist is successfully assigned to ITDepartment.
+GeneralEmployee is successfully assigned to FinanceDepartment.
+GeneralEmployee is successfully assigned to HRDepartment.
+Charlie is not added to the application.
+ITSpecialist is successfully assigned to ITDepartment.
+ITSpecialist is successfully assigned to ITDepartment.
+ITSpecialist is successfully assigned to ITDepartment.
+Bob is already added to department.
+Irene is already added to department.
+Emma is already added to department.
+Grace is already added to department.
+Bob is already added to department.
+Alpha is successfully created.
+Bravo is successfully created.
+Charlie is successfully created.
+Delta is successfully created.
+Echo is successfully created.
+Foxtrot is successfully created.
+Hotel is successfully created.
+Alpha is not found.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

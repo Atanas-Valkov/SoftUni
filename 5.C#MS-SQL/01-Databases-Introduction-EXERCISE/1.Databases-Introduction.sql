@@ -78,16 +78,15 @@ VALUES
 
 GO 
 --08 Create Table Users
---TRUNCATE TABLE [Users];
---DROP TABLE [Users];
+
 CREATE TABLE [Users]
 (
 [Id] BIGINT PRIMARY KEY IDENTITY,
-[Username] VARCHAR(30) UNIQUE  NOT NULL, 
+[Username] VARCHAR(30) NOT NULL, 
 [Password] VARCHAR(26) NOT NULL, 
 [ProfilePicture] VARBINARY(MAX),
  CHECK (DATALENGTH([ProfilePicture])<=900000),
-[LastLoginTime] DATETIME2 NULL,
+[LastLoginTime] DATETIME2 NOT NULL,
 [IsDeleted] BIT,
 )
 
@@ -100,16 +99,79 @@ VALUES
 ('German', '123459', NULL, 1)
 
 GO
+--09 Change Primary Key
 
---Test !!! 
---Test !!! 
---Test !!! 
---Test !!! 
---Test !!! 
---Test !!! 
+ALTER TABLE [Users]
+DROP CONSTRAINT PK__Users__3214EC077D0C3A8A
+
+ALTER TABLE [Users]
+ADD PRIMARY KEY ([Id], [Username])
+
+GO
+--10 Add Check Constraint
+
+ALTER TABLE [Users]
+ADD CHECK(LEN([Password])>=5)
+
+GO
+--11 Set Default Value of a Field
+
+ALTER TABLE [Users]
+ADD CONSTRAINT DF_Users_LastLoginTime
+DEFAULT(SYSDATETIME()) FOR [LastLoginTime]
+
 GO 
+--12 Set Unique Field
+
+ALTER TABLE [Users]
+DROP CONSTRAINT PK__Users__77222459A2890A6F 
+
+ALTER TABLE [Users]
+ADD PRIMARY KEY ([Id])
+
+ALTER TABLE [Users]
+ADD CONSTRAINT UQ_Users_At_Least3Symbols 
+UNIQUE ([Username])
+
+ALTER TABLE [Users]
+ADD CHECK (LEN([Username])>=3)
 
 GO 
+--13 Movies Database
+CREATE DATABASE [Movies]
 
+USE [Movies]
 
+CREATE TABLE [Directors]
+(
+[Id] INT PRIMARY KEY IDENTITY(1,1),
+[DirectorName] NVARCHAR(200) NOT NULL,
+[Notes] NVARCHAR(1000) NULL
+);
 
+CREATE TABLE [Genres]
+(
+[Id] INT PRIMARY KEY IDENTITY(1,1),
+[GenreName] NVARCHAR(50) NOT NULL,
+[Notes] NVARCHAR(1000) NULL
+);
+
+CREATE TABLE [Categories]
+(
+[Id] INT PRIMARY KEY IDENTITY(1,1),
+[CategoryName] NVARCHAR(50) NOT NULL,
+[Notes] NVARCHAR(1000) NULL
+);
+
+CREATE TABLE [Movies]
+(
+[Id] INT PRIMARY KEY IDENTITY(1,1)
+[Title] NVARCHAR(100) NOT NULL,
+[DirectorId] INT FOREIGN KEY REFERENCES [Directors](Id) NOT NULL,
+[CopyrightYear] DATE NOT NULL, 
+[Length]
+[GenreId]
+[CategoryId]
+[Rating]
+[Notes]
+);

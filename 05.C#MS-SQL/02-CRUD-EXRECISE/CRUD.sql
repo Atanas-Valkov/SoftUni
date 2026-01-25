@@ -158,18 +158,80 @@ SELECT TOP (10) *
       FROM [Projects]
   ORDER BY [StartDate],
            [Name]
-
 GO 
 
 --20 Last 7 Hired Employees
 
- 
+SELECT TOP (7) [FirstName],
+               [LastName],
+               [HireDate]
+          FROM [Employees]
+      ORDER BY [HireDate] DESC
+
+GO 
+
+--21 Increase Salaries
+
+  UPDATE [Employees]
+     SET [Salary] += [Salary] * 0.12 
+   WHERE [DepartmentID] IN 
+  (
+  SELECT [DepartmentID] 
+    FROM [Departments]
+   WHERE [Name] IN ('Engineering','Tool Design','Marketing', 'Information Services')
+  )  
+  
+  SELECT [Salary] 
+  FROM [Employees]
+
+GO
+
+--22 All Mountain Peaks
+
+USE [Geography]
+
+  SELECT [PeakName]
+    FROM [Peaks]
+ORDER BY [PeakName] ASC
+
+GO 
+
+--23 Biggest Countries by Population
+
+  SELECT TOP (30) [CountryName],
+                  [Population]
+             FROM [Countries]
+            WHERE [ContinentCode] = 'EU'
+         ORDER BY [Population] DESC
+
+GO 
+
+--24 Countries and Currency (Euro / Not Euro)
+
+SELECT * 
+  FROM [Countries]
 
 
+    SELECT [CountryName],
+           [CountryCode],
+      CASE 
+      WHEN [CurrencyCode] = 'EUR' THEN 'Euro'
+      ELSE 'Not Euro'
+    END AS [Currency]
+      FROM [Countries]
+  ORDER BY [CountryName] ASC
 
+Go
 
+--25 All Diablo Characters
 
+USE [Diablo]
 
+  SELECT [Name]
+    FROM [Characters]
+ORDER BY [Name] ASC    
+  
+  
 
 
 

@@ -165,17 +165,133 @@ CREATE TABLE [Categories]
 
 CREATE TABLE [Movies]
 (
-[Id] INT PRIMARY KEY IDENTITY(1,1)
+[Id] INT PRIMARY KEY IDENTITY(1,1),
 [Title] NVARCHAR(100) NOT NULL,
-[DirectorId] INT FOREIGN KEY REFERENCES [Directors](Id) NOT NULL,
-[CopyrightYear] DATE NOT NULL, 
-[Length]
-[GenreId]
-[CategoryId]
-[Rating]
-[Notes]
+[DirectorId] INT FOREIGN KEY REFERENCES [Directors]([Id]) NOT NULL,
+[CopyrightYear] INT NOT NULL, 
+[Length] INT NOT NULL,
+[GenreId] INT FOREIGN KEY REFERENCES [Genres]([Id]) NOT NULL,
+[CategoryId] INT  FOREIGN KEY REFERENCES [Categories]([Id]) NOT NULL,
+[Rating] FLOAT NOT NULL,
+[Notes] VARCHAR(200) NULL 
 );
 
--- TEST 
--- TEST 
--- TEST 
+INSERT INTO [Directors]([DirectorName], [Notes])
+VALUES
+('Steven Spielberg','film director'),
+('James Cameron','film director'),
+('Quentin Tarantino','film director'),
+('Martin Scorsese','film director'),
+('Christopher Nolan','film director')
+
+INSERT INTO [Genres](GenreName, [Notes])
+VALUES
+('Action','High-octane films featuring fight scenes'),
+('Adventure','Focus on journeys'),
+('Comedy','Films designed to make the audience laugh'),
+('Drama','Driven stories that explore emotional'),
+('Horror','Films designed to provoke fear')
+
+INSERT INTO [Categories]([CategoryName],[Notes])
+VALUES 
+('Feature film', NULL),
+('Short film', NULL),
+('TV series', NULL),
+('Documentary', NULL),
+('Concert film', NULL)
+
+INSERT INTO [Movies]([Title],[DirectorId],[CopyrightYear],[Length],[GenreId],[CategoryId],[Rating],[Notes])
+VALUES 
+('The Dark Knight',5,2008,120,1,1,9.5,NULL),
+('Schindler List',1,1993,125,1,4,9.7,NULL),
+('Terminator 2',2,1991,110,1,1,8.2,NULL),
+('Kill Bill',3,2003,100,1,1,8.3,NULL),
+('Goodfellas',4,1990,97,1,1,9.8,NULL)
+
+GO 
+
+--14 Car Rental Database
+
+CREATE DATABASE [CarRental]
+
+USE [CarRental]
+
+CREATE TABLE [Categories]
+(
+[Id] INT PRIMARY KEY IDENTITY,
+[CategoryName] NVARCHAR(50) NOT NULL,
+[DailyRate] INT NOT NULL,
+[WeeklyRate] INT NOT NULL,
+[MonthlyRate] INT NOT NULL,
+[WeekendRate] INT NOT NULL
+);
+
+CREATE TABLE [Cars]
+(
+[Id] INT PRIMARY KEY IDENTITY,
+[PlateNumber] NVARCHAR(30) NOT NULL,
+[Manufacturer] NVARCHAR(20) NOT NULL,
+[Model] NVARCHAR(20) NOT NULL,
+[CarYear] INT NOT NULL,
+[CategoryId] INT FOREIGN KEY REFERENCES [Categories]([Id]) NOT NULL,
+[Doors] TINYINT NOT NULL,
+[Picture] VARBINARY(MAX) NULL,
+[Condition] VARCHAR(10)NOT NULL,
+[Available]  NOT NULL
+)
+
+CREATE TABLE [Employees]
+(
+[Id] INT PRIMARY KEY IDENTITY,
+[FirstName] VARCHAR(30) NOT NULL,
+[LastName] VARCHAR(30) NOT NULL,
+[Title] VARCHAR(30) NULL,
+[Notes] VARCHAR(500) NULL
+)
+
+CREATE TABLE [Customers]
+(
+[Id] INT PRIMARY KEY IDENTITY,
+[DriverLicenceNumber] NVARCHAR(50) NOT NULL,
+[FullName] VARCHAR(50) NOT NULL,
+[Address] VARCHAR(100) NULL,
+[City] NVARCHAR(25) NOT NULL,
+[ZIPCode] NVARCHAR(20) NOT NULL,
+[Notes] VARCHAR(500) NULL
+)
+
+CREATE TABLE [RentalOrders]
+(
+[Id] INT PRIMARY KEY IDENTITY,
+[EmployeeId] INT FOREIGN KEY REFERENCES [Employees]([Id]) NOT NULL,
+[CustomerId] INT FOREIGN KEY REFERENCES [Customers]([Id]) NOT NULL,
+[CarId] INT FOREIGN KEY REFERENCES [Cars]([Id]) NOT NULL,
+[TankLevel] TINYINT NOT NULL,
+[KilometrageStart] INT NOT NULL,
+[KilometrageEnd] INT NOT NULL,
+[TotalKilometrage] INT NOT NULL,
+[StartDate] DATETIME NOT NULL,
+[EndDate] DATETIME NOT NULL,
+[TotalDays] TINYINT NOT NULL,
+[RateApplied] INT NOT NULL,
+[TaxRate] INT NOT NULL,
+[OrderStatus] VARCHAR(20) NOT NULL,
+[Notes] VARCHAR(20) NULL
+)
+
+INSERT INTO [Categories]([CategoryName],[DailyRate],
+[WeeklyRate],[MonthlyRate],[WeekendRate])
+VALUES
+('Economy',100,400,2000,120),
+('Compact',110,450,2200,130),
+('SUV',130,500,2500,150)
+
+SELECT * 
+  FROM [Categories]
+
+INSERT INTO [Cars]([PlateNumber],[Manufacturer],[Model],
+[CarYear],[CategoryId],[Doors],[Picture],[Condition],[Available])
+VALUES
+('PB1233MP','BMV',520,2020,1,5,NULL,'Fair',),
+('EA9253TP','Tesla',3,2023,2,5,NULL,'Good'),
+('EA9900KK','Tesla','Y',2025,3,5,NULL,'Very Good')

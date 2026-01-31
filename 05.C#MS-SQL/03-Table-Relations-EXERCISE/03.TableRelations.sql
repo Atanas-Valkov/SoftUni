@@ -111,3 +111,81 @@ VALUES
 GO 
 
 --4 Self-Referencing 
+
+CREATE TABLE [Teachers]
+(
+[TeacherID] INT PRIMARY KEY IDENTITY(101,1),
+[Name] VARCHAR(50) NOT NULL,
+[ManagerID] INT FOREIGN KEY ([ManagerID]) REFERENCES [Teachers]([TeacherID]) NULL
+)
+
+INSERT INTO [Teachers]([Name], [ManagerID])
+VALUES
+('John',NULL),
+('Maya',106),
+('Silvia',106),
+('Ted',105),
+('Mark',101),
+('Greta',101)
+
+GO
+
+--5 Online Store Database
+
+CREATE DATABASE [OnlineShop]
+
+USE [OnlineShop]
+
+CREATE TABLE [Cities]
+(
+[CityID] INT PRIMARY KEY IDENTITY,
+[Name] VARCHAR(50) NOT NULL
+)
+
+CREATE TABLE [ItemTypes]
+(
+[ItemTypeID] INT PRIMARY KEY IDENTITY,
+[Name] VARCHAR(50) NOT NULL
+)
+
+CREATE TABLE [Customers]
+(
+[CustomerID] INT PRIMARY KEY IDENTITY,
+[Name] VARCHAR(50) NOT NULL,
+[Birthday] DATE NULL,
+[CityID] INT FOREIGN KEY ([CityID]) REFERENCES [Cities]([CityID])
+)
+
+CREATE TABLE [Items]
+(
+[ItemID] INT PRIMARY KEY IDENTITY,
+[Name] VARCHAR(50) NOT NULL,
+[ItemTypeID] INT FOREIGN KEY ([ItemTypeID]) REFERENCES [ItemTypes]([ItemTypeID])
+)
+
+CREATE TABLE [Orders]
+(
+[OrderID] INT PRIMARY KEY IDENTITY,
+[CustomerID] INT FOREIGN KEY ([CustomerID]) REFERENCES [Customers]([CustomerID])
+)
+
+CREATE TABLE [OrderItems]
+(
+[OrderID] INT FOREIGN KEY ([OrderID]) REFERENCES [Orders]([OrderID]),
+[ItemID] INT FOREIGN KEY ([ItemID]) REFERENCES [Items]([ItemID])
+CONSTRAINT [PK_OrderItems_11] PRIMARY KEY ([OrderID], [ItemID])
+)
+
+
+
+
+
+
+
+--SELECT * 
+  --FROM [Teachers]
+
+
+
+
+

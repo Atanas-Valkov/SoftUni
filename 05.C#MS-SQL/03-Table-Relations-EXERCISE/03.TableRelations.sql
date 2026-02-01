@@ -134,7 +134,11 @@ GO
 
 CREATE DATABASE [OnlineShop]
 
+GO
+
 USE [OnlineShop]
+
+GO
 
 CREATE TABLE [Cities]
 (
@@ -176,14 +180,72 @@ CREATE TABLE [OrderItems]
 CONSTRAINT [PK_OrderItems_11] PRIMARY KEY ([OrderID], [ItemID])
 )
 
+GO 
 
+--6 University Database
 
+CREATE DATABASE [University]
 
+GO 
 
+USE [University]
 
+GO
 
---SELECT * 
-  --FROM [Teachers]
+CREATE TABLE [Majors]
+(
+[MajorID] INT PRIMARY KEY IDENTITY,
+[Name] VARCHAR(50) NOT NULL
+)
+
+CREATE TABLE [Students]
+(
+[StudentID] INT PRIMARY KEY IDENTITY ,
+[StudentNumber] INT NOT NULL,
+[StudentName] VARCHAR(50) NOT NULL,
+[MajorID] INT FOREIGN KEY REFERENCES [Majors]([MajorID]) 
+)
+
+CREATE TABLE [Payments]
+(
+[PaymentID] INT PRIMARY KEY IDENTITY,
+[PaymentDate] DATE NOT NULL,
+[PaymentAmount] DECIMAL(18,2) NOT NULL,
+[StudentID] INT FOREIGN KEY REFERENCES [Students]([StudentID])
+
+)
+
+CREATE TABLE [Subjects]
+(
+[SubjectID] INT PRIMARY KEY IDENTITY,
+[SubjectName] VARCHAR(50) NOT NULL
+)
+
+CREATE TABLE [Agenda]
+(
+[StudentID] INT FOREIGN KEY ([StudentID]) REFERENCES [Students]([StudentID]),
+[SubjectID] INT FOREIGN KEY ([SubjectID]) REFERENCES [Subjects]([SubjectID]),
+PRIMARY KEY ([StudentID], [SubjectID])
+)
+
+GO 
+
+--9 SoftUni Design
+
+USE [Geography]
+
+GO
+
+  SELECT 
+         m.[MountainRange],
+         p.[PeakName],
+         p.[Elevation]  
+    FROM [Peaks] AS p
+    JOIN [Mountains] AS m
+      ON m.[Id] = p.[MountainId]
+   WHERE m.MountainRange = 'Rila'  
+ORDER BY p.[Elevation] DESC;
+ 
 
 
 

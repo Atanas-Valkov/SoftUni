@@ -130,11 +130,74 @@ GO
 ORDER BY [X].[Salary] DESC
 
 
+GO
+
+--12 Countries Holding 'A' 3 or More Times
+
+USE Geography
+
+GO
+
+  SELECT [CountryName],
+         [IsoCode]
+    FROM [Countries] 
+      AS c 
+   WHERE LEN(c.[CountryName]) - LEN(REPLACE(c.[CountryName], 'A', '')) >= 3
+ORDER BY [IsoCode]
+
+GO 
+--13 Mix of Peak and River Names
+
+  SELECT p.[PeakName],
+         r.[RiverName],
+         LOWER(CONCAT((p.[PeakName]), STUFF(r.[RiverName], 1, 1, '')))    
+      AS [Mix]
+    FROM [Peaks]
+      AS p,
+         [Rivers]
+      AS r
+   WHERE LOWER(RIGHT(p.[PeakName],1)) = LOWER(LEFT(r.[RiverName],1))
+ORDER BY [Mix] 
+
+GO 
+
+--14 Games from 2011 and 2012 Year
+
+USE [Diablo]
+
+GO 
+
+SELECT TOP (50) [Name],
+              FORMAT([Start], 'yyyy-MM-dd') 
+           AS [Start]
+         FROM [Games]
+        WHERE YEAR([Start]) = 2011 OR YEAR([Start]) = 2012
+     ORDER BY [Start], [Name]
+
+GO 
+
+--15 User Email Providers
+
+  SELECT [Username],
+         SUBSTRING([Email],CHARINDEX('@',[Email]) + 1,LEN([Email]))
+      AS [Email Provider]
+    FROM [Users]
+ORDER BY [Email],[Username]
+
+GO 
+
+--16 Get Users with IP Address Like Pattern
+
+  SELECT [Username],
+         [IpAddress]
+      AS [IP Address]
+    FROM [Users]
+   WHERE [IpAddress] LIKE '___.1%.%.___'
+ORDER BY [Username]
 
 
 
 
-  /*
-  SELECT *
-    FROM [Employees]
 
+SELECT *
+  FROM [Users]

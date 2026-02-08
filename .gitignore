@@ -397,4 +397,5 @@ FodyWeavers.xsd
 # JetBrains Rider
 *.sln.iml
 
-C:/Users/nas-1/source/repos
+
+/05.C#MS-SQL/00.Syntax.sql

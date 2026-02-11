@@ -1,0 +1,46 @@
+USE [SoftUni]
+
+GO 
+
+--1 Employee Address
+
+  SELECT TOP (5) 
+         [e].EmployeeID,
+         [e].JobTitle,
+         [e].AddressID,
+         [a].AddressText 
+    FROM [Employees]
+      AS [e]
+    JOIN [Addresses]
+      AS [a]
+      ON [e].AddressID = [a].AddressID
+ORDER BY [a].AddressID
+
+GO 
+
+--2 Addresses with Towns
+
+SELECT TOP (50)
+       [e].[FirstName],
+       [e].[LastName],
+       [t].[Name]
+    AS [Town],
+       [a].[AddressText]
+  FROM [Employees]
+    AS [e]
+  JOIN [Addresses]
+    AS [a]
+    ON [e].[AddressID] = [a].AddressID
+  JOIN [Towns]
+    AS [t]
+    ON [a].TownID = [t].TownID 
+ORDER BY [e].FirstName,[e].LastName
+
+GO 
+
+--3 Sales Employee
+
+SELECT *
+  FROM [Employees]
+
+

@@ -221,9 +221,6 @@ GO
     FROM [#SalaryMoreThen3000TempTable]
    WHERE [ManagerID] = 42 
 
-  SELECT * 
-    FROM [#SalaryMoreThen3000TempTable]
-   
    UPDATE [#SalaryMoreThen3000TempTable]
    SET [Salary] += 5000
    WHERE [DepartmentID] = 1 

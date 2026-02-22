@@ -231,4 +231,78 @@ GO
      FROM [#SalaryMoreThen3000TempTable]
  GROUP BY [DepartmentID]
 
+ GO
+
+ --16 Employees Maximum Salaries
+
+  SELECT [DepartmentID],
+         MAX([Salary])
+      AS [MaxSalary]
+    FROM [Employees]
+GROUP BY [DepartmentID]
+HAVING MAX([Salary]) NOT BETWEEN 30000 AND 70000
+
+GO 
+
+--17 Employees Count Salaries
+
+  SELECT TOP (1)
+         COUNT(*)
+      AS [Count]
+    FROM [Employees]
+GROUP BY [ManagerID]
+
+GO 
+
+--18 *3rd Highest Salary
+
+SELECT [SalaryRanking].[DepartmentID],
+       [SalaryRanking].[ThirdHighestSalary]
+  FROM 
+       (
+        SELECT DISTINCT [e].[DepartmentID],
+               [e].[Salary]
+            AS [ThirdHighestSalary],
+               DENSE_RANK() OVER
+               (
+                    PARTITION BY [e].[DepartmentID]
+                        ORDER BY [e].[Salary] DESC    
+               ) AS [RowNum]
+          FROM [Employees] AS [e]
+       )AS [SalaryRanking]
+ WHERE [SalaryRanking].RowNum = 3 
+
  GO 
+
+--19 **Salary Challenge
+
+SELECT *
+      FROM [Employees]
+        AS [e]
+      JOIN 
+           (
+               SELECT [DepartmentID],
+                      AVG([Salary])
+                   AS [AVGSalary]
+                 FROM [Employees]
+                   AS [e]
+             GROUP BY [DepartmentID]
+           ) AS [AvgSalaryTable]
+        ON [AvgSalaryTable].[DepartmentID] = [e].[DepartmentID]
+     WHERE [e].[Salary] > [AvgSalaryTable].[AVGSalary]
+
+--other solution
+SELECT TOP (10)
+           [e].[FirstName],
+           [e].[LastName],
+           [e].[DepartmentID]
+      FROM [Employees]
+        AS [e]
+        WHERE [e].[Salary] > (
+                               SELECT AVG([eAVG].[Salary])
+                                   AS [AVGSalary]
+                                 FROM [Employees]
+                                   AS [eAVG]
+                                WHERE [eAVG].[DepartmentID] = [e].[DepartmentID]
+                             GROUP BY [eAVG].[DepartmentID]
+                              )

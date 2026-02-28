@@ -208,13 +208,10 @@ VALUES
 ('Kill Bill',3,2003,100,1,1,8.3,NULL),
 ('Goodfellas',4,1990,97,1,1,9.8,NULL)
 
-GO 
-
 --14 Car Rental Database
+USE [CarRental]
 
 CREATE DATABASE [CarRental]
-
-USE [CarRental]
 
 CREATE TABLE [Categories]
 (
@@ -237,7 +234,7 @@ CREATE TABLE [Cars]
 [Doors] TINYINT NOT NULL,
 [Picture] VARBINARY(MAX) NULL,
 [Condition] VARCHAR(10)NOT NULL,
-[Available]  NOT NULL
+[Available] BIT NOT NULL
 )
 
 CREATE TABLE [Employees]
@@ -286,12 +283,120 @@ VALUES
 ('Compact',110,450,2200,130),
 ('SUV',130,500,2500,150)
 
-SELECT * 
-  FROM [Categories]
-
 INSERT INTO [Cars]([PlateNumber],[Manufacturer],[Model],
 [CarYear],[CategoryId],[Doors],[Picture],[Condition],[Available])
 VALUES
-('PB1233MP','BMV',520,2020,1,5,NULL,'Fair',),
-('EA9253TP','Tesla',3,2023,2,5,NULL,'Good'),
-('EA9900KK','Tesla','Y',2025,3,5,NULL,'Very Good')
+('PB1233MP','BMV','520',2020,1,5,NULL,'Fair',1),
+('EA9253TP','Tesla','3',2023,2,5,NULL,'Good',1),
+('EA9900KK','Tesla','Y',2025,3,5,NULL,'Very Good',1)
+
+INSERT INTO [Employees] ([FirstName], [LastName], [Title], [Notes])
+VALUES
+('Atanas','Petkov','Mr', NULL),
+('Petko','Atanasov','Mr', NULL),
+('Maria','Petkov','Mrs', NULl)
+
+INSERT INTO [Customers] ([DriverLicenceNumber], [FullName], [Address],
+                         [City],[ZIPCode])
+VALUES
+('A1234567890B','Kiril Kehaiov', 'str. Stefan Stambolov 63', 'Plovdiv', '4000'),
+('A1234567890A','Kalin Stoqnov', 'str. Georgi Kirkov 10', 'Plovdiv', '4000'),
+('A1234567890C','Slavcho Petrov', 'bul. Nikola Vaptsarov 100', 'Plovdiv', '4000')
+
+INSERT INTO [RentalOrders]([EmployeeId], [CustomerId], [CarId],[TankLevel], [KilometrageStart], [KilometrageEnd],[TotalKilometrage],
+[StartDate], [EndDate], [TotalDays], [RateApplied], [TaxRate],[OrderStatus], [Notes])
+VALUES 
+(1,1,1,10, 10000, 20000, 30000,'2025-01-20', '2025-02-20', 30, 10 , 10, 'Processing',NULL),
+(2,2,2,10, 12200, 22050, 40000,'2025-02-21', '2025-02-24', 3, 10 , 10, 'Processing',NULL),
+(3,3,3,10, 10000, 21150, 50000,'2025-01-22', '2025-01-23', 1, 10 , 10, 'Processing',NULL)
+
+--15 Hotel Database
+
+CREATE DATABASE [Hotel]
+
+USE [Hotel]
+
+CREATE TABLE [Employees]
+(
+[Id] INT PRIMARY KEY IDENTITY,
+[FirstName] VARCHAR(50) NOT NULL,
+[LastName] VARCHAR(50) NOT NULL,
+[Tital] VARCHAR(10) NOT NULL,
+[Notes] VARCHAR(200) NULL 
+)
+
+CREATE TABLE [Customers]
+(
+[AccountNumber] INT PRIMARY KEY IDENTITY,
+[FirstName] VARCHAR(50) NOT NULL,
+[LastName] VARCHAR(50) NOT NULL,
+[PhoneNumber] VARCHAR(20) NULL,
+[EmergencyName] VARCHAR(50) NOT NULL,
+[EmergencyNumber] VARCHAR(20) NOT NULL,
+[Notes] VARCHAR(200) NULL 
+)
+
+CREATE TABLE [RoomStatus]
+(
+[RoomStatus] VARCHAR(50) NOT NULL,
+[Notes] VARCHAR(200) NULL 
+)
+
+CREATE TABLE [RoomTypes]
+(
+[RoomTypes] VARCHAR(50) NOT NULL,
+[Notes] VARCHAR(200) NULL 
+)
+
+CREATE TABLE [BedTypes]
+(
+[BedTypes] VARCHAR(50) NOT NULL,
+[Notes] VARCHAR(200) NULL 
+)
+
+CREATE TABLE [Rooms]
+(
+[RoomNumber] SMALLINT PRIMARY KEY IDENTITY,
+[RoomType] VARCHAR(30) NOT NULL,
+[BedType] VARCHAR(30) NOT NULL,
+[Rate] SMALLINT NOT NULL ,
+[RoomStatus] VARCHAR(30) NOT NULL,
+[Notes] VARCHAR(200) NULL 
+)
+
+ALTER TABLE [Rooms]
+ALTER COLUMN [RoomType] 
+
+CREATE TABLE [Payments]
+(
+[Id] INT PRIMARY KEY IDENTITY,
+[EmployeeId] INT FOREIGN KEY REFERENCES [Employees]([Id]) NOT NULL,
+[PaymentDate] DATE NOT NULL,
+[AccountNumber] INT FOREIGN KEY REFERENCES [Customers]([AccountNumber]),
+[FirstDateOccupied] DATE NOT NULL,
+[LastDateOccupied] DATE NOT NULL,
+[TotalDays] TINYINT NOT NULL,
+[AmountCharged] DECIMAL(8,2) NOT NULL,
+[TaxRate] TINYINT NOT NULL,
+[TaxAmount] INT NOT NULL,
+[PaymentTotal] DECIMAL(8,2) NOT NULL,
+[Notes] VARCHAR(200) NULL 
+)
+CREATE TABLE [Occupancies]
+(
+[Id] INT PRIMARY KEY IDENTITY,
+[EmployeeId] INT FOREIGN KEY REFERENCES [Employees] ([Id]) NOT NULL,
+[DateOccupied] DATE NOT NULL,
+[AccountNumber] INT FOREIGN KEY REFERENCES [Customers]([AccountNumber]),
+[RoomNumber] SMALLINT FOREIGN KEY REFERENCES [Rooms] ([RoomNumber]),
+[RateApplied] SMALLINT NOT NULL,
+[PhoneCharge] DECIMAL(8,2) NULL,
+[Notes] VARCHAR(200) NULL 
+)
+
+DROP TABLE [RoomStatus]
+DROP TABLE [BedTypes]
+DROP TABLE [RoomTypes]
+
+SELECT * 
+  FROM [RentalOrders]

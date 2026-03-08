@@ -165,7 +165,7 @@ ORDER BY [c].[Name] ASC,
 
 GO 
 
---9
+--9 
 
   SELECT [h].[Name]
       AS [HotelName],

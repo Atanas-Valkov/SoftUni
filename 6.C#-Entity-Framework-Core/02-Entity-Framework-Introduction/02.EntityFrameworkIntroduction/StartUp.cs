@@ -1,4 +1,4 @@
-﻿using System.Text;
+using System.Text;
 using SoftUni.Data;
 using SoftUni.Models;
 
@@ -8,12 +8,16 @@ namespace SoftUni
     {
         static void Main(string[] args)
         {
-            
+
             using SoftUniContext context = new SoftUniContext();
 
             //03 string result = GetEmployeesFullInformation(context); 
 
             //04 string result = GetEmployeesWithSalaryOver50000(context);
+            
+            //05 string result = GetEmployeesFromResearchAndDevelopment(context);
+
+            string result = AddNewAddressToEmployee(context);
 
             Console.WriteLine(result);
         }
@@ -37,7 +41,7 @@ namespace SoftUni
 
             foreach (var employee in employees)
             {
-                sb.AppendLine($"{employee.FirstName} { employee.LastName} {employee.MiddleName} {employee.JobTitle} {employee.Salary:F2}");
+                sb.AppendLine($"{employee.FirstName} {employee.LastName} {employee.MiddleName} {employee.JobTitle} {employee.Salary:F2}");
             }
 
             return sb.ToString().TrimEnd();
@@ -50,7 +54,7 @@ namespace SoftUni
             StringBuilder sb = new StringBuilder();
 
             var employees = context.Employees
-                .Where(e => e.Salary> 50_000)
+                .Where(e => e.Salary > 50_000)
                 .OrderBy(e => e.FirstName)
                 .Select(e => new
                 {
@@ -66,5 +70,63 @@ namespace SoftUni
 
             return sb.ToString().TrimEnd();
         }
+
+        // 05.	Employees from Research and Development
+
+        public static string GetEmployeesFromResearchAndDevelopment(SoftUniContext context)
+        {
+            StringBuilder sb = new StringBuilder();
+
+            var employees = context.Employees
+                .Where(e => e.Department.Name == "Research"
+                            || e.Department.Name == "Research and Development")
+                .OrderBy(e => e.Salary)
+                .ThenByDescending(e => e.FirstName)
+                .Select(e => new
+                {
+                    e.FirstName,
+                    e.LastName,
+                    e.Department.Name,
+                    e.Salary
+                })
+                .ToList();
+
+            foreach (var e in employees)
+            {
+                sb.AppendLine($"{e.FirstName} {e.LastName} from Research and Development - ${e.Salary:F2}");
+
+            }
+
+            return sb.ToString().TrimEnd();
+
+        }
+
+        //06. Adding a New Address and Updating Employee
+
+        public static string AddNewAddressToEmployee(SoftUniContext context)
+        {
+
+            var employee = context.Employees
+                .First(e => e.LastName == "Nakov");
+                
+                
+            Address newAddress = new Address()
+            {
+                AddressText = "Vitoshka 15",
+                TownId = 4
+            };
+
+            employee.Address = newAddress;
+            context.SaveChanges();
+
+            List<string> employeeFiltering = context.Employees
+                .OrderByDescending(e => e.AddressId)
+                .Select(e => e.Address.AddressText)
+                .Take(10)
+                .ToList();
+
+            return string.Join(Environment.NewLine, employeeFiltering);
+        }
+
     }
 }

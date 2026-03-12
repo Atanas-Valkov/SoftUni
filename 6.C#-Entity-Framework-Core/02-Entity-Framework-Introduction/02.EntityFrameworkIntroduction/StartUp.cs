@@ -24,7 +24,11 @@ namespace SoftUni
 
             //07 string result = GetEmployeesInPeriod(context);
 
-             string result = GetAddressesByTown(context);
+            //08 string result = GetAddressesByTown(context);
+
+            //09 string result = GetEmployee147(context);
+
+            string result = GetDepartmentsWithMoreThan5Employees(context);
 
             Console.WriteLine(result);
         }
@@ -165,20 +169,20 @@ namespace SoftUni
             foreach (var e in employee)
             {
                 sb.AppendLine($"{e.FirstName} {e.LastName} - Manager: {e.ManagerFirstName} {e.ManagerLastName}");
-               foreach (var p in e.Projects)
-               {
-                   string endDate = "";
-                   if (p.EndDate.HasValue)
-                   {
-                       endDate = p.EndDate.Value.ToString("M/d/yyyy h:mm:ss tt");
-                   }
-                   else
-                   {
-                       endDate = "not finished";
-                   }
+                foreach (var p in e.Projects)
+                {
+                    string endDate = "";
+                    if (p.EndDate.HasValue)
+                    {
+                        endDate = p.EndDate.Value.ToString("M/d/yyyy h:mm:ss tt");
+                    }
+                    else
+                    {
+                        endDate = "not finished";
+                    }
 
-                   sb.AppendLine($"--{p.Name} - {p.StartDate.ToString("M/d/yyyy h:mm:ss tt")} - {endDate}");
-               }
+                    sb.AppendLine($"--{p.Name} - {p.StartDate.ToString("M/d/yyyy h:mm:ss tt")} - {endDate}");
+                }
             }
 
             return sb.ToString().TrimEnd();
@@ -210,5 +214,83 @@ namespace SoftUni
 
             return sb.ToString().TrimEnd();
         }
+
+        // 09. Employee 147
+
+        public static string GetEmployee147(SoftUniContext context)
+        {
+
+            StringBuilder sb = new StringBuilder();
+
+            var employee = context.Employees
+                .Where(e => e.EmployeeId == 147)
+                .Select(e => new
+                {
+                    e.FirstName,
+                    e.LastName,
+                    e.JobTitle,
+
+                    projects = e.EmployeesProjects
+                        .Select(ep => ep.Project.Name)
+                        .OrderBy(p => p)
+                        .ToList()
+
+                })
+                .FirstOrDefault();
+
+            sb.AppendLine($"{employee.FirstName} {employee.LastName} - {employee.JobTitle}");
+
+            foreach (var e in employee.projects)
+            {
+                sb.AppendLine($"{e}");
+            }
+
+            return sb.ToString().TrimEnd();
+        }
+
+        //10. Departments with More Than 5 Employees
+
+        public static string GetDepartmentsWithMoreThan5Employees(SoftUniContext context)
+        {
+
+            var departments = context.Departments
+                .Where(d => d.Employees.Count > 5)
+                .OrderBy(d => d.Employees.Count)
+                .ThenBy(d => d.Name)
+                .Select(d => new
+                {
+                    d.Name,
+                    manager = d.Manager.FirstName + " " + d.Manager.LastName,
+                    employees = d.Employees
+                        .OrderBy(e => e.FirstName)
+                        .ThenBy(e => e.LastName)
+                        .Select(e => new
+                        {
+                            e.FirstName,
+                            e.LastName,
+                            e.JobTitle
+                        })
+                        .ToList()
+                })
+                .ToList();
+
+            StringBuilder sb = new StringBuilder();
+
+            foreach (var d in departments)
+            {
+
+
+                sb.AppendLine($"{d.Name} – {d.manager}");
+
+                foreach (var e in d.employees)
+                {
+                    sb.AppendLine($"{e.FirstName} {e.LastName} - {e.JobTitle}");
+                }
+            }
+
+            return sb.ToString().TrimEnd();
+        }
+
+
     }
 }

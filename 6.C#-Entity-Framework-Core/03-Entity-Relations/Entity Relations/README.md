@@ -3,7 +3,7 @@ Your task is to create a database for a FootballBookmakerSystem, using the Code 
 
 # Database Diagram
 
-
+![StudentSystemDiagram](https://github.com/Atanas-Valkov/SoftUni/blob/main/6.C%23-Entity-Framework-Core/03-Entity-Relations/Entity%20Relations/Screen%20Shot%202026-03-15%20at%2006.51.25.262%20PM.png)
 
 Constraints
 Your namespaces should be:

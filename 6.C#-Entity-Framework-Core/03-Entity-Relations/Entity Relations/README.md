@@ -2,7 +2,7 @@
 Your task is to create a database for a FootballBookmakerSystem, using the Code First approach. It should look like this:
 # Database Diagram
 
-![Football Diagram](images/Screen Shot 2026-03-15 at 06.51.25.262 PM.png)
+
 
 Constraints
 Your namespaces should be:

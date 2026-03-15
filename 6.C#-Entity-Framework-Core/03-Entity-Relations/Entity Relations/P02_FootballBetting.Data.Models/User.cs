@@ -10,22 +10,23 @@ namespace P02_FootballBetting.Data.Models
 
         [Required]
         [MaxLength(UsernameMaxLength)]
-        public required string Username { get; set; }
+        public string Username { get; set; } = null!;
 
         [Required]
         [MaxLength(NameMaxLength)]
-        public required string Name { get; set; }
-
+        public string Name { get; set; } = null!;
         [Required]
         [MaxLength(PasswordMaxLength)]
-        public required string Password { get; set; }
+        public string Password { get; set; } = null!;
 
         [Required]
         [MaxLength(EmailMaxLength)]
-        public required string Email { get; set; }
+        public string Email { get; set; } = null!;
 
         [Precision(12,4)]
         public decimal Balance { get; set; }
+
+        public virtual ICollection<Bet> Bets { get; set; } = new HashSet<Bet>();
 
     }
 }

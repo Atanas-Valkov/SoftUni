@@ -1,4 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using P02_FootballBetting.Common;
 using static P02_FootballBetting.Common.EntityValidation.Town;
 
 namespace P02_FootballBetting.Data.Models
@@ -10,8 +12,15 @@ namespace P02_FootballBetting.Data.Models
 
         [Required]
         [MaxLength(NameMaxLength)]
-        public required string Name { get; set; }
+        public string Name { get; set; }
 
+        [ForeignKey(nameof(Country))]
         public int CountryId { get; set; }
+        public virtual Country Country { get; set; } = null!;
+
+        public virtual ICollection<Team> Teams { get; set; } = new HashSet<Team>();
+
+        public virtual ICollection<Player> Players { get; set; }
+            = new HashSet<Player>();
     }
 }

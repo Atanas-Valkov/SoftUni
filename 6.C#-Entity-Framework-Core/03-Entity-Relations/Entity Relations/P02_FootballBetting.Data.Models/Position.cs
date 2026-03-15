@@ -9,6 +9,8 @@ namespace P02_FootballBetting.Data.Models
 
         [Required]
         [MaxLength(NameMaxLength)]
-        public required string Name { get; set; }
+        public string Name { get; set; } = null!;
+
+        public virtual ICollection<Player> Players { get; set; } = new HashSet<Player>();
     }
 }

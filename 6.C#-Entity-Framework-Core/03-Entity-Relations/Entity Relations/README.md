@@ -1,44 +1,46 @@
 Exercises: Entity Relations
 
-You can check your solutions in Judge
+
 
 1. Student System
 Your task is to create a database for the StudentSystem, using the EF Core Code First approach. It should look like this:
 
 Constraints
 Your namespaces should be:
-* P01_StudentSystem – for your Startup class, if you have one
-* P01_StudentSystem.Data – for your DbContext
-* P01_StudentSystem.Data.Models – for your models
+* P01_StudentSystem â€“ for your Startup class, if you have one
+* P01_StudentSystem.Data â€“ for your DbContext
+* P01_StudentSystem.Data.Models â€“ for your models
+  
 Your models should be:
-* StudentSystemContext – your DbContext
+
+* StudentSystemContext â€“ your DbContext
 * Student
 o StudentId
-o Name – up to 100 characters, unicode
-o PhoneNumber – exactly 10 characters, not unicode, not required
+o Name â€“ up to 100 characters, unicode
+o PhoneNumber â€“ exactly 10 characters, not unicode, not required
 o RegisteredOn
-o Birthday – not required
+o Birthday â€“ not required
 * Course
 o CourseId
-o Name – up to 80 characters, unicode
-o Description – unicode, not required
+o Name â€“ up to 80 characters, unicode
+o Description â€“ unicode, not required
 o StartDate
 o EndDate
 o Price
 * Resource
 o ResourceId
-o Name – up to 50 characters, unicode
-o Url – not unicode
-o ResourceType – enum, can be Video, Presentation, Document or Other
+o Name â€“ up to 50 characters, unicode
+o Url â€“ not unicode
+o ResourceType â€“ enum, can be Video, Presentation, Document or Other
 o CourseId
 * Homework
 o HomeworkId
-o Content – string, linking to a file, not unicode
+o Content â€“ string, linking to a file, not unicode
 o ContentType - enum, can be Application, Pdf or Zip
 o SubmissionTime
 o StudentId
 o CourseId
-* StudentCourse – mapping between Students and Courses
+* StudentCourse â€“ mapping between Students and Courses
 Table relations:	
 * One student can have many Courses 
 * One student can have many Homeworks 
@@ -51,21 +53,21 @@ Your task is to create a database for a FootballBookmakerSystem, using the Code 
 
 Constraints
 Your namespaces should be:
-* P02_FootballBetting – for your Startup class, if you have one
-* P02_FootballBetting.Data – for your DbContext
-* P02_FootballBetting.Data.Models – for your models
+* P02_FootballBetting â€“ for your Startup class, if you have one
+* P02_FootballBetting.Data â€“ for your DbContext
+* P02_FootballBetting.Data.Models â€“ for your models
 Your models should be:
-* FootballBettingContext – your DbContext
-* Team – TeamId, Name, LogoUrl, Initials (JUV, LIV, ARS…), Budget, PrimaryKitColorId, SecondaryKitColorId, TownId
-* Color – ColorId, Name
-* Town – TownId, Name, CountryId
-* Country – CountryId, Name
-* Player – PlayerId, Name, SquadNumber, IsInjured, PositionId , TeamId, TownId 
-* Position – PositionId, Name
-* PlayerStatistic – GameId, PlayerId, ScoredGoals, Assists, MinutesPlayed
-* Game – GameId, HomeTeamId, AwayTeamId, HomeTeamGoals, AwayTeamGoals, HomeTeamBetRate, AwayTeamBetRate, DrawBetRate, DateTime, Result
-* Bet – BetId, Amount, Prediction, DateTime, UserId, GameId
-* User – UserId, Username, Name, Password, Email, Balance
+* FootballBettingContext â€“ your DbContext
+* Team â€“ TeamId, Name, LogoUrl, Initials (JUV, LIV, ARSâ€¦), Budget, PrimaryKitColorId, SecondaryKitColorId, TownId
+* Color â€“ ColorId, Name
+* Town â€“ TownId, Name, CountryId
+* Country â€“ CountryId, Name
+* Player â€“ PlayerId, Name, SquadNumber, IsInjured, PositionId , TeamId, TownId 
+* Position â€“ PositionId, Name
+* PlayerStatistic â€“ GameId, PlayerId, ScoredGoals, Assists, MinutesPlayed
+* Game â€“ GameId, HomeTeamId, AwayTeamId, HomeTeamGoals, AwayTeamGoals, HomeTeamBetRate, AwayTeamBetRate, DrawBetRate, DateTime, Result
+* Bet â€“ BetId, Amount, Prediction, DateTime, UserId, GameId
+* User â€“ UserId, Username, Name, Password, Email, Balance
 Table relationships:
 * A Team has one PrimaryKitColor and one SecondaryKitColor
 * A Color has many PrimaryKitTeams and many SecondaryKitTeams

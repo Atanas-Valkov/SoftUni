@@ -1,10 +1,24 @@
-﻿namespace P01_StudentSystem
+﻿using P01_StudentSystem.Data;
+
+namespace P01_StudentSystem
 {
     public class StartUp    
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
+
+            try
+            {
+                using StudentSystemContext context = new StudentSystemContext();
+                context.Database.EnsureDeleted();
+                context.Database.EnsureCreated();
+                Console.WriteLine("Done");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
         }
     }
 }

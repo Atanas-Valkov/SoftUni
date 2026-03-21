@@ -1,25 +1,77 @@
+### Football Betting
+Your task is to create a database for a FootballBookmakerSystem, using the Code First approach. It should look like this:
 
+# Database Diagram
+
+![StudentSystemDiagram](https://github.com/Atanas-Valkov/SoftUni/blob/main/6.C%23-Entity-Framework-Core/03-Entity-Relations/Entity%20Relations/Screen%20Shot%202026-03-15%20at%2006.51.25.262%20PM.png)
+
+Constraints
+Your namespaces should be:
+Your namespaces should be:
+* P01_StudentSystem â€“ for your Startup class, if you have one
+* P01_StudentSystem.Data â€“ for your DbContext
+* P01_StudentSystem.Data.Models â€“ for your models
+Your models should be:
+* StudentSystemContext â€“ your DbContext
+* Student
+o StudentId
+o Name â€“ up to 100 characters, unicode
+o PhoneNumber â€“ exactly 10 characters, not unicode, not required
+o RegisteredOn
+o Birthday â€“ not required
+* Course
+o CourseId
+o Name â€“ up to 80 characters, unicode
+o Description â€“ unicode, not required
+o StartDate
+o EndDate
+o Price
+* Resource
+o ResourceId
+o Name â€“ up to 50 characters, unicode
+o Url â€“ not unicode
+o ResourceType â€“ enum, can be Video, Presentation, Document or Other
+o CourseId
+* Homework
+o HomeworkId
+o Content â€“ string, linking to a file, not unicode
+o ContentType - enum, can be Application, Pdf or Zip
+o SubmissionTime
+o StudentId
+o CourseId
+* StudentCourse â€“ mapping between Students and Courses
+Table relations:	
+* One student can have many Courses 
+* One student can have many Homeworks 
+* One course can have many Students
+* One course can have many Resources
+* One course can have many Homeworks
+You will need a constructor, accepting DbContextOptions to test your solution in Judge!
 2. Football Betting
 Your task is to create a database for a FootballBookmakerSystem, using the Code First approach. It should look like this:
 
 Constraints
 Your namespaces should be:
-* P02_FootballBetting – for your Startup class, if you have one
-* P02_FootballBetting.Data – for your DbContext
-* P02_FootballBetting.Data.Models – for your models
+* P02_FootballBetting â€“ for your Startup class, if you have one
+* P02_FootballBetting.Data â€“ for your DbContext
+* P02_FootballBetting.Data.Models â€“ for your models
+  
 Your models should be:
-* FootballBettingContext – your DbContext
-* Team – TeamId, Name, LogoUrl, Initials (JUV, LIV, ARS…), Budget, PrimaryKitColorId, SecondaryKitColorId, TownId
-* Color – ColorId, Name
-* Town – TownId, Name, CountryId
-* Country – CountryId, Name
-* Player – PlayerId, Name, SquadNumber, IsInjured, PositionId , TeamId, TownId 
-* Position – PositionId, Name
-* PlayerStatistic – GameId, PlayerId, ScoredGoals, Assists, MinutesPlayed
-* Game – GameId, HomeTeamId, AwayTeamId, HomeTeamGoals, AwayTeamGoals, HomeTeamBetRate, AwayTeamBetRate, DrawBetRate, DateTime, Result
-* Bet – BetId, Amount, Prediction, DateTime, UserId, GameId
-* User – UserId, Username, Name, Password, Email, Balance
+
+* FootballBettingContext â€“ your DbContext
+* Team â€“ TeamId, Name, LogoUrl, Initials (JUV, LIV, ARSâ€¦), Budget, PrimaryKitColorId, SecondaryKitColorId, TownId
+* Color â€“ ColorId, Name
+* Town â€“ TownId, Name, CountryId
+* Country â€“ CountryId, Name
+* Player â€“ PlayerId, Name, SquadNumber, IsInjured, PositionId , TeamId, TownId 
+* Position â€“ PositionId, Name
+* PlayerStatistic â€“ GameId, PlayerId, ScoredGoals, Assists, MinutesPlayed
+* Game â€“ GameId, HomeTeamId, AwayTeamId, HomeTeamGoals, AwayTeamGoals, HomeTeamBetRate, AwayTeamBetRate, DrawBetRate, DateTime, Result
+* Bet â€“ BetId, Amount, Prediction, DateTime, UserId, GameId
+* User â€“ UserId, Username, Name, Password, Email, Balance
+  
 Table relationships:
+
 * A Team has one PrimaryKitColor and one SecondaryKitColor
 * A Color has many PrimaryKitTeams and many SecondaryKitTeams
 * A Team residents in one Town
@@ -32,6 +84,7 @@ Table relationships:
 * Many Bets can be placed on one Game, but a Bet can be only on one Game
 * Each bet for given game must Prediction
 * A Bet can be placed by only one User and one User can place many Bets
+  
 Separate the models, data and client into different layers (projects).
 
 

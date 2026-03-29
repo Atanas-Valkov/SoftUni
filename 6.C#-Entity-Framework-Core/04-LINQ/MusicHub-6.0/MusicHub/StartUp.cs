@@ -109,7 +109,7 @@ namespace MusicHub
             {
                 sb.AppendLine($"-Song #{counter++}");
                 sb.AppendLine($"---SongName: {song.Name}");
-                sb.AppendLine($"---Writer: {song.WriterName}");
+                sb.AppendLine($"---Writer: {song.WriterName}"); 
 
                 foreach (var p in song.PerformerSong)
                 {

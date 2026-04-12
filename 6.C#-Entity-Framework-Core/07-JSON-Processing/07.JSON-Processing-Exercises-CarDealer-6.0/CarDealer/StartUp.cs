@@ -33,8 +33,8 @@ namespace CarDealer
             // Query 14 // string result = GetOrderedCustomers(context);
             // Query 15 // string result = GetCarsFromMakeToyota(context);
             // Query 16 // string result = GetLocalSuppliers(context);
-            // Query 17 //string result = GetCarsWithTheirListOfParts(context);
-            string result = GetTotalSalesByCustomer(context);
+            // Query 17 // string result = GetCarsWithTheirListOfParts(context);
+            // Query 18 // string result = GetTotalSalesByCustomer(context);
             // Query 19 // string result = GetSalesWithAppliedDiscount(context);
             Console.WriteLine(result);
         }
@@ -43,9 +43,6 @@ namespace CarDealer
         public static string ImportSuppliers(CarDealerContext context, string inputJson)
         {
             ICollection<Supplier> supplierToAdd = new List<Supplier>();
-
-
-
             IEnumerable<ImportSupplierDto>? supplierDtos = JsonConvert
                 .DeserializeObject<ImportSupplierDto[]>(inputJson);
 
@@ -138,7 +135,6 @@ namespace CarDealer
 
             if (carsDtos != null)
             {
-
                 foreach (ImportCarsDto carDto in carsDtos)
                 {
                     if (!IsValid(carDto))
@@ -190,7 +186,6 @@ namespace CarDealer
             {
                 foreach (ImportCustomersDto customerDto in customerDtos)
                 {
-
                     if (!IsValid(customerDto))
                     {
                         continue;
@@ -236,7 +231,6 @@ namespace CarDealer
 
             return $"Successfully imported {context.Sales.Count()}.";
         }
-
 
         //public static string ImportSales(CarDealerContext context, string inputJson)
         //{
@@ -287,7 +281,6 @@ namespace CarDealer
         // Query 14. Export Ordered Customers
         public static string GetOrderedCustomers(CarDealerContext context)
         {
-
             var orderedCustomersQuery = context.Customers
                 .AsNoTracking()
                 .OrderBy(c => c.BirthDate)
@@ -396,7 +389,6 @@ namespace CarDealer
                             Price = pc.Part.Price.ToString("F2")
                         })
 
-
                 })
                 .ToList();
 
@@ -406,7 +398,6 @@ namespace CarDealer
         }
 
         //Query 18. Export Total Sales by Customer
-
         public static string GetTotalSalesByCustomer(CarDealerContext context)
         {
             var customersTotalSalesQuery = context.Customers
@@ -436,8 +427,6 @@ namespace CarDealer
 
             return jsonResult;
         }
-
-
 
         //Query 19. Export Sales with Applied Discount
         public static string GetSalesWithAppliedDiscount(CarDealerContext context)
@@ -475,7 +464,6 @@ namespace CarDealer
 
             return jsonResult;
         }
-
         private static bool IsValid(object obj)
         {
             ValidationContext validationContext = new ValidationContext(obj);

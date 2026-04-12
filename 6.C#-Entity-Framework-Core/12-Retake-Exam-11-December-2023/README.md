@@ -1,19 +1,6 @@
 # Databases Advanced Exam - 11 December 2023
 
-Exam problems for the [Databases Advanced - Entity Framework course @
-SoftUni](https://softuni.bg/trainings/4234/entity-framework-core-october-2023).\
-Submit your solutions in the **SoftUni Judge** system (delete all
-**bin**/**obj** and **packages** folders)
-[here](https://judge.softuni.org/Contests/4468/CSharp-DB-Advanced-Regular-Exam-02-December-2023).
-
-Before submitting your solutions in the **SoftUni Judge** system, delete
-all **bin**/**obj** and **packages** folders. If the **zip** file is
-still too large, you can delete the **ImportResults**,
-**ExportsResults** and **Datasets** folders too.
-
-Your task is to create a **database application**, using **Entity
-Framework Core,** using the **Code First** approach. Design the **domain
-models** and **methods** for manipulating the data, as described below.
+<img width="930" height="849" alt="Screenshot 2026-04-05 150548" src="https://github.com/user-attachments/assets/e82ef790-1fb7-47ec-aedd-ddc8eda6a3c7" />
 
 # Cadastre
 

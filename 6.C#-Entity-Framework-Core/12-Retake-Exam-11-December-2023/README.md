@@ -2,11 +2,6 @@
 
 <img width="930" height="849" alt="Screenshot 2026-04-05 150548" src="https://github.com/user-attachments/assets/e82ef790-1fb7-47ec-aedd-ddc8eda6a3c7" />
 
-# Cadastre
-
-![](media/image1.emf){width="7.246527777777778in"
-height="3.7159722222222222in"}
-
 ## Project Skeleton Overview
 
 You are given a **project skeleton**, which includes the following

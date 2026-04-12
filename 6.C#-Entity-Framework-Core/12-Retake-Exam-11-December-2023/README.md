@@ -1,7 +1,5 @@
 # Databases Advanced Exam - 11 December 2023
 
-<img width="930" height="849" alt="Screenshot 2026-04-05 150548" src="https://github.com/user-attachments/assets/e82ef790-1fb7-47ec-aedd-ddc8eda6a3c7" />
-
 ## Project Skeleton Overview
 
 You are given a **project skeleton**, which includes the following
@@ -167,39 +165,7 @@ described below.
 
 ##### Example
 
-+----------------------------------------------------------------------+
-| **Districts.xml**                                                    |
-+======================================================================+
-| \<?xml version=\"1.0\" encoding=\"utf-8\" ?\>                        |
-|                                                                      |
-| \<Districts\>                                                        |
-|                                                                      |
-| \<District Region=\"SouthWest\"\>                                    |
-|                                                                      |
-| \<Name\>Sofia\</Name\>                                               |
-|                                                                      |
-| \<PostalCode\>SF-10000\</PostalCode\>                                |
-|                                                                      |
-| \<Properties\>                                                       |
-|                                                                      |
-| \<Property\>                                                         |
-|                                                                      |
-| \<PropertyIdentifier\>SF-10000.001.001.001\</PropertyIdentifier\>    |
-|                                                                      |
-| \<Area\>71\</Area\>                                                  |
-|                                                                      |
-| \<Details\>One-bedroom apartment\</Details\>                         |
-|                                                                      |
-| \<Address\>Apartment 5, 23 Silverado Street, Sofia\</Address\>       |
-|                                                                      |
-| \<DateOfAcquisition\>15/03/2022\</DateOfAcquisition\>                |
-|                                                                      |
-| \</Property\>                                                        |
-|                                                                      |
-| \<Property\>                                                         |
-|                                                                      |
-| \<PropertyIdentifier\>SF-10000.003.002.001\</PropertyIdentifier\>    |
-|                                                                      |
+ж                                                      |
 | \<Area\>120\</Area\>                                                 |
 |                                                                      |
 | \<Details\>Spacious two-bedroom apartment near central               |

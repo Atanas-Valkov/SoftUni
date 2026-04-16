@@ -14,10 +14,10 @@ public class ImportUsersDto
 
     [Required]
     [JsonProperty("lastName")]
-    public string LastName { get; set; }
+    public string LastName { get; set; } = null!;
 
     [JsonProperty("age")]
-    public int? Age { get; set; }
-    
+    public string Age { get; set; } = null!;
+
 
 }

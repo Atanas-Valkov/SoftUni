@@ -1,4 +1,7 @@
-﻿using System.Xml.Serialization;
+﻿using ProductShop.DTOs.Export;
+using System.Text;
+using System.Xml.Linq;
+using System.Xml.Serialization;
 
 namespace ProductShop.Models.Utilites;
 
@@ -23,5 +26,52 @@ public class XmlHelper
         T? deserializedObject = (T?)xmlSerializer.Deserialize(inputStream);
 
         return deserializedObject;
+    }
+
+    public static string Serialize<T>(T objectToSerialize, string rootAttributeName, IDictionary<string, string>? namespaces = null)
+    {
+        StringBuilder sb = new StringBuilder();
+
+        XmlSerializerNamespaces xmlSerializerNamespaces = new XmlSerializerNamespaces();
+        if (namespaces == null)
+        {
+            xmlSerializerNamespaces.Add(string.Empty, string.Empty);
+        }
+        else
+        {
+            foreach (KeyValuePair<string, string> nsKvp in namespaces)
+            {
+                xmlSerializerNamespaces.Add(nsKvp.Key, nsKvp.Value);
+            }
+        }
+
+        XmlRootAttribute xmlRootAttribute = new XmlRootAttribute(rootAttributeName);
+        XmlSerializer xmlSerializer = new XmlSerializer(typeof(T), xmlRootAttribute);
+
+        using StringWriter stringWriter = new StringWriter(sb);
+
+        xmlSerializer.Serialize(stringWriter, objectToSerialize, xmlSerializerNamespaces);
+        return sb.ToString().TrimEnd();
+    }
+
+    public static void Serialize<T>(T objectToSerialize, string rootAttributeName, Stream outputStream, IDictionary<string, string>? namespaces = null)
+    {
+        XmlSerializerNamespaces xmlSerializerNamespaces = new XmlSerializerNamespaces();
+        if (namespaces == null)
+        {
+            xmlSerializerNamespaces.Add(string.Empty, string.Empty);
+        }
+        else
+        {
+            foreach (KeyValuePair<string, string> nsKvp in namespaces)
+            {
+                xmlSerializerNamespaces.Add(nsKvp.Key, nsKvp.Value);
+            }
+        }
+
+        XmlRootAttribute xmlRootAttribute = new XmlRootAttribute(rootAttributeName);
+        XmlSerializer xmlSerializer = new XmlSerializer(typeof(T), xmlRootAttribute);
+
+        xmlSerializer.Serialize(outputStream, objectToSerialize, xmlSerializerNamespaces);
     }
 }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<Users>
+<UsersDto>
     <User>
         <firstName>Chrissy</firstName>
         <lastName>Falconbridge</lastName>
@@ -500,4 +500,4 @@
         <lastName>Adamek</lastName>
         <age>20</age>
     </User>
-</Users>
+</UsersDto>

@@ -6,7 +6,7 @@ namespace ProductShop.DTOs.Import;
 [XmlType("User")]
 public class ImportUsersDto
 {
-    // <Users>
+    // <UsersDto>
     // <User>
     //     <firstName>Chrissy</firstName>
     //     <lastName>Falconbridge</lastName>

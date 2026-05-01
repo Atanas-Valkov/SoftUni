@@ -1,127 +1,128 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Suppliers>
-    <Supplier>
+    <LocalSuppliersDto>
         <name>3M Company</name>
-        <isImporter>true</isImporter>
-    </Supplier>
-    <Supplier>
+        <isImporter>
+		</isImporter>
+    </LocalSuppliersDto>
+    <LocalSuppliersDto>
         <name>Agway Inc.</name>
         <isImporter>false</isImporter>
-    </Supplier>
-    <Supplier>
+    </LocalSuppliersDto>
+    <LocalSuppliersDto>
         <name>Anthem, Inc.</name>
         <isImporter>true</isImporter>
-    </Supplier>
-    <Supplier>
+    </LocalSuppliersDto>
+    <LocalSuppliersDto>
         <name>Airgas, Inc.</name>
         <isImporter>false</isImporter>
-    </Supplier>
-    <Supplier>
+    </LocalSuppliersDto>
+    <LocalSuppliersDto>
         <name>Atmel Corporation</name>
         <isImporter>true</isImporter>
-    </Supplier>
-    <Supplier>
+    </LocalSuppliersDto>
+    <LocalSuppliersDto>
         <name>Big Lots, Inc.</name>
         <isImporter>true</isImporter>
-    </Supplier>
-    <Supplier>
+    </LocalSuppliersDto>
+    <LocalSuppliersDto>
         <name>Caterpillar Inc.</name>
         <isImporter>false</isImporter>
-    </Supplier>
-    <Supplier>
+    </LocalSuppliersDto>
+    <LocalSuppliersDto>
         <name>Casey&#x27;s General Stores Inc.</name>
         <isImporter>true</isImporter>
-    </Supplier>
-    <Supplier>
+    </LocalSuppliersDto>
+    <LocalSuppliersDto>
         <name>Cintas Corp.</name>
         <isImporter>false</isImporter>
-    </Supplier>
-    <Supplier>
+    </LocalSuppliersDto>
+    <LocalSuppliersDto>
         <name>Chubb Corp</name>
         <isImporter>true</isImporter>
-    </Supplier>
-    <Supplier>
+    </LocalSuppliersDto>
+    <LocalSuppliersDto>
         <name>Cintas Corp.</name>
         <isImporter>false</isImporter>
-    </Supplier>
-    <Supplier>
+    </LocalSuppliersDto>
+    <LocalSuppliersDto>
         <name>CNF Inc.</name>
         <isImporter>true</isImporter>
-    </Supplier>
-    <Supplier>
+    </LocalSuppliersDto>
+    <LocalSuppliersDto>
         <name>CMGI Inc.</name>
         <isImporter>true</isImporter>
-    </Supplier>
-    <Supplier>
+    </LocalSuppliersDto>
+    <LocalSuppliersDto>
         <name>The Clorox Co.</name>
         <isImporter>false</isImporter>
-    </Supplier>
-    <Supplier>
+    </LocalSuppliersDto>
+    <LocalSuppliersDto>
         <name>Danaher Corporation</name>
         <isImporter>true</isImporter>
-    </Supplier>
-    <Supplier>
+    </LocalSuppliersDto>
+    <LocalSuppliersDto>
         <name>E.I. Du Pont de Nemours and Company</name>
         <isImporter>false</isImporter>
-    </Supplier>
-    <Supplier>
+    </LocalSuppliersDto>
+    <LocalSuppliersDto>
         <name>E*Trade Group, Inc.</name>
         <isImporter>true</isImporter>
-    </Supplier>
-    <Supplier>
+    </LocalSuppliersDto>
+    <LocalSuppliersDto>
         <name>Emcor Group Inc.</name>
         <isImporter>true</isImporter>
-    </Supplier>
-    <Supplier>
+    </LocalSuppliersDto>
+    <LocalSuppliersDto>
         <name>GenCorp Inc.</name>
         <isImporter>false</isImporter>
-    </Supplier>
-    <Supplier>
+    </LocalSuppliersDto>
+    <LocalSuppliersDto>
         <name>IDT Corporation</name>
         <isImporter>true</isImporter>
-    </Supplier>
-    <Supplier>
+    </LocalSuppliersDto>
+    <LocalSuppliersDto>
         <name>Level 3 Communications Inc.</name>
         <isImporter>false</isImporter>
-    </Supplier>
-    <Supplier>
+    </LocalSuppliersDto>
+    <LocalSuppliersDto>
         <name>Merck &amp; Co., Inc.</name>
         <isImporter>true</isImporter>
-    </Supplier>
-    <Supplier>
+    </LocalSuppliersDto>
+    <LocalSuppliersDto>
         <name>Nicor Inc</name>
         <isImporter>false</isImporter>
-    </Supplier>
-    <Supplier>
+    </LocalSuppliersDto>
+    <LocalSuppliersDto>
         <name>Olin Corp.</name>
         <isImporter>true</isImporter>
-    </Supplier>
-    <Supplier>
+    </LocalSuppliersDto>
+    <LocalSuppliersDto>
         <name>Paychex Inc</name>
         <isImporter>true</isImporter>
-    </Supplier>
-    <Supplier>
+    </LocalSuppliersDto>
+    <LocalSuppliersDto>
         <name>Saks Inc</name>
         <isImporter>false</isImporter>
-    </Supplier>
-    <Supplier>
+    </LocalSuppliersDto>
+    <LocalSuppliersDto>
         <name>Sunoco Inc.</name>
         <isImporter>true</isImporter>
-    </Supplier>
-    <Supplier>
+    </LocalSuppliersDto>
+    <LocalSuppliersDto>
         <name>Textron Inc</name>
         <isImporter>true</isImporter>
-    </Supplier>
-    <Supplier>
+    </LocalSuppliersDto>
+    <LocalSuppliersDto>
         <name>VF Corporation</name>
         <isImporter>false</isImporter>
-    </Supplier>
-    <Supplier>
+    </LocalSuppliersDto>
+    <LocalSuppliersDto>
         <name>Wyeth</name>
         <isImporter>true</isImporter>
-    </Supplier>
-    <Supplier>
+    </LocalSuppliersDto>
+    <LocalSuppliersDto>
         <name>Zale</name>
         <isImporter>false</isImporter>
-    </Supplier>
+    </LocalSuppliersDto>
 </Suppliers>

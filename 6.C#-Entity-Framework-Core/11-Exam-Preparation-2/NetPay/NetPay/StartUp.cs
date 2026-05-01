@@ -14,7 +14,7 @@ namespace NetPay
             var projectDir = GetProjectDirectory();
 
             ImportEntities(context, projectDir + @"Datasets/", projectDir + @"ImportResults/");
-            ExportEntities(context, projectDir + @"ExportResults/");
+            //ExportEntities(context, projectDir + @"ExportResults/");
 
             using(var transaction = context.Database.BeginTransaction())
             {
@@ -22,6 +22,7 @@ namespace NetPay
             }
         }
 
+        
         private static void ImportEntities(NetPayContext context, string baseDir, string exportDir)
         {
             var households = DataProcessor.Deserializer

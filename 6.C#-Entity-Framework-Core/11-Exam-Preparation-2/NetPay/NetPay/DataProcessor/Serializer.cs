@@ -13,8 +13,6 @@ namespace NetPay.DataProcessor
     {
         public static string ExportHouseholdsWhichHaveExpensesToPay(NetPayContext context)
         {
-
-
             ExportHouseholdsWhichHaveExpensesToPayDto[] query = context
                 .Households
                 .AsNoTracking()

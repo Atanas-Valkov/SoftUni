@@ -1,0 +1,42 @@
+﻿namespace Cadastre.Common;
+
+public class EntityValidation
+{
+    public static class District
+    {
+        public const int NameMinLength = 2;
+        public const int NameMaxLength = 80;
+
+        public const int PostalCodeMinLength = 8;
+        public const int PostalCodeMaxLength = 8;
+
+        public const string PostalCodeRegEx = @"^[A-Z]{2}-\d{5}$";
+    }
+
+    public  static class Property
+    {
+        public const int PropertyIdentifierMinLength = 16;
+        public const int PropertyIdentifierMaxLength = 20;
+
+        public const int AreaMinValue = 0;
+        public const int AreaMaxValue = int.MaxValue;
+
+        public const int DetailsMinLength = 5;
+        public const int DetailsMaxLength = 500;
+
+        public const int AddressMinLength  = 5;
+        public const int AddressMaxLength = 200;
+    }
+
+    public static class Citizen
+    {
+        public const int FirstNameMinLength = 2;
+        public const int FirstNameMaxLength = 30;
+
+        public const int LastNameMinLength = 2;
+        public const int LastNameMaxLength = 30;
+
+
+
+    }
+}

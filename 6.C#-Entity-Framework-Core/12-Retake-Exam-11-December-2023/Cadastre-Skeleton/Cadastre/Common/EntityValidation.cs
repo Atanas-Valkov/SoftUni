@@ -18,7 +18,7 @@ public class EntityValidation
         public const int PropertyIdentifierMinLength = 16;
         public const int PropertyIdentifierMaxLength = 20;
 
-        public const int AreaMinValue = 0;
+        public const int AreaMinValue = 1;
         public const int AreaMaxValue = int.MaxValue;
 
         public const int DetailsMinLength = 5;

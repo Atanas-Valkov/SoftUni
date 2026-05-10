@@ -17,7 +17,7 @@ public class Property
 
     [Required]
     [Range(AreaMinValue, AreaMaxValue)]
-    public string Area { get; set; } = null!;
+    public int Area { get; set; } 
 
     [Required]
     [MaxLength(DetailsMaxLength)]
@@ -31,11 +31,9 @@ public class Property
 
     [ForeignKey(nameof(District))]
     public int DistrictId { get; set; }
+
     public virtual District District { get; set; } = null!;
 
     public virtual ICollection<PropertyCitizen> PropertiesCitizens { get; set; }
         = new List<PropertyCitizen>();
-
-
-
 }

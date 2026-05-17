@@ -9,14 +9,14 @@ public class ExportPropertiesWithTheirOwnersDto
     public string PropertyIdentifier { get; set; } = null!;
 
     [JsonProperty("Area")]
-    public int RArea { get; set; }
+    public int Area { get; set; }
 
     [JsonProperty("Address")]
     public string Address { get; set; } = null!;
 
     [JsonProperty("DateOfAcquisition")]
-    public DateTime DateOfAcquisition { get; set; }
+    public string DateOfAcquisition { get; set; } = null!;
 
     [JsonProperty("Owners")]
-    public CitizenDto[] Owners { get; set; }
+    public CitizenDto[] Owners { get; set; } = null!;
 }

@@ -1,17 +1,18 @@
-using GarageApp.Data;
 using Microsoft.EntityFrameworkCore;
+using RazorViewsAndLayouts_BookShelf.Data;
 
-namespace GarageApp
+namespace RazorViewsAndLayouts_BookShelf
 {
     public class Program
     {
         public static void Main(string[] args)
         {
-            WebApplication builder = WebApplication.CreateBuilder(args);
+            var builder = WebApplication.CreateBuilder(args);
 
-            string? connectionString = builder.Configuration.GetConnectionString("DevConnection");
+            string? connectionString = builder.Configuration
+                .GetConnectionString("DevConnection");
 
-            builder.Services.AddDbContext<GarageAppDbContext>(options =>
+            builder.Services.AddDbContext<BookShelfDbContext>(options =>
             {
                 options.UseSqlServer(connectionString);
             });
@@ -30,15 +31,15 @@ namespace GarageApp
             }
 
             app.UseHttpsRedirection();
-            app.UseStaticFiles();
-
             app.UseRouting();
 
             app.UseAuthorization();
 
+            app.MapStaticAssets();
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}");
+                pattern: "{controller=Home}/{action=Index}/{id?}")
+                .WithStaticAssets();
 
             app.Run();
         }

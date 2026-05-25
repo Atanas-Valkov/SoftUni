@@ -138,6 +138,10 @@ LEFT JOIN [Bookings]
     WHERE [b].[Id] IS NULL
  ORDER BY [t].[Name] ASC 
 
+
+
+
+
 --8
 
   SELECT TOP 10

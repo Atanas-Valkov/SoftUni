@@ -50,6 +50,9 @@ CREATE TABLE [BonusPrizes]
 [Name] VARCHAR(50) NOT NULL,
 )
 
+
+
+
 CREATE TABLE [TouristsBonusPrizes]
 (
 [TouristId] INT FOREIGN KEY REFERENCES [Tourists]([Id]) NOT NULL,
